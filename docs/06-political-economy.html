@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>06-political-economy</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 id="political-economy-of-compute-and-an-honest-verdict-on-decentralization">Political Economy of Compute, and an Honest Verdict on Decentralization</h2>
+<h3 id="two-left-frameworks-read-against-the-ai-capex-supercycle">Two left frameworks, read against the AI-capex supercycle</h3>
+<p>Any political-economy reading of out-of-datacenter compute inherits two competing left-wing frameworks, both of which predate the 2025-2026 capex supercycle and must be read against it.</p>
+<ul>
+<li><strong>Technofeudalism (pessimistic).</strong> Yanis Varoufakis (<em>Technofeudalism: What Killed Capitalism</em>, 2023; essay <a href="https://www.persuasion.community/p/the-age-of-cloud-capital">"The Age of Cloud Capital"</a>, <em>Persuasion</em>, 29 April 2024) argues that "cloud capital" is a mutation of capital "so much more powerful than its predecessor that... it has killed off its host," such that "profit and markets have been evicted from the epicenter of our economic and social system." Profit is replaced by <strong>cloud rent</strong> - "a form of rent that must be paid for access to those platforms" - and markets are replaced by "cloud fiefdoms... which look like, but are not, markets."</li>
+<li><strong>Fully Automated Luxury Communism (optimistic).</strong> Aaron Bastani (<em>Fully Automated Luxury Communism</em>, Verso, <a href="https://en.wikipedia.org/wiki/Fully_Automated_Luxury_Communism">2019</a>) is the counter-pole: ever-cheaper compute and automation could push society past scarcity into abundance.</li>
+<li><strong>The contest.</strong> The technofeudalism reading is <strong>not settled</strong>. Henry Snow (<a href="https://jacobin.com/2023/10/cloud-capitalism-technofeudalism-serfs-cloud-big-data-yanis-varoufakis"><em>Jacobin</em>, 27 Oct 2023</a>) argues this is intensified capitalism, not feudalism: firms keep power "insofar as they command greater profit," users <em>do</em> migrate ("the defining feature of serfs is that they do not freely migrate"), and search results are "literally, sold to advertisers" in functioning markets. We attribute technofeudalism as Varoufakis's <em>argument</em>, not as a consensus description.</li>
+</ul>
+<h3 id="the-concentration-the-empirical-core">The concentration (the empirical core)</h3>
+<p>The "who controls compute" question is answered, first, by concentration. NVIDIA reported a record <a href="https://cryptobriefing.com/nvidia-data-center-revenue-75-billion/"><strong>$75.2B</strong> in data-center revenue in calendar Q1 2026 (fiscal Q1 FY2027), up ~92% YoY</a>, with hyperscalers at roughly 50% (~$38B), and holds an estimated <strong>85-92%</strong> of the AI-accelerator market (projected to ease toward ~75% by 2026 as AMD and custom silicon scale). The four hyperscalers' combined 2026 capex is commonly cited as analyst-consensus in the **~$600B-$725B** range (the figure varies by source and by AI-only vs total - treat as a range, not a point).</p>
+<p>The cloud-rent thesis is visible in "neocloud" financials. CoreWeave reported <a href="https://finance.yahoo.com/news/coreweave-crwv-reports-2025-revenue-195641826.html"><strong>$5.13B</strong> FY2025 revenue and a <strong>$66.8B</strong> contracted backlog</a> but a <a href="https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Fourth-Quarter-and-Fiscal-Year-2025-Results/"><strong>$1.17B</strong> GAAP net loss with Microsoft at <strong>~67%</strong> of 2025 revenue</a> - extreme single-customer concentration. The "renters" are no longer only startups; they include the AI labs themselves, and most independent capacity is financed by, and contractually locked to, the same NVIDIA/hyperscaler core, so its independence is largely nominal.</p>
+<h3 id="the-honest-verdict-real-but-bounded-split-cleanly-by-workload">The honest verdict: real but bounded, split cleanly by workload</h3>
+<p>Decentralized compute is <strong>a real but bounded movement, not a credible challenger to hyperscaler dominance at the frontier.</strong> The evidence splits by workload.</p>
+<p><strong>(1) Frontier training stays centralized.</strong> Per Epoch AI (<a href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">Jaime Sevilla et al.</a>), the largest decentralized pretraining runs (INTELLECT-1, Protocol Model 8B, Consilience 40B) sit at <strong>6e22-6e23 FLOP - ~1000x below</strong> frontier models such as Grok 4. Decentralized training grows <strong>~20x/year</strong> vs <strong>~5x/year</strong> centralized, which mechanically implies ~5.5 years to parity <em>if both trends held</em> - but Sevilla's own conclusion is that "<strong>we won't see decentralized training runs catch up to the frontier of training in scale this decade.</strong>" Bandwidth is the binding constraint: over consumer internet, under a 10-minute sync, naive data parallelism caps out at a "rather small <strong>600M parameter model</strong>." Only algorithmic tricks make larger runs viable: DiLoCo's **~500x** bandwidth reduction, Nous Research's DeMo optimizer, and Prime Intellect's asynchronous RL.</p>
+<p><strong>(2) Inference / rendering / batch is the genuine, growing niche.</strong> Akash Network crossed <a href="https://akash.network/blog/akash-network-q1-2026-report/"><strong>~$5M</strong> compute spend in Q1 2026 (all-time high)</a>, reporting <a href="https://www.ainvest.com/news/akash-network-surpasses-5-million-compute-spend-ai-infrastructure-bottlenecks-2605/">utilization above 80% and 428% YoY usage growth</a> - real, price-sensitive demand for cheaper GPU-hours than hyperscaler list prices.</p>
+<p><strong>(3) The web3 precedent is a cautionary tale on metric integrity.</strong> io.net's April 2024 Sybil attack saw <a href="https://www.theblock.co/post/291315/solana-based-depin-io-net-ceo-claims-network-was-attacked-in-detailed-postmortem"><strong>~1.8 million fake GPUs</strong> attempt to connect</a>, and as of 2026 only <a href="https://cryptonews.com/news/io-net-ceo-details-recent-sybil-attack-and-new-security-measures/"><strong>~6,720</strong> daily-verified-active GPUs out of ~327,000 registered</a>. The whole DePIN sector generated only <a href="https://messari.io/report/state-of-depin-2025"><strong>~$72M</strong> real on-chain revenue in FY2025 against a ~$10B circulating market cap</a>, with <a href="https://decrypt.co/356349/depin-tokens-lag-revenues-rise-fundamentals">revenue decoupling from token price</a> for the small subset with real usage. Advertised "registered GPUs" ≠ available capacity.</p>
+<h3 id="real-vs-hype">REAL vs HYPE</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Verdict</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compute is concentrated in NVIDIA + hyperscalers</td>
+<td><strong>REAL</strong></td>
+<td>$75.2B NVIDIA data-center Q1-2026; ~85-92% accelerator share (<a href="https://cryptobriefing.com/nvidia-data-center-revenue-75-billion/">source</a>)</td>
+</tr>
+<tr>
+<td>Neoclouds embody "cloud rent" + customer lock-in</td>
+<td><strong>REAL</strong></td>
+<td>CoreWeave $5.13B rev, $1.17B loss, 67% Microsoft (<a href="https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Fourth-Quarter-and-Fiscal-Year-2025-Results/">source</a>)</td>
+</tr>
+<tr>
+<td>Decentralized <strong>inference/rendering</strong> has real demand</td>
+<td><strong>REAL (small)</strong></td>
+<td>Akash ~$5M Q1-2026, &gt;80% util, +428% YoY (<a href="https://akash.network/blog/akash-network-q1-2026-report/">source</a>)</td>
+</tr>
+<tr>
+<td>Permissionless training is technically real</td>
+<td><strong>REAL (niche)</strong></td>
+<td>6e22-6e23 FLOP runs via DiLoCo/DeMo/async-RL (<a href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">source</a>)</td>
+</tr>
+<tr>
+<td>Decentralized training will rival the frontier</td>
+<td><strong>HYPE</strong></td>
+<td>~1000x below frontier; Sevilla: won't catch up this decade (<a href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">source</a>)</td>
+</tr>
+<tr>
+<td>DePIN "registered GPU" counts = capacity</td>
+<td><strong>HYPE</strong></td>
+<td>io.net ~6,720 verified vs ~327k registered; ~1.8M fake in Sybil attack (<a href="https://cryptonews.com/news/io-net-ceo-details-recent-sybil-attack-and-new-security-measures/">source</a>)</td>
+</tr>
+<tr>
+<td>DePIN sector scale matches its valuation</td>
+<td><strong>HYPE</strong></td>
+<td>~$72M real revenue vs ~$10B market cap (<a href="https://messari.io/report/state-of-depin-2025">source</a>)</td>
+</tr>
+<tr>
+<td>Technofeudalism is a settled description</td>
+<td><strong>CONTESTED</strong></td>
+<td>Varoufakis's argument; disputed by Jacobin/Snow (<a href="https://jacobin.com/2023/10/cloud-capitalism-technofeudalism-serfs-cloud-big-data-yanis-varoufakis">source</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Synthesis.</strong> The technical achievement is real, the economic traction is real but small and concentrated in inference/rendering, and the marketing routinely overstates scale. Out-of-datacenter compute is an emerging movement with a defensible niche - <em>not</em> a replacement for Google, Amazon, or Microsoft datacenters at the frontier.</p>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 06-political-economy.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

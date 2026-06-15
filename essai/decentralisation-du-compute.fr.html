@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>decentralisation-du-compute.fr</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="la-décentralisation-du-compute--contre-pouvoir-pas-pouvoir-de-remplacement">La décentralisation du compute : contre-pouvoir, pas pouvoir de remplacement</h1>
+<p><em>Essai critique. Ismaël Joffroy Chandoutis, juin 2026.</em></p>
+<p>Tout est parti d'une question banale : on me propose de louer mes machines pour faire tourner de l'IA pendant qu'elles dorment, électricité gratuite, est-ce que ça vaut le coup. La réponse courte, je la donne ailleurs : non, pas en ponctuel. Mais la vraie question, celle qui m'intéresse, est plus large. Louer du GPU pour l'inférence, est-ce le mining Ethereum de 2021 qui recommence avec l'IA ? Et derrière : peut-on croire à une décentralisation du calcul, à l'ère de l'IA, qui échapperait pour de bon aux data centers de Google, d'Amazon et de Microsoft ? Ce texte est ma position, adossée à un état de l'art que j'ai fait vérifier source par source. Les chiffres bruts, datés et tracés, sont dans le survey ; ici je tire la ligne.</p>
+<h2 id="le-motif-maître--ce-qui-est-annoncé-nest-pas-ce-qui-tourne">Le motif maître : ce qui est annoncé n'est pas ce qui tourne</h2>
+<p>S'il fallait ne retenir qu'une chose, ce serait l'écart systématique entre la capacité affichée et la capacité réellement active. io.net, l'un des plus gros réseaux GPU décentralisés grand public, communique sur 327 000 GPU « enregistrés » ; au premier trimestre 2025, la moyenne quotidienne de GPU vérifiés actifs était d'environ 6 720, soit à peu près 2 pour cent (Messari, <em>State of io.net Q1 2025</em>). En 2024, le réseau avait subi une attaque Sybil où près de 1,8 million de faux GPU ont tenté de se connecter pour capter des récompenses en token (postmortem io.net ; The Block, 2024). Depuis, « nombre de GPU » est une métrique morte.</p>
+<p>Cet écart se retrouve à l'échelle du secteur entier. Le rapport de référence (Messari, <em>State of DePIN 2025</em>) chiffre l'ensemble du DePIN autour de 10 milliards de dollars de capitalisation pour environ 72 millions de dollars de revenu réel on-chain en 2025. Un décompte indépendant (BlockEden, mars 2026) recense plus de 650 projets, un pic de capitalisation autour de 19 milliards, et moins de 20 projets générant un revenu non-token significatif. La conclusion que j'en tire est méthodologique avant d'être politique : la ligne de partage entre le signal et le bruit, c'est l'auditabilité. Quand la demande est vérifiable on-chain (Akash dans les explorers Cosmos), on peut y croire. Quand le chiffre est auto-déclaré, fermé, absent des agrégateurs (Aethir et ses 127,8 millions de dollars de revenu 2025 annoncés), il faut s'en méfier, et le marché lui-même le price en dessous de son chiffre d'affaires revendiqué. Un chiffre est d'autant moins citable qu'il est gros.</p>
+<h2 id="la-forme-de-la-charge-décide-pas-lidéologie">La forme de la charge décide, pas l'idéologie</h2>
+<p>La lignée bénévole répond directement à la nostalgie du « truc de la PS3 ». Folding@home a prouvé, dès les années 2000 puis spectaculairement pendant le COVID, que des millions de machines grand public peuvent se fédérer en un calculateur de classe exaflopique : 768 petaFLOPS natifs vers le 25 mars 2020, après être passé d'environ 30 000 à près d'un million d'appareils actifs en trois mois (Wikipedia, <em>Folding@home</em>). Le client PlayStation 3, de 2007 à 2012, a mobilisé plus de 15 millions de consoles. C'est réel, c'est documenté, ça a nourri une science qui a mené jusqu'au Nobel de chimie 2024 de David Baker via Rosetta@home.</p>
+<p>Mais ce modèle ne marche que pour une forme de charge précise : le calcul massivement parallèle, tolérant à la latence, découpable en petits jobs indépendants. L'entraînement d'un grand modèle de langage est l'exact opposé : une communication de tous vers tous à chaque pas. Petals, le « BitTorrent pour LLM », a démontré l'idée puis est mort comme essaim public (dernier commit en août 2024). Le seul réseau bénévole sans argent qui tienne dans la durée, AI Horde (181 millions d'images générées, quatre ans d'existence), survit précisément parce qu'il sert des petits jobs indépendants, et il est explicitement anti-blockchain : ses « kudos » sont « intrinsèquement sans valeur » et interdits à la revente. Autrement dit, ce n'est pas l'idéologie qui décide de la viabilité, c'est la topologie de la tâche. Tout succès est tolérant à la latence ; tout échec se heurte à un mur de bande passante.</p>
+<h2 id="lécologie-du-calcul--le-carbone-se-décide-au-lieu-et-à-lheure">L'écologie du calcul : le carbone se décide au lieu et à l'heure</h2>
+<p>Il manque à tout ceci une matière qu'on oublie toujours : le calcul est thermodynamique avant d'être économique. Le carbone d'un entraînement ne se décide pas dans le communiqué par requête du vendeur, il se décide à l'endroit et à l'heure où le run tourne. Le même modèle, entraîné sur un réseau propre ou sur un réseau au charbon, varie de plus de soixante fois en CO2 : la France d'EDF tourne autour de 26 grammes de CO2 par kilowattheure, près de 80 pour cent de nucléaire, la Norvège autour de 2, un réseau au charbon au-dessus de 700. À l'échelle globale, les data centers sont passés d'environ 415 térawattheures en 2024, à peu près 1,5 pour cent de l'électricité mondiale, vers près de 945 d'ici 2030 selon l'Agence internationale de l'énergie, l'équivalent de la consommation du Japon. Mon point de départ, cette électricité que je crois gratuite, ne l'est jamais : gratuite pour moi ne veut pas dire sans carbone, le carbone reste celui de mon réseau, et je dois le vérifier avant de me raconter que mon atelier est propre.</p>
+<p>Il faut aussi nommer le greenwashing pendant qu'il est frais. Le récit du nuage propre s'est effondré en 2025 et 2026 : Crusoe, fondé sur l'idée d'un calcul vert au gaz torché, a revendu son minage de Bitcoin puis pivoté vers une centrale à gaz de 933 mégawatts, environ 4,5 millions de tonnes de CO2 par an, pour alimenter un campus Google. Et le « 100 pour cent renouvelable » adossé à des certificats annuels achetés séparément est un artifice comptable : les électrons réellement consommés ont pu être fossiles. À l'inverse, un argument écologique honnête joue en faveur de la location : louer amortit le carbone de fabrication du matériel, de l'ordre de 164 kilos de CO2 par carte H100, sur de nombreux usagers. Décentraliser sur du GPU grand public n'est donc pas automatiquement vert : une carte sur un réseau sale peut être pire qu'un grand centre optimisé sur un réseau propre. La sobriété, ici, n'est pas un renoncement esthétique, c'est un choix d'infrastructure : décaler un entraînement non urgent vers une région et une heure bas-carbone, plutôt que d'acheter des compensations.</p>
+<h2 id="la-seule-vraie-nouveauté-et-son-démenti-intégré">La seule vraie nouveauté, et son démenti intégré</h2>
+<p>Tout le reste (location, inférence DePIN, calcul bénévole) est une variation d'idées qui existaient déjà vers 2010. La nouveauté de cette période, la seule, c'est l'entraînement décentralisé. L'algorithme fondateur, DiLoCo (Douillard et al., Google DeepMind, 2023), réduit la communication entre nœuds d'environ un facteur 500 en ne synchronisant que de loin en loin. Sur cette base, Prime Intellect a entraîné de vrais modèles à travers les continents : INTELLECT-1 (10 milliards de paramètres) puis INTELLECT-2 (32 milliards, en apprentissage par renforcement distribué mondial), avec 90 à 95 pour cent d'utilisation des calculateurs. C'est attaquer le château fort non pas à l'inférence, déjà en voie de banalisation, mais à l'endroit qui compte : la création du modèle.</p>
+<p>Et c'est là qu'arrive le fait le plus parlant de tout le dossier, celui qui m'oblige à l'honnêteté. Le modèle phare de Prime Intellect, INTELLECT-3 (106 milliards de paramètres, fin novembre 2025), n'a pas été entraîné en décentralisé. Il a tourné sur un cluster centralisé classique de 512 GPU H200 en InfiniBand, pendant deux mois. La raison est technique : au frontier, le RL asynchrone « exige de l'InfiniBand, pas du haut débit d'un garage » (implicator.ai, 2025). Le laboratoire qui porte le drapeau décentralisé est revenu au data center pour son meilleur modèle. Epoch AI (Jaime Sevilla, décembre 2025) chiffre froidement l'écart : les plus gros runs décentralisés sont à peu près mille fois sous le frontier, et « nous ne verrons pas l'entraînement décentralisé rattraper le frontier en échelle cette décennie ». Le verrou n'est pas la physique, c'est l'agrégation et l'économie. La promesse est réelle ; elle est moyenne d'échelle, pas frontière.</p>
+<h2 id="qui-entraîne-façonne-limaginaire">Qui entraîne façonne l'imaginaire</h2>
+<p>Et c'est là que l'enjeu cesse d'être seulement économique pour devenir le mien, d'artiste. Entraîner un modèle, c'est façonner un espace latent, un réservoir de formes et d'images possibles. Enclore l'entraînement, ce n'est pas seulement prélever une rente, c'est privatiser la fabrique de l'imaginaire. Louer du calcul pour entraîner plus grand que sa propre machine, c'est déléguer cette fabrique à une infrastructure dont on ne maîtrise ni le réseau électrique, ni l'hôte physique, ni le boîtier : sur une place de marché ouverte à tous, l'hôte possède la machine et peut, avec un accès administrateur, lire vos rushes, votre jeu de données et vos poids dans la mémoire. La seule parade réelle, le calcul confidentiel sur GPU, est encore largement en chantier en 2026, et ne se confond pas avec les preuves d'exécution qui attestent qu'un nœud a bien fait tourner le modèle sans rien protéger de vos données. Choisir son fournisseur et sa région n'est jamais neutre : cela inscrit l'œuvre dans une géographie énergétique et politique.</p>
+<h2 id="lecture-politique--anti-rente-pas-anti-capital">Lecture politique : anti-rente, pas anti-capital</h2>
+<p>Il faut nommer les cadres et ne pas les confondre avec des faits. Yanis Varoufakis (<em>Technofeudalism: What Killed Capitalism</em>, 2023) soutient que le « capital de cloud » a évincé les marchés au profit de fiefs privés où l'on paie une rente d'accès. La thèse est séduisante et elle est contestée : Henry Snow (<em>Jacobin</em>, octobre 2023) répond que c'est du capitalisme intensifié, pas du féodalisme, puisque les utilisateurs migrent librement et que les marchés publicitaires fonctionnent. Je ne tranche pas le débat académique. Je retiens ce que les chiffres montrent : la concentration est massive et documentée (l'écrasante majorité du marché des accélérateurs revient à un seul fabricant, NVIDIA, et la demande de calcul des data centers connaît une croissance à deux chiffres par an), et la « rente de cloud » est littéralement mesurable dans l'écart de prix de 50 à 75 pour cent entre un hyperscaler et un fournisseur décentralisé.</p>
+<p>D'où ma position. Le compute décentralisé est un mouvement anti-rente, pas un pouvoir de remplacement. Sa fonction économique vérifiée, c'est de comprimer la rente (un H100 à 2 à 4 dollars de l'heure contre le prix de liste), de contourner la pénurie, et de garder vivante une voie d'entraînement ouverte. C'est un contre-pouvoir. Il n'est pas en trajectoire pour prendre le data center d'assaut, et la lucidité commande de le dire. La porte de sortie de Yann LeCun (l'analogie Wikipédia, la concentration du pouvoir comme danger principal, aujourd'hui institutionnalisée dans AMI Labs et le projet fédéré Tapestry de l'AI Alliance) est précieuse parce qu'elle place l'enjeu au bon endroit : qui peut entraîner, pas seulement qui peut servir. Mais « ouvert » veut le plus souvent dire poids ouverts sous restrictions, et même AMI est une entreprise commerciale d'1,03 milliard de dollars de levée.</p>
+<p>Le danger, enfin, est interne. La financiarisation par token, censée amorcer l'offre, recrée en miniature la rente qu'elle prétend combattre : les tokens DePIN sont des actifs spéculatifs détenus de façon disproportionnée par des initiés, et les attaques Sybil sont le prix à payer quand on financiarise un commun que l'altruisme, lui (Folding@home), protégeait sans token. Le commun marchandisé invite la triche que le commun gratuit évitait.</p>
+<h2 id="le-commun-positif--seul-je-ny-arriverai-pas">Le commun positif : seul, je n'y arriverai pas</h2>
+<p>Reste la seule sortie qui m'intéresse vraiment, parce que seul je n'y arriverai pas : se mettre en commun. Et la bonne nouvelle, vérifiée, c'est que partager du calcul sans hyperscaler est un problème déjà résolu du côté des communs. AI Horde en est le modèle vivant : on prête son GPU, on gagne des crédits, la valeur du travail rendu plus un filet tant qu'on reste en ligne ; ces crédits ne s'achètent ni ne se vendent, se donnent librement, n'expirent pas, et n'ouvrent jamais qu'une priorité dans la file, jamais un accès exclusif. Le réseau tolère même le passager clandestin : on peut s'en servir en allant en négatif, ce qui « représente sa dette à la communauté ». C'est l'inverse exact du jeton spéculatif, et ça tient depuis quatre ans. Le piège est connu : le cercle vraiment vertueux, gagner quand ma machine dort et tirer quand j'entraîne plus gros, n'existe pour l'instant comme produit que dans les économies de jeton, où il réintroduit la rente qu'il prétendait abolir. La leçon des communs durables, de Folding@home aux fédérations universitaires, et la grammaire qu'Elinor Ostrom a posée dès 1990 dans Gouvernance des biens communs, est constante : ce qui casse un commun, ce n'est jamais la technique, c'est la gouvernance. Le passager clandestin, les sanctions graduées, les fausses identités. La technique, elle, existe déjà : relier quelques machines d'un collectif, répliquer le travail pour le vérifier, et même puiser dans le calcul public et philanthropique qui dort. Un commun positif du calcul n'est pas une utopie à inventer, c'est une pratique à organiser.</p>
+<h2 id="ce-quon-peut-faire-et-ce-quil-faut-croire">Ce qu'on peut faire, et ce qu'il faut croire</h2>
+<p>Alors, voie morte ou pas ? Ni l'un ni l'autre. Un deuxième tier durable, qui tient le cloud honnête sur les prix et garde une trappe d'évasion ouverte du côté de l'entraînement. Concrètement, pour qui a quelques machines et de l'électricité gratuite, le geste collectif rationnel n'est pas de spéculer sur un token : c'est de mutualiser. Une coopérative d'achat sur les marketplaces prouvées. Un essaim d'inférence privé sur ses propres GPU pour faire tourner un grand modèle ouvert qu'aucune machine seule ne porte. La reproduction d'un run à la OpenDiLoCo, parce que c'est la compétence qui touche au verrou réel. Et, le plus utile et le plus citable, un tableau de bord public et honnête du prix réel au token contre le prix annoncé, à travers les réseaux : la pathologie du secteur, ce sont les chiffres invérifiables, et un artefact rigoureux anti-vent est exactement ce qu'un chercheur peut apporter. Détail qui n'en est pas un : pour l'entraînement, co-localiser physiquement ses GPU sur un réseau local bat le décentralisé, parce que le mur c'est la bande passante.</p>
+<p>Ce qu'il faut croire, pour finir, tient en une ligne. Croire les revenus d'inférence et les résultats d'entraînement à faible communication. Diviser par dix les capitalisations de token et les nombres de GPU annoncés. L'enjeu n'est pas de renverser le cloud, c'est d'empêcher l'enclosure totale et de maintenir ouverte la création. C'est moins spectaculaire qu'une révolution, et c'est précisément pour ça que ça mérite d'être défendu. Ce qu'on défend en gardant la création ouverte, ce n'est pas un meilleur tableur de prix : c'est la possibilité que l'imaginaire ne soit pas entièrement loué, que la fabrique des images reste, au moins en partie, tenue par un collectif plutôt que par trois data centers. La rigueur reste mon outil, l'imaginaire est l'enjeu. Et l'enjeu, lui, ne se sous-traite pas.</p>
+<hr />
+<h2 id="références">Références</h2>
+<p>Travaux cités. Les chiffres détaillés, datés et liés, ainsi que la méthode de vérification, sont rassemblés dans <a href="../SOURCES.md">SOURCES.md</a>.</p>
+<ul>
+<li>Bastani, Aaron. <em>Fully Automated Luxury Communism: A Manifesto</em>. Verso, 2019.</li>
+<li>Borzunov, Alexander, et al. « Petals: Collaborative Inference and Fine-tuning of Large Models ». 2023. arXiv:2209.01188.</li>
+<li>Douillard, Arthur, et al. « DiLoCo: Distributed Low-Communication Training of Language Models ». Google DeepMind, 2023. arXiv:2311.08105.</li>
+<li>Messari. <em>State of DePIN 2025</em>. 2026. <a href="https://messari.io/report/state-of-depin-2025">https://messari.io/report/state-of-depin-2025</a></li>
+<li>Sevilla, Jaime, et al. « How far can decentralized training over the internet scale? ». Epoch AI, décembre 2025. <a href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale</a></li>
+<li>Snow, Henry. Critique du « technoféodalisme » de Varoufakis. <em>Jacobin</em>, 27 octobre 2023. <a href="https://jacobin.com/2023/10/cloud-capitalism-technofeudalism-serfs-cloud-big-data-yanis-varoufakis">https://jacobin.com/2023/10/cloud-capitalism-technofeudalism-serfs-cloud-big-data-yanis-varoufakis</a></li>
+<li>Varoufakis, Yanis. <em>Technofeudalism: What Killed Capitalism</em>. The Bodley Head, 2023.</li>
+</ul>
+<p><em>Liste complète des sources vérifiées et affirmations réfutées : <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis decentralisation-du-compute.fr.md — 2026-06-16 03:14</div></div>
+</body>
+</html>

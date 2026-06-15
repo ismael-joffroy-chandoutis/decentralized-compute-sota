@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>07-synthesis-and-verdict</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="synthesis-and-verdict">Synthesis and Verdict</h1>
+<h2 id="executive-summary">Executive summary</h2>
+<p>Compute outside the hyperscaler datacenter is not one thing; it is five distinct families with wildly different evidence bases, and conflating them is the single biggest source of hype. The verified picture: (1) Commercial GPU rental marketplaces are the only segment with robust, auditable demand - H100s rent at $1.49-$6.98/hr (clustering $2-$4), genuinely 50-75% below hyperscaler list, and RunPod hit $120M ARR. This works because it is mostly aggregation of professional and prosumer hardware, not grandma's gaming PC. (2) Crypto/DePIN is a ~$10B market cap sitting on only ~$72M of verifiable 2025 on-chain revenue (Messari), with fewer than 20 of 650+ projects earning meaningful non-token income (BlockEden). Real paid inference exists and is accelerating (io.net &gt;4B daily inference tokens, Akash ~60% utilization, Render &gt;22M frames) but is an order of magnitude smaller than token caps imply, and the loudest revenue claims (Aethir's self-reported $127.8M) are the least auditable - the market itself prices Aethir below its claimed annual revenue. "GPU count" is a discredited vanity metric after io.net's 2024 Sybil attack (~1.8M fake GPUs). (3) Volunteer/open-source computing (the Folding@home / BOINC / PS3 lineage) proved decades ago that millions of consumer machines can be federated into exaflop-class throughput - but for embarrassingly-parallel scientific workloads, not the all-to-all gradient communication LLM training needs. (4) The genuinely new and most important family is decentralized TRAINING: Prime Intellect's OpenDiLoCo and INTELLECT-1 (10B) / INTELLECT-2 (32B globally distributed RL) demonstrate that low-communication methods can train real models across continents at 90-95% compute utilization - the first credible technical bridge from "rent idle GPUs" to "actually train frontier-ish models without a single datacenter." (5) An open-commons family (open weights + open infra norms, the LeCun position) is less a compute substrate than the political precondition that makes the other four matter. Net: decentralized compute is real, growing, and useful at the margins for inference and increasingly for training - but it is not on a trajectory to displace Big Tech datacenters for frontier pretraining, and most of its public valuation is speculative froth, not delivered work.</p>
+<h2 id="taxonomy-five-families">Taxonomy: five families</h2>
+<p>Five families, separated by WHO supplies the hardware, WHO pays, and WHAT workload is viable. Conflating them is the root of most hype.</p>
+<p>(1) COMMERCIAL GPU RENTAL MARKETPLACES. Supply: third-party hardware (professional operators + prosumers) aggregated by a platform, OR an integrated provider's own fleet. Payment: fiat, on-demand, market-priced. Examples: Vast.ai, RunPod, TensorDock, Salad (aggregators, take a cut - TensorDock 75/25 split); Together AI, Hyperbolic (integrated, central pricing). Workload: inference, fine-tuning, training on rented datacenter GPUs. EVIDENCE GRADE: strong - auditable prices, real ARR (RunPod $120M). This is the working core.</p>
+<p>(2) CRYPTO / DePIN INCENTIVE NETWORKS. Supply: token-incentivized hosts (consumer + pro). Payment: protocol token + sometimes fiat, with on-chain settlement and burn mechanisms. Examples: Akash (most auditable), Render (3D/VFX, burn-mint), io.net, Nosana, Bittensor (subnet incentives), Aethir (least auditable), Gensyn/Kuzco (pre/early revenue). Workload: increasingly real paid inference; rendering; RL. EVIDENCE GRADE: mixed - small real revenue (~$72M sector), huge speculative caps (~$10B), discredited GPU counts. Believe on-chain, discount self-reported.</p>
+<p>(3) VOLUNTEER / OPEN-SOURCE DISTRIBUTED COMPUTING (the PS3 lineage). Supply: donated idle cycles from the public, unpaid. Payment: none (altruism/points). Examples: Folding@home, BOINC/SETI@home, the PS3 Folding client. Workload: embarrassingly-parallel scientific simulation - NOT LLM training. EVIDENCE GRADE: proven at exaflop scale (Folding@home 2020), but workload-limited. The historical existence proof that consumer federation can rival supercomputers - for the right job.</p>
+<p>(4) DECENTRALIZED TRAINING. Supply: geographically-distributed GPUs (rented, donated, or pooled) coordinated by low-communication algorithms. Payment: varies (research, token, or co-op). Examples: Prime Intellect (OpenDiLoCo, INTELLECT-1 10B, INTELLECT-2 32B globally-distributed RL, prime-RL), the DiLoCo research lineage; Petals (distributed inference of a single large model). Workload: low-communication pretraining and especially RL/post-training across continents at 90-95% utilization. EVIDENCE GRADE: early but real and rigorously documented - the only genuinely new capability and the one that could relocate model CREATION out of the datacenter.</p>
+<p>(5) OPEN-COMMONS / OPEN-WEIGHTS NORMS. Not a compute substrate but the governance/IP layer that makes families 3-4 matter: open weights + open training recipes + open infra (the LeCun position; Llama/Mistral/open-training ecosystems). EVIDENCE GRADE: real as a movement; produces strong sub-frontier models. It is the political precondition for decentralization, not a source of FLOPs itself.</p>
+<p>KEY DISTINCTIONS: aggregator vs integrated (within family 1); paid-fiat vs token-subsidized (1 vs 2); altruism vs financialized incentive (3 vs 2); inference/rollout (latency-tolerant, federates well) vs dense pretraining (bandwidth-bound, doesn't); and renting EXISTING datacenter GPUs (families 1-2, the common case) vs federating CONSUMER hardware (the rare, hard, much-hyped case).</p>
+<h2 id="verdict">Verdict</h2>
+<p>Not a dead end, not a revolution - a real and durable SECOND TIER that will coexist with, not replace, hyperscaler datacenters. The honest reading of the evidence:</p>
+<p>WHAT IT CAN DO TODAY (proven): Cost-arbitraged INFERENCE and fine-tuning at 50-75% below hyperscaler prices is real, audited, and revenue-generating (RunPod $120M ARR, Akash on-chain ~60% utilization, io.net &gt;4B daily inference tokens, Render &gt;22M frames). For inference, batch jobs, rendering, fine-tuning, and RL post-training, decentralized/marketplace compute is already a legitimate production choice, not a science project. This tier wins on price and on routing around scarcity, not on raw capability.</p>
+<p>WHAT IS NEWLY PLAUSIBLE (early but credible): Decentralized TRAINING of real models. Prime Intellect's INTELLECT-1 (10B) and INTELLECT-2 (32B, globally distributed RL) plus OpenDiLoCo's 90-95% utilization across continents are the first hard evidence that low-communication training breaks the "must be one datacenter" assumption. The frontier here is RL/post-training and mid-size pretraining, which tolerate high latency and low bandwidth far better than dense synchronous pretraining. This is the segment to watch; it is where the technofeudal moat is actually contestable.</p>
+<p>WHAT IT CANNOT DO (and likely won't soon): Frontier dense pretraining of the largest models. That remains bandwidth-bound (InfiniBand/NVLink fabrics, co-located HBM, power density) and economically concentrated. Volunteer-grade consumer hardware cannot host a 70B+ model in VRAM per node, and all-reduce over the public internet is orders of magnitude too slow for synchronous SGD at frontier scale. Folding@home reached exaflops only because protein folding is embarrassingly parallel; LLM pretraining is not.</p>
+<p>WHERE THE HYPE IS A DEAD END: Token-subsidized "supply" theater. ~$10B market cap on ~$72M real revenue, &lt;20 of 650+ DePIN projects with genuine income, inflated GPU counts, and passive-income marketing (Salad "up to $180/mo" paid in store credit; Vast.ai net ~$8-52/mo after electricity for consumer cards). The DePIN financial layer is mostly speculation; the compute layer underneath is small but real. Crypto VCs are openly split for good reason (Demirors: "DePIN is dying"; Elitzer: "thinly veiled shitcoin ICOs").</p>
+<p>BOTTOM LINE: Decentralized compute emerges as a complement and a price-disciplining force - it caps hyperscaler rents, routes around GPU scarcity, and (via DiLoCo-class methods) cracks open mid-scale training. It does not emerge as a replacement for Big Tech datacenters at the frontier. The right mental model is not "the cloud gets overthrown" but "the cloud gets a competitive fringe that keeps it honest, plus an open-training escape hatch that matters politically more than it matters by FLOP share." Believe the inference revenue and the DiLoCo training results; discount the token caps and GPU counts by an order of magnitude.</p>
+<h2 id="cross-cutting-themes">Cross-cutting themes</h2>
+<ul>
+<li>THE SUPPLY/UTILIZATION GAP IS THE MASTER PATTERN. Across every family, advertised capacity vastly exceeds verified working capacity. io.net: 327k registered GPUs vs 6,720 daily-active (~2%). Akash actually SHRANK (GPU usage -46% QoQ in Q4 2025). The honest metric is utilization and on-chain/audited revenue, never headline GPU count - which io.net's 2024 Sybil attack (~1.8M fake GPUs) permanently discredited.</li>
+<li>REVENUE IS REAL BUT SMALL AND CONCENTRATED; VALUATION IS LARGE AND SPECULATIVE. The entire DePIN sector: ~$10B cap on ~$72M real 2025 revenue, &lt;20 of 650+ projects with meaningful non-token income. The gap between market cap and delivered work is the sector's defining credibility problem. Inversely, Aethir trades BELOW its self-reported annual revenue - the market discounts unauditable claims.</li>
+<li>AUDITABILITY IS THE DIVIDING LINE BETWEEN SIGNAL AND NOISE. On-chain/independently-verifiable demand (Akash in Cosmos explorers, Render burns, RunPod ARR via TechCrunch) is the trustworthy core. Self-reported, closed-source, off-DeFiLlama figures (Aethir $127.8M, vendor utilization claims of &gt;90%, 'up to' earnings) are marketing. A claim's citability is inversely correlated with its size.</li>
+<li>THE WORKLOAD DETERMINES VIABILITY, NOT THE IDEOLOGY. Embarrassingly-parallel and latency-tolerant work (inference, rendering, RL rollouts, fine-tuning, scientific simulation) federates well across heterogeneous nodes. Bandwidth-bound synchronous work (dense frontier pretraining) does not. Every success story is latency-tolerant; every failure is a bandwidth wall. This single axis predicts which family wins which job.</li>
+<li>CONSUMER-HOST ECONOMICS ARE THIN, SO THE 'PEOPLE'S CLOUD' IS MOSTLY PROFESSIONALS. Marketplaces verify and auto-rank datacenter-grade gear; mining/consumer rigs 'may never be verified' and 'mostly sit idle.' Real consumer net earnings (~$8-52/mo on Vast.ai after power) don't cover hardware amortization. The decentralized cloud is real, but its supply is professional small operators, not a grassroots multitude.</li>
+<li>TOKENS SOLVE BOOTSTRAPPING, NOT DEMAND. Token incentives genuinely solved the cold-start supply problem (Nosana 50k+ hosts, Spheron Fizz). But subsidized supply is not paid demand; once emissions halve (Bittensor Dec 2025 halving) or burns bite, the question is whether real usage remains. So far real usage is small but growing - the subsidy was a scaffold, and the building is only partly built.</li>
+<li>DECENTRALIZED TRAINING IS THE ONE GENUINELY NEW CAPABILITY. Everything else (rental, DePIN inference, volunteer compute) is a re-skin of ideas that existed by 2010. Low-communication training (DiLoCo/OpenDiLoCo, INTELLECT-1/2) is the first thing that could actually relocate model CREATION out of the datacenter, which is why it carries disproportionate political weight.</li>
+</ul>
+<h2 id="political-economy">Political economy</h2>
+<p>The political-economy stakes are real and should be stated precisely, not romantically.</p>
+<p>TECHNOFEUDALISM (Varoufakis, 'Technofeudalism: What Killed Capitalism', 2023): Varoufakis argues markets are being replaced by privately-owned digital fiefs ('cloud capital') where users and vendors pay rent to platform lords rather than transacting in open markets. Compute is the purest case: a handful of hyperscalers plus NVIDIA own the means of AI production and extract 'cloud rent' (the 5-9x markup over decentralized providers is literally measurable rent). Decentralized compute is best read as an ANTI-RENT movement - its core economic function, verified here, is precisely to compress that rent (H100 at $2-4/hr vs hyperscaler list). Whether it dismantles the fief or just disciplines its pricing is the open question. The evidence says: disciplines, does not dismantle - the fief still owns the frontier and the chip supply.</p>
+<p>THE COMMONS (Ostrom on common-pool governance; Benkler, 'The Wealth of Networks', 2006, on commons-based peer production; the Folding@home/BOINC/SETI@home lineage): Volunteer computing is the proof-of-concept that a digital commons of donated cycles can rival institutional supercomputers for the right workload (Folding@home's 2020 exaflop surge). The limit is governance and workload fit, exactly as Ostrom would predict: commons work when the resource is non-rival-ish, contributions are verifiable, and free-riding/Sybil attacks are policed. DePIN is, in effect, an attempt to bolt a token-incentive layer onto Benkler's peer production - replacing intrinsic/altruistic motivation with financialized motivation. The Sybil attacks show the cost: financializing the commons invites gaming that pure-altruism commons (Folding@home) largely avoided.</p>
+<p>THE LeCUN / OPEN-AI POSITION (Yann LeCun's consistent advocacy for open foundation models; the open-weights ecosystem around Llama, Mistral, and the open-training crews): The argument is that if model WEIGHTS and increasingly model TRAINING are open and reproducible, no single corporation can capture the AI substrate. Decentralized training (Prime Intellect open-sourcing INTELLECT-1/2, prime-RL, OpenDiLoCo) is the operational arm of this position: it attacks the moat not at the inference layer (already commoditizing) but at the creation layer. This is the most strategically important political-economy vector in the whole report, because controlling who can TRAIN is the real chokepoint. But grounded honesty: open training currently produces strong sub-frontier models, not frontier ones, so it broadens access without yet breaking the frontier oligopoly.</p>
+<p>SYNTHESIS: The three lenses converge on one claim - decentralized compute is a counter-power, not a replacement power. It lowers rents (anti-technofeudal), revives a financialized commons (with the Sybil tax that entails), and keeps an open-training escape hatch alive (LeCun). Its political value is in preventing total enclosure, not in storming the datacenter. The danger to name: token-financialization can recreate, in miniature, the very rent-extraction it claims to oppose - DePIN tokens are themselves speculative assets owned disproportionately by insiders.</p>
+<h2 id="cross-platform-feasibility">Cross-platform feasibility</h2>
+<p>Honest, hardware-grounded reality for a normal person with normal machines.</p>
+<p>INFERENCE - feasible on all three platforms, today. Running open models locally is mature: llama.cpp/Ollama/LM Studio run on macOS (Apple Silicon, where unified memory is a genuine advantage - an M3/M4 Max with 64-128GB can hold larger models than most single consumer GPUs), Windows, and Linux. Apple Silicon (Metal/MLX) and NVIDIA (CUDA) are the smooth paths; AMD (ROCm) and Intel are improving but rougher. A 7B-14B model runs comfortably on a modern laptop; 30B needs ~32GB+; 70B needs a high-memory Mac or multi-GPU rig. This is the realistic consumer sweet spot.</p>
+<p>SELLING/RENTING YOUR GPU - feasible on Windows/Linux with NVIDIA; mostly not worth it. Vast.ai, Salad, io.net, Nosana onboard consumer NVIDIA cards (Linux preferred, Windows supported by some). But verified net earnings are thin (~$8-52/mo on Vast.ai after electricity; Salad pays in store credit). Macs are largely excluded as rentable supply (no CUDA, datacenter demand is CUDA-shaped). Conclusion: hosting is a hobbyist/marginal activity unless you already own idle datacenter-grade gear and cheap power.</p>
+<p>CONTRIBUTING TO A COMMONS - feasible everywhere, today. Folding@home and BOINC run cross-platform (Mac/Windows/Linux) and are the lowest-friction way for a consumer machine to do real distributed work - it just won't be LLM training.</p>
+<p>DECENTRALIZED TRAINING - feasible to PARTICIPATE in, not to lead, and mostly NVIDIA/Linux. Prime Intellect-style runs and Petals-style 'BitTorrent for LLMs' inference can accept volunteer nodes, but meaningful contribution wants a recent NVIDIA GPU (ideally 24GB+, i.e. RTX 4090/5090 class) on Linux with good bandwidth. A MacBook can run client-side tooling and orchestrate, but is not a useful training worker. Ismaël's own fleet illustrates the realistic shape: the two RTX 5090 Windows rigs (NOMAD, TORRENT) are the actual compute; the MacBook Air M3 is an orchestration/inference node, not a trainer; the Mac Mini M4 is a coordinator/server, not a GPU contributor.</p>
+<p>HARD CONSUMER CEILINGS: (1) VRAM - a single consumer card tops out around 24-32GB, so per-node you host a shard or a small model, never a frontier model. (2) Bandwidth - home upload (often 10-50 Mbps) kills synchronous training; only low-communication (DiLoCo) or latency-tolerant (inference/RL) workloads survive. (3) Power and thermals - sustained GPU load on a laptop is destructive; this is desktop/rig territory. (4) Heterogeneity - mixed Mac/Windows/Linux pools work for inference and embarrassingly-parallel jobs, poorly for tightly-coupled training.</p>
+<h2 id="collective-action-what-a-small-group-can-actually-do">Collective action: what a small group can actually do</h2>
+<ul>
+<li>FORM A SMALL BUYING/RENTING CO-OP ON THE PROVEN MARKETPLACES. 3-5 people pool demand on Vast.ai/RunPod/TensorDock to rent H100s at $2-4/hr for bursty training/inference instead of each paying hyperscaler rates. This is the lowest-risk, highest-certainty action: the price arbitrage is verified and the tooling exists today. Treat it as a compute credit union, not an investment.</li>
+<li>RUN A PETALS-STYLE / DISTRIBUTED-INFERENCE SWARM ACROSS YOUR OWN MACHINES. A motivated group with a handful of NVIDIA GPUs (e.g. the two RTX 5090 rigs) plus Mac orchestration can stand up a private distributed-inference cluster over Tailscale for a large open model none of them could run alone - splitting layers across nodes. Latency-tolerant, cross-platform-friendly, and it teaches the real bandwidth/sharding constraints firsthand.</li>
+<li>JOIN OR SEED A DECENTRALIZED TRAINING/RL RUN (Prime Intellect-style). Contribute the 5090 rigs to an open globally-distributed run, or replicate OpenDiLoCo on a small model across the group's own geographically-split machines. This is the frontier-relevant skill and the politically meaningful one (open creation, not just open weights). Start by reproducing the open-sourced INTELLECT-2 / prime-RL stack on a toy model.</li>
+<li>CONTRIBUTE IDLE CYCLES TO A SCIENTIFIC COMMONS (Folding@home / BOINC) AS THE BASELINE. Lowest friction, fully cross-platform, real public good, and an honest demonstration of the volunteer-compute ceiling. Good first move while building toward training. Set it as the default 'idle GPU' behavior on every machine in the group.</li>
+<li>BUILD A SHARED, HONEST BENCHMARK + DASHBOARD OF REAL $/TOKEN AND $/GPU-HR ACROSS PROVIDERS. The sector's core pathology is unverifiable claims; a small group can produce public, reproducible price/throughput measurements (verified vs advertised) across Vast.ai, RunPod, TensorDock, io.net, Akash, Nosana. This is genuinely useful, citable, and counter-hype - exactly the kind of rigorous public artifact that earns trust.</li>
+<li>ADOPT A STRICT DUE-DILIGENCE RULE BEFORE ANY TOKEN EXPOSURE. If the group is tempted by DePIN tokens: require on-chain or independently-audited revenue (DeFiLlama/Token Terminal/Cosmos explorers), discount headline GPU counts and 'up to' earnings, and treat anything self-reported and off-chain (Aethir-style) as marketing. Separate the decision to USE a network (often fine) from the decision to HOLD its token (mostly speculation).</li>
+<li>POOL HARDWARE PHYSICALLY, NOT JUST VIRTUALLY. For tightly-coupled training the bandwidth wall is decisive, so a co-located mini-cluster (a few GPUs in one apartment/studio on a fast LAN) beats five GPUs scattered across home internet connections. If the group is local-ish, co-location is the single biggest performance unlock and the most realistic path to actually training something.</li>
+</ul>
+<h2 id="biggest-uncertainties">Biggest uncertainties</h2>
+<ul>
+<li>Whether decentralized/low-communication TRAINING scales past ~32B to genuinely frontier scale. INTELLECT-2 (32B RL) is the high-water mark; it is unproven whether DiLoCo-class methods reach 100B+ dense pretraining competitively, or plateau as a mid-scale and RL-only technique. This single question decides whether family (4) is a complement or a real challenger.</li>
+<li>The true paid-demand trajectory of DePIN once token subsidies wind down. io.net's burns and Bittensor's halving are starting to test whether real usage survives reduced emissions. We have a snapshot (~$72M, growing) but not the post-subsidy steady state. Akash actually shrinking in 2025 is a warning sign that demand may not be durable.</li>
+<li>Aethir-class self-reported numbers: are they real (making the sector materially larger than the ~$72M auditable core) or inflated (making them the canonical example of DePIN unauditability)? The market pricing Aethir below its claimed revenue strongly suggests disbelief, but it is genuinely unresolved without on-chain data.</li>
+<li>The real, electricity-and-amortization-adjusted economics for consumer hosts at scale. Vendor 'up to' figures and ~80% utilization assumptions are best-case; independent net figures (~$8-52/mo) suggest the consumer 'people's cloud' supply is structurally unprofitable and therefore fragile. How much supply persists without speculation is unknown.</li>
+<li>NVIDIA's chip allocation, export controls, and energy/power-density constraints - exogenous factors that could either entrench hyperscalers (if frontier compute stays scarce and centralized) or push demand toward the decentralized fringe (if scarcity makes any available GPU valuable). The decentralized thesis is partly a bet on persistent GPU scarcity.</li>
+<li>Whether heterogeneous cross-platform pools (mixed Mac/Windows/Linux, mixed GPU generations) can be made efficient for anything beyond inference and embarrassingly-parallel jobs. Most documented successes use relatively homogeneous NVIDIA/Linux fleets; the 'any device' dream remains largely unproven for coupled workloads.</li>
+<li>The governance/Sybil-resistance question for any financialized commons: can proof-of-work-style GPU verification stay ahead of gaming as rewards rise, or does financialization permanently invite the kind of attack io.net suffered? This determines whether token-incentivized supply numbers can ever be trusted.</li>
+</ul>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 07-synthesis-and-verdict.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="compute-outside-the-datacenter">Compute Outside the Datacenter</h1>
+<h3 id="a-verified-state-of-the-art-of-decentralized-ai-compute-mid-2026">A verified state of the art of decentralized AI compute (mid 2026)</h3>
+<blockquote>
+<p>Renting your machine for AI, crypto GPU networks, the Folding@home / PlayStation 3 lineage, decentralized model training, the open commons. What is real, what is hype, and whether anything can actually emerge outside Google, Amazon and Microsoft.</p>
+</blockquote>
+<p><em>Français : voir <a href="README.fr.md">README.fr.md</a> et l'essai signé <a href="essai/decentralisation-du-compute.fr.md">essai/decentralisation-du-compute.fr.md</a>.</em></p>
+<hr />
+<h2 id="tldr-the-verdict">TL;DR (the verdict)</h2>
+<p>Decentralized compute is <strong>neither a dead end nor a revolution</strong>. It is a real and durable <strong>second tier</strong> that coexists with hyperscaler datacenters without replacing them at the frontier. It lowers rents (an anti-rent force: H100 at 2 to 4 USD/hour versus hyperscaler list prices), routes around GPU scarcity, and keeps an open-training escape hatch alive that matters politically more than it matters by FLOP share.</p>
+<ul>
+<li><strong>Believe</strong> the inference revenue and the low-communication training results.</li>
+<li><strong>Discount</strong> the token market caps and the advertised "GPU counts" by roughly an order of magnitude.</li>
+</ul>
+<p>The single master pattern: across every family, <strong>advertised capacity vastly exceeds verified working capacity</strong>. io.net markets 327,000 "registered" GPUs but averaged about 6,720 verified-active per day in Q1 2025 (about 2 percent), after a 2024 Sybil attack involving roughly 1.8 million fake GPUs. The whole DePIN sector is around 10 billion USD of market cap on roughly 72 million USD of real on-chain 2025 revenue (Messari, <em>State of DePIN 2025</em>). Auditability is the line between signal and noise.</p>
+<hr />
+<h2 id="the-five-families">The five families</h2>
+<p>Conflating these is the root of most hype. Each differs by who supplies the hardware, who pays, and which workload is viable.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Family</th>
+<th>Supply</th>
+<th>Payment</th>
+<th>Viable workload</th>
+<th>Evidence grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Commercial marketplaces</strong> (Vast.ai, RunPod, TensorDock, Salad)</td>
+<td>Pros and prosumers, aggregated</td>
+<td>Fiat, market-priced</td>
+<td>Inference, fine-tuning, training on rented datacenter GPUs</td>
+<td><strong>Strong</strong> (auditable prices, RunPod 120M USD ARR)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Crypto / DePIN</strong> (io.net, Render, Akash, Bittensor, Aethir, Nosana)</td>
+<td>Token-incentivized hosts</td>
+<td>Token, sometimes fiat</td>
+<td>Increasingly real paid inference, rendering, RL</td>
+<td><strong>Mixed</strong> (small real revenue, large speculative caps)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Volunteer / open-source</strong> (Folding@home, BOINC, the PS3 era, AI Horde)</td>
+<td>Donated idle cycles, unpaid</td>
+<td>None (altruism, kudos)</td>
+<td>Embarrassingly parallel science, <strong>not</strong> LLM training</td>
+<td><strong>Proven but workload-limited</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Decentralized training</strong> (Prime Intellect, Nous, DiLoCo)</td>
+<td>Dispersed GPUs, low-communication algorithms</td>
+<td>Varies (research, token, co-op)</td>
+<td>Low-communication pretraining and RL across continents</td>
+<td><strong>Early but real</strong> (the only genuinely new capability)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Open commons</strong> (LeCun, open weights, Project Tapestry)</td>
+<td>Governance / IP layer</td>
+<td>n/a</td>
+<td>Political precondition, not a source of FLOPs</td>
+<td>Real as a movement</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="read-the-survey">Read the survey</h2>
+<p>Each section is fully sourced. Vendor and self-reported figures are flagged; dollar figures are dated snapshots that drift week to week.</p>
+<ol type="1">
+<li><a href="docs/01-commercial-marketplaces.md">Commercial GPU rental marketplaces and who the hosts are</a></li>
+<li><a href="docs/02-depin-crypto.md">Crypto / DePIN incentive networks</a></li>
+<li><a href="docs/03-volunteer-ps3-lineage.md">Volunteer / open-source distributed computing (the PS3 lineage)</a></li>
+<li><a href="docs/04-decentralized-training.md">Decentralized / distributed training of frontier models</a></li>
+<li><a href="docs/05-lecun-open-commons.md">Yann LeCun and the open / commons AI debate</a></li>
+<li><a href="docs/06-political-economy.md">Political economy of compute</a></li>
+<li><a href="docs/07-synthesis-and-verdict.md">Synthesis, verdict, cross-platform feasibility, and collective action</a></li>
+<li><a href="docs/08-renting-compute-to-train.md">Renting compute to train bigger than your hardware</a></li>
+<li><a href="docs/09-ecology-and-traceability.md">Ecology of compute: energy, footprint, and traceability</a></li>
+<li><a href="docs/10-mutualizing-compute-commons.md">Mutualizing compute: the commons, and how a collective organizes</a></li>
+</ol>
+<p><strong>Sources and method:</strong> the consolidated, verified source list (vendor figures flagged, refuted claims kept) is in <a href="SOURCES.md">SOURCES.md</a>.</p>
+<hr />
+<h2 id="what-a-small-group-can-actually-do-today">What a small group can actually do today</h2>
+<p>Drawn from the synthesis (full list in section 7):</p>
+<ul>
+<li><strong>A buying co-op on the proven marketplaces.</strong> Pool demand on Vast.ai / RunPod / TensorDock to rent H100s at 2 to 4 USD/hour instead of paying hyperscaler rates. Lowest-risk action; treat it as a compute credit union, not an investment.</li>
+<li><strong>A private distributed-inference swarm</strong> across your own NVIDIA GPUs plus Apple Silicon for orchestration, over a private network, to run a large open model none of the machines could run alone.</li>
+<li><strong>Reproduce OpenDiLoCo or contribute to a Prime Intellect-style run.</strong> The frontier-relevant and politically meaningful skill: attacking the moat at the level of model <em>creation</em>, not inference.</li>
+<li><strong>Contribute idle cycles to Folding@home / BOINC</strong> as the cross-platform baseline and an honest demonstration of the volunteer-compute ceiling.</li>
+<li><strong>Build an honest public benchmark of real USD-per-token and USD-per-GPU-hour</strong> (verified versus advertised) across providers. The sector's core pathology is unverifiable claims; a rigorous counter-hype artifact is genuinely useful.</li>
+<li><strong>Co-locate hardware physically</strong> when possible. For tightly coupled training the bandwidth wall is decisive, so a small co-located cluster on a fast LAN beats the same GPUs scattered across home internet.</li>
+</ul>
+<hr />
+<h2 id="method">Method</h2>
+<p>This is a human-authored, human-edited survey built on AI-assisted multi-source research. Findings were gathered by parallel web-search and source-fetch agents, then <strong>adversarially verified</strong>: each load-bearing figure had to survive an independent refutation pass, and claims that failed are recorded in <a href="SOURCES.md">SOURCES.md</a> rather than quietly dropped. Where a number could only be traced to a vendor's own page, it is labeled as such. Treat every dollar figure as a dated snapshot.</p>
+<p>Corrections and additional sources are welcome via issues and pull requests.</p>
+<hr />
+<h2 id="license-and-citation">License and citation</h2>
+<p>Dual-licensed: text under <strong>CC BY-NC-ND 4.0</strong>, code under <strong>PolyForm Noncommercial 1.0.0</strong>. See <a href="LICENSE.md">LICENSE.md</a>. Please cite with <a href="CITATION.cff">CITATION.cff</a>.</p>
+<p>Author: <strong>Ismaël Joffroy Chandoutis</strong>, 2026.</p>
+<div class="meta">Genere depuis README.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

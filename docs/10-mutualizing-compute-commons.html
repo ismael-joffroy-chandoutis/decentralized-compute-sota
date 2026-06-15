@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>10-mutualizing-compute-commons</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 id="mutualizing-compute-commons-co-ops-and-the-reciprocity-spectrum">Mutualizing compute: commons, co-ops, and the reciprocity spectrum</h2>
+<blockquote>
+<p><strong>One-line verdict.</strong> Sharing compute outside a hyperscaler is a <em>solved problem in the commons</em> - there are mature, working systems for it. But the clean "earn idle, draw when busy, net-settle on a single balance" <strong>product</strong> only exists inside token economies, and there it reintroduces rent. For a 3–6 person artist-researcher collective, the most reliable virtuous circle is a <strong>self-built</strong> one: pool real hardware, share it internally by a non-monetary fair-use ledger, keep money out of the reciprocity layer, and apply in parallel to free public credits.</p>
+</blockquote>
+<h3 id="1-four-governance-families-pick-by-trust-radius-not-by-hype">1. Four governance families (pick by trust radius, not by hype)</h3>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Live example</th>
+<th>How reciprocity works</th>
+<th>Money?</th>
+<th>Free-rider / Sybil defense</th>
+<th>Fit for a small collective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Non-monetary reciprocity commons</strong></td>
+<td>AI Horde (Haidra/dbzer0)</td>
+<td>"Kudos": complete a job → earn its kudos value; idle-but-online → trickle every 10 min. Kudos buy <strong>queue priority, never exclusion</strong></td>
+<td><strong>No</strong> (selling kudos is a ToS violation)</td>
+<td>Negative balance tolerated → just deprioritized; registered users start ≥25 kudos vs 0 anonymous</td>
+<td><strong>Best template</strong> for "lend GPU, get priority back"</td>
+</tr>
+<tr>
+<td><strong>Contribute-to-use credit + anti-cheat</strong></td>
+<td>BOINC, Folding@home</td>
+<td>Donated work earns credit ("cobblestones"/points)</td>
+<td>No</td>
+<td><strong>Replication-by-consensus</strong>: each job on 2+ hosts, credit only on quorum</td>
+<td>Lesson to copy, not a product to join</td>
+</tr>
+<tr>
+<td><strong>Academic / research federations</strong></td>
+<td>OSG, EGI; "condo" Slurm clusters</td>
+<td>Idle cycles preemptible by all; owners keep top priority via fairshare weighted by investment</td>
+<td>No</td>
+<td>Institutional identity; central scheduler</td>
+<td>Realistic via EGI/EOSC + FR/EU routes</td>
+</tr>
+<tr>
+<td><strong>Token-incentivized DePIN</strong></td>
+<td>io.net, Akash, Render, Aethir</td>
+<td>One token to <strong>both supply and consume</strong>: earn by hosting, spend on your own jobs</td>
+<td><strong>Yes (token)</strong></td>
+<td>Cryptographic: slashing/banning on failed uptime/verification</td>
+<td>Only true one-balance circle - but carries price/slashing/rent risk</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: AI Horde <a href="https://github.com/Haidra-Org/AI-Horde/blob/main/FAQ.md">FAQ</a> and <a href="https://horde-sdk.readthedocs.io/en/latest/haidra-assets/docs/kudos/">kudos docs</a>; <a href="https://dbzer0.com/blog/the-kudos-based-economy-for-the-koboldai-horde/">dbzer0 kudos-economy blog</a>; BOINC <a href="https://boinc.berkeley.edu/trac/wiki/ValidationSimple">validation</a> and <a href="https://boinc.berkeley.edu/trac/wiki/AdaptiveReplication">adaptive replication</a>; <a href="https://osg-htc.org/">OSG</a>; <a href="https://www.egi.eu/article/the-egi-federation-reaches-1000000-cores/">EGI 1M-core milestone</a>.</p>
+<h3 id="2-ai-horde---the-cleanest-reciprocal-template-no-money-no-accounting-overhead">2. AI Horde - the cleanest reciprocal template (no money, no accounting overhead)</h3>
+<p>The most directly copyable model. A requester's job is assigned a kudos value; "if the request is allowed and is successfully completed by a worker, that worker is awarded the same number of kudos," and "you will also generate kudos every 10 minutes your worker stays online" - so <strong>being available is itself rewarded</strong> (<a href="https://github.com/Haidra-Org/AI-Horde/blob/main/FAQ.md">FAQ</a>). The design choices that make it durable:</p>
+<ul>
+<li><strong>Not a currency.</strong> "Kudos is inherently valueless and we do not allow anyone exchanging kudos for money" - the same rule applies to crypto. "The Kudos is merely a prioritization mechanism, <strong>not a currency</strong>" (<a href="https://github.com/Haidra-Org/AI-Horde/blob/main/FAQ.md">FAQ</a>). Kudos can be <strong>freely gifted</strong> (<code>api/v2/transfer</code>), <strong>never expire</strong>, and a higher balance only buys <strong>higher queue priority</strong>, never exclusive access (<a href="https://horde-sdk.readthedocs.io/en/latest/haidra-assets/docs/kudos/">kudos docs</a>).</li>
+<li><strong>Free-riding is deliberately tolerated.</strong> "You can still use this service even if you don't have any Kudos. You simply go negative, which represents your 'debt' to the community"; the shared Anonymous account "simply keeps going more and more in negative Kudos" - which only sorts its requests to the back of the priority queue (<a href="https://dbzer0.com/blog/the-kudos-based-economy-for-the-koboldai-horde/">dbzer0 blog</a>).</li>
+<li><strong>Tiny anti-Sybil nudge.</strong> Registered users start with ≥25 kudos, anonymous with 0 (<a href="https://horde-sdk.readthedocs.io/en/latest/haidra-assets/docs/kudos/">kudos docs</a>).</li>
+</ul>
+<p>The recurring <strong>success pattern</strong> across all four families: <em>priority-not-exclusion</em> (Horde), <em>redundant verification</em> (BOINC), <em>idle-cycle preemption with weighted fairshare</em> (condo/OSG).</p>
+<h3 id="3-the-reciprocity-spectrum---does-a-one-balance-virtuous-circle-exist">3. The reciprocity spectrum - does a "one-balance virtuous circle" exist?</h3>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Examples</th>
+<th>Earn and spend on <strong>one</strong> balance?</th>
+<th>Honest status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pure mutual aid (no money/token)</td>
+<td>BOINC, Folding@home, <strong>Petals</strong></td>
+<td>No claim on compute</td>
+<td>Real commons, best-effort, <strong>no SLA</strong>. Petals' reward for hosting 10+ blocks is your name on the swarm monitor "as a way to say thanks"</td>
+</tr>
+<tr>
+<td>Marketplace, shared identity, <strong>no net-settle</strong></td>
+<td><strong>Vast.ai</strong>, RunPod</td>
+<td>No - roles are <strong>separated</strong></td>
+<td>Most practical today, but <strong>DIY</strong> reciprocity</td>
+</tr>
+<tr>
+<td>Non-crypto points/balance</td>
+<td><strong>Salad</strong>, ShareAI</td>
+<td>Largely separate ledgers</td>
+<td>Closer to a circle; earn side from "real workloads… not blockchain or mining"</td>
+</tr>
+<tr>
+<td><strong>Token DePIN</strong></td>
+<td>io.net, Akash, Render, Aethir</td>
+<td><strong>Yes</strong> - same token both ways</td>
+<td>Only true one-balance circle; bundled with price risk, slashing, <strong>rent dynamic</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Vast.ai actively separates the two roles</strong> for payout integrity: "Hosting requires a separate account from your client account," and "if you've ever rented instances or hosted machines on an account, you cannot cash out until your referral earnings exceed your lifetime instance spend" (<a href="https://docs.vast.ai/referral-program">referral docs</a>). You can self-fund (earn on the host account, top up the client account from the same bank), but there is <strong>no automatic credit netting</strong>.</li>
+<li><strong>Salad</strong> pays a "Salad Balance" redeemable for gift cards/PayPal/cash from real AI/render/transcription jobs; crypto mining is only the <em>fallback</em> workload (<a href="https://community.salad.com/sell-gpu-power/">Salad</a>, <a href="https://support.salad.com/article/356-how-does-my-machine-earn-salad-balance">support</a>).</li>
+<li><strong>Akash Homenode</strong> (early access announced 25 Feb 2026) lets consumer <strong>RTX 4090/5090</strong> owners contribute and earn - the closest thing to a turnkey "rent my gaming rig into the network" path (<a href="https://www.prnewswire.com/news-releases/akash-launches-early-access-for-homenode-bringing-decentralized-compute-to-everyday-devices-302696087.html">PR Newswire</a>, <a href="https://homenode.akash.network/">homenode.akash.network</a>).</li>
+</ul>
+<h3 id="4-the-rent-inside-the-commons-risk-the-best-documented-finding">4. The rent-inside-the-commons risk (the best-documented finding)</h3>
+<p>Token reciprocity <strong>financializes</strong> the commons. Of <strong>650+ DePIN projects</strong> (combined market cap &gt;$16B) by late 2024, <strong>fewer than 20 generated meaningful non-token revenue</strong> (<a href="https://blockeden.xyz/blog/2026/03/21/depin-march-2026-reality-check-650-projects-19b-market-cap-revenue/">BlockEden</a>). io.net showed the failure mode bluntly: in Q1 2025 it reported <strong>327,000 registered GPUs but only ~6,720 verified active daily (~2% utilization)</strong>, because block rewards are paid to every operator passing uptime checks regardless of real jobs; "when token prices fell, so did provider incentives," and networks lacking organic demand saw utilization collapse (<a href="https://messari.io/report/state-of-io-net-q1-2025">Messari, State of io.net Q1 2025</a>). Emissions are inflationary by design, so early "yield" is partly other holders' dilution - <strong>rent extracted from the token, not earned from compute</strong>.</p>
+<p>The 2026 corrective attempts are real but unproven: <strong>Akash's Burn-Mint Equilibrium</strong> went live <strong>23 March 2026</strong> - every on-chain compute payment triggers a market buy-and-burn of AKT and mints a <strong>stable settlement credit (ACT)</strong> at USD pricing, to re-anchor the token to usage (<a href="https://akash.network/roadmap/aep-76/">AEP-76</a>, <a href="https://akash.network/blog/akash-network-q1-2026-report/">Q1 2026 report</a>); io.net's parallel fix is its Incentive Dynamic Engine.</p>
+<h3 id="5-the-lesson-boinc-encodes-anti-cheat-by-replication">5. The lesson BOINC encodes: anti-cheat by replication</h3>
+<p>BOINC's durable contribution to any shared pool is <strong>redundancy as the Sybil/free-rider defense</strong>: each work unit is sent to 2+ independent hosts and credit is granted only to results that reach a <strong>quorum/consensus</strong>; the system assumes every node is unreliable or malicious except the central server, with <strong>adaptive replication</strong> skipping re-runs for proven-reliable hosts to save overhead (<a href="https://boinc.berkeley.edu/trac/wiki/ValidationSimple">validation</a>, <a href="https://boinc.berkeley.edu/trac/wiki/AdaptiveReplication">adaptive replication</a>). Folding@home layers a <em>Quick Return Bonus</em> and team competition on top.</p>
+<h3 id="6-the-free-publicphilanthropic-layer-a-small-collective-can-actually-tap">6. The free public/philanthropic layer a small collective can actually tap</h3>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>What it offers</th>
+<th>Easy entry?</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NSF ACCESS</strong> (Explore tier)</td>
+<td>HPC/cloud allocations</td>
+<td><strong>Abstract only</strong>; grad students can be PI</td>
+<td>US-academic-oriented</td>
+</tr>
+<tr>
+<td><strong>NAIRR Pilot</strong></td>
+<td>Cloud credits + HPC + datasets</td>
+<td>Application</td>
+<td>Microsoft $20M Azure + NVIDIA $30M support</td>
+</tr>
+<tr>
+<td><strong>CZI</strong></td>
+<td>1,024×H100 DGX SuperPOD</td>
+<td>Competitive RFA</td>
+<td>2025 cycle 9 Jan–18 Jun, 96-GPU min request</td>
+</tr>
+<tr>
+<td><strong>Empire AI (NY)</strong></td>
+<td>"Alpha" ~200 NVIDIA GPUs</td>
+<td>Consortium-gated</td>
+<td>Simons/Flatiron gift, nine universities</td>
+</tr>
+<tr>
+<td><strong>Massachusetts AI Hub</strong></td>
+<td>$31M; AICR at MGHPCC</td>
+<td>Partner/nonprofit</td>
+<td><strong>≥40% of compute reserved for startups/nonprofits</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://allocations.access-ci.org/prepare-requests">ACCESS</a>; <a href="https://www.fiercesensors.com/electronics/nairr-pilot-gets-30m-nvidia-20m-azure">NAIRR $20M/$30M</a>; <a href="https://chanzuckerberg.com/rfa/ai-computing-gpu/">CZI RFA</a>; <a href="https://www.empireai.edu/2025/06/27/empire-ai-launches-beta-one-of-the-most-powerful-academic-ai-supercomputers-in-the-nation/">Empire AI Beta</a>; <a href="https://www.mghpcc.org/governor-healey-advances-states-ai-leadership-with-major-investments-in-massachusetts-ai-hub/">Massachusetts AI Hub</a>.</p>
+<p><strong>Caveat for a Paris collective:</strong> most of the above is US-academic-gated. The realistic European equivalents are <strong>EGI/EOSC</strong> and French/EU research-infrastructure routes - the federation that served ~116,000 users in 2024 and passed the 1,000,000-core milestone (<a href="https://www.egi.eu/article/the-egi-federation-reaches-1000000-cores/">EGI</a>).</p>
+<h3 id="7-governance-is-the-real-bottleneck-and-it-is-cheap-to-get-right">7. Governance is the real bottleneck (and it is cheap to get right)</h3>
+<p>Every durable system above maps onto <strong>Elinor Ostrom's 8 design principles</strong> for common-pool resources (<em>Governing the Commons</em>, 1990): clear boundaries/membership; rules fit to local conditions; collective-choice; monitoring by accountable members; <strong>graduated sanctions</strong>; cheap conflict resolution; recognized right to self-govern; nested layers (<a href="https://wiki.p2pfoundation.net/Eight_Design_Principles_for_Common_Pool_Resource_Systems">summary</a>). <strong>Mozilla's 2024 practical framework</strong> translates these to digital/data commons in a form a small group can copy almost verbatim (<a href="https://www.mozillafoundation.org/en/blog/a-practical-framework-for-applying-ostroms-principles-to-data-commons-governance/">Mozilla Foundation, 2024</a>). The recurring <strong>failure mode is governance, not technology</strong>: unmonitored free-riding, missing graduated sanctions, and Sybil identities.</p>
+<h3 id="8-recommended-stack-for-36-artists">8. Recommended stack for 3–6 artists</h3>
+<ol type="1">
+<li><strong>Reciprocity layer (no money).</strong> A private AI Horde / Petals-style swarm or a simple shared fair-use ledger among trusted peers. Keep money <em>out</em> of this layer to avoid fiscal/legal complications.</li>
+<li><strong>Co-located hardware (if any).</strong> Slurm <strong>fairshare</strong> or a shared queue with idle-cycle preemption - the "condo" logic: top priority on hardware you contributed, slack preemptible by all.</li>
+<li><strong>Overflow.</strong> Vast.ai / RunPod / Salad to rent out idle rigs on the <strong>supply</strong> side and burst on the demand side.</li>
+<li><strong>Free credits in parallel.</strong> EGI/EOSC + French/EU routes (and NSF ACCESS / NAIRR / CZI where eligible).</li>
+<li><strong>Charter first.</strong> Write a one-page Ostrom-style charter (membership, contribution rule, graduated sanctions, conflict resolution) <em>before</em> buying or pooling anything.</li>
+</ol>
+<blockquote>
+<p><strong>Fiscal/legal note - confirm with a professional, not settled French law.</strong> If a shared pool ever moves money (rental income from a co-op rig, paid overflow, token rewards), that may create accounting, VAT, or tax obligations and possibly require a legal vehicle (e.g. an <em>association</em>, <em>SCIC/coopérative</em>, or <em>GIE</em>). Token rewards add the question of how French tax treats crypto received for providing compute. These are <strong>options to verify with an accountant/lawyer</strong>, stated here only to flag that the cleanest reciprocity design keeps money out of the loop entirely.</p>
+</blockquote>
+<hr />
+<p><strong>Killed / demoted for rigor.</strong> EGI's "~1.24M cores" → replaced with the publicly verifiable <strong>1,000,000-core</strong> milestone (users ~116,000 <em>is</em> confirmed). BOINC's precise "41.58 PFLOPS / 791,443 machines" → stated as approximate/undated (live dashboards could not be retrieved). Akash's "ACT stablecoin" → softened to <strong>"stable settlement credit"</strong> per the primary source. Folding@home participant counts kept only as a general characterization.</p>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<hr />
+<h2 id="mutualizing-compute-concretely-lending-and-sharing-gpus">Mutualizing compute: concretely lending and sharing GPUs</h2>
+<blockquote>
+<p><strong>Disclaimer.</strong> Everything below about French tax, social-security and liability law describes <em>general regimes</em>, not a ruling on any specific compute-sharing arrangement. Treat every fiscal statement as an <strong>option to confirm with an expert-comptable or avocat fiscaliste</strong> before relying on it. Nothing here is settled law as applied to GPU-sharing.</p>
+</blockquote>
+<p>For a small artist-researcher collective that wants to lend each other GPUs, the engineering is the easy part. The hard part is the <em>legal category</em> the sharing falls into, because each category triggers different tax, VAT and liability consequences. The single most important finding: <strong>a one-way free loan is clean; an explicit reciprocal exchange probably is not.</strong></p>
+<h3 id="what-is-real-and-proven">What is real (and proven)</h3>
+<p>The technical pattern works and is published. <strong>GPUnion</strong> (Li et al., <em>GPUnion: Autonomous GPU Sharing on Campus</em>, HotNets '25, arXiv 2507.18928) demonstrates campus-scale borrowing of idle GPUs with three mechanisms - container-based task dispatch, a <em>provider-first</em> architecture (every node decides when to join/pause/leave), and resilient execution with automatic checkpointing and migration. Reported results: <strong>+30% GPU utilization, +40% interactive sessions, 94% successful workload migration</strong> when a provider pulls out (<a href="https://arxiv.org/abs/2507.18928">arXiv</a>, <a href="https://dl.acm.org/doi/abs/10.1145/3772356.3772403">ACM DL</a>). This is the closest existing template for a trust-based, revocable, reciprocal collective.</p>
+<p>At institutional scale, <strong>GENCI / MesoNET</strong> (EquipEx+ PIA3, launched Oct 2021) federates <strong>22 partners</strong> - GENCI plus 21 regional <em>mésocentres</em> - into a mutualized HPC/AI/Quantum infrastructure with a single national allocation portal and a pooled engineering team (<a href="https://www.mesonet.fr/2_le-projet.html">mesonet.fr</a>, <a href="https://www.genci.fr/en/learn-about-genci/our-ecosystem">GENCI</a>). It shows the governance pattern worth copying: <strong>a trusted network plus central allocation</strong>, rather than ad-hoc peer deals.</p>
+<h3 id="what-is-hype-or-simply-wrong">What is hype (or simply wrong)</h3>
+<ul>
+<li><strong>"It's reciprocal, so it's free, so there's no tax."</strong> This is the central trap. <em>Pure one-way</em> free lending is fiscally clean. But an explicit <em>"I lend you my 5090 IF you lend me yours"</em> reads in French doctrine as <strong>troc / échange</strong>, which is taxable even with <strong>no cash changing hands</strong>: VAT can fall due when each invoice is recorded, each leg valued in the taxable base (<a href="https://www.experts-et-decideurs.fr/vie-entreprise/gestion-entreprise/troc-entre-entreprises-traitement-comptable-fiscal/">Experts et Décideurs</a>, <a href="https://www.creer-gerer-entreprendre.fr/6-la-gestion-de-lentreprise/6-6-la-gestion-commerciale/echange-marchandises/">Créer-Gérer-Entreprendre</a>). <em>(Confirm with a fiscaliste for your exact setup.)</em></li>
+<li><strong>"Lending raw compute is liability-free."</strong> False once personal data is involved. Running someone's job on your machine makes you a <strong>sous-traitant under GDPR art. 28</strong>: you may only process on documented instruction, cannot reuse the data, and need a written DPA. Reuse on your own initiative reclassifies you as a <em>responsable de traitement</em>. Fines reach <strong>€10M / 2% turnover</strong> for art. 28 breaches (<a href="https://www.donneespersonnelles.fr/article-28-rgpd">donneespersonnelles.fr</a>, <a href="https://www.leto.legal/articles-rgpd/article-28">Leto</a>).</li>
+<li><strong>A widely-copied figure is wrong.</strong> The 2025 <em>franchise des impôts commerciaux</em> for associations is <strong>€80,011</strong>, not the €81,051 seen in some sources (<a href="https://www.legifiscal.fr/actualites-fiscales/4096-franchise-impot-associations-seuil-porte-80011.html">LégiFiscal</a>, confirmed against <a href="https://bofip.impots.gouv.fr/bofip/2659-PGP.html/identifiant=BOI-IS-CHAMP-10-50-20-20-20250416">BOFiP</a>).</li>
+</ul>
+<h3 id="the-clean-default-prêt-à-usage-commodat">The clean default: prêt à usage (commodat)</h3>
+<p>The lowest-friction path is the <strong>prêt à usage</strong> (commodat), <em>Code civil</em> art. 1875 ff. Art. 1876 is unambiguous: <em>« Ce prêt est essentiellement gratuit. »</em> (<a href="https://www.doctrine.fr/l/texts/codes/LEGITEXT000006070721/articles/LEGIARTI000006444687">Doctrine / Légifrance</a>). The borrower must conserve the thing (art. 1880) and is liable for misuse (art. 1881) but not for normal wear (art. 1884).</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Effect on the commodat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free, one-way use</td>
+<td>✅ Stays a commodat</td>
+</tr>
+<tr>
+<td>Borrower pays electricity / upkeep of use (art. 1886)</td>
+<td>✅ Does <strong>not</strong> disqualify it (cost of use, not remuneration)</td>
+</tr>
+<tr>
+<td>Any real economic counterpart flowing to the lender</td>
+<td>❌ Risks <strong>automatic requalification as a bail/location</strong> → taxable rental income</td>
+</tr>
+<tr>
+<td>Explicit mutual exchange of machines</td>
+<td>❌ Risks treatment as <strong>troc/échange</strong> → potentially taxable, VAT</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://www.captain.legal/fr/demarches-quotidiennes/commodat-pret-a-usage/">Captain Legal</a>, <a href="https://www.fiscaloo.fr/14633-commodat-ou-pret-a-usage/">Fiscaloo</a>. The practical toolkit French associations and communes already use: a written <strong>convention de mise à disposition de matériel</strong> (duration, conservation, return, who bears damage/loss) + a <strong>charte informatique</strong> (acceptable use). Drafted as a pure prêt à usage, these allocate liability <em>without</em> creating a taxable consideration.</p>
+<h3 id="three-vehicles-to-formalize-sharing">Three vehicles to formalize sharing</h3>
+<table>
+<thead>
+<tr>
+<th>Vehicle</th>
+<th>Min. setup</th>
+<th>Tax position</th>
+<th>Liability</th>
+<th>Key constraint</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Association loi 1901</strong></td>
+<td>Free, declaratory</td>
+<td>Non-profit; commercial-tax <em>franchise</em> up to <strong>€80,011 (2025)</strong> for accessory lucrative activity if <em>gestion désintéressée</em> + règle des 4P + non-lucrative predominance</td>
+<td>Members generally shielded</td>
+<td><strong>Cannot distribute benefits</strong> to members; profit-sharing risks requalification into <em>société créée de fait</em> (no legal personality, members personally &amp; indefinitely liable)</td>
+<td>Pooling/lending shared kit among members, no profit motive</td>
+</tr>
+<tr>
+<td><strong>GIE</strong> (Groupement d'Intérêt Économique)</td>
+<td><strong>2 members min, no capital</strong></td>
+<td><strong>Fiscally transparent</strong> - not taxed as such; each member taxed on its share</td>
+<td>Members <strong>responsables solidairement et indéfiniment sur leurs biens personnels</strong></td>
+<td>Activity must be the <em>prolongement</em> (auxiliary extension) of members' activities, never a substitute</td>
+<td>Members who already have an economic activity and want to pool <em>means</em> (e.g. a shared GPU rig)</td>
+</tr>
+<tr>
+<td><strong>SCIC</strong> (Société Coopérative d'Intérêt Collectif)</td>
+<td>SARL/SAS min 3 associés, SA min 7; multi-stakeholder</td>
+<td>≥<strong>57.5%</strong> of result locked in <em>réserves impartageables</em> (15% légale + 50% of remainder; raisable to 100%); locked reserves deductible from IS</td>
+<td>Limited (company form)</td>
+<td>Heavier governance: <strong>1 person = 1 vote</strong>, multiple associate categories</td>
+<td>A durable, multi-stakeholder shared-compute commons</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: association - <a href="https://www.assistant-juridique.fr/but_non_lucratif_association.jsp">Assistant-juridique</a>, <a href="https://associations.gouv.fr/lexception-lassujettissement-aux-impots-commerciaux">associations.gouv.fr</a>, threshold <a href="https://www.legifiscal.fr/actualites-fiscales/4096-franchise-impot-associations-seuil-porte-80011.html">LégiFiscal</a>; GIE - <a href="https://bpifrance-creation.fr/encyclopedie/structures-juridiques/se-regrouper-solutions-juridiques/gie-groupement-dinteret">Bpifrance Création</a>; SCIC - <a href="https://www.l-expert-comptable.com/a/6074-societe-cooperative-d-interet-collectif-scic-definition-avantages.html">L-Expert-Comptable</a>, <a href="https://www.les-scic.coop/foire-aux-questions">Les Scic FAQ</a>.</p>
+<p>The SCIC is not theoretical: <strong>1,421 SCICs existed in France by end-2025</strong> (+10.4% since 2022), with 17,547 jobs and €1.7bn revenue (<a href="https://www.entreprises.coop/les-societes-cooperatives-d-interet-collectif-scic">Coop FR</a>, <a href="https://www.les-scic.coop/chiffres-cles">Les Scic - chiffres clés</a>).</p>
+<h3 id="practical-decision-path">Practical decision path</h3>
+<ol type="1">
+<li><strong>Default to one-way, free prêt à usage</strong> for occasional, no-money lending - cheapest and cleanest. Paper it with a <em>convention de mise à disposition</em> + <em>charte informatique</em>.</li>
+<li><strong>Avoid framing it as an explicit swap.</strong> If reciprocity is the point, route it through a shared structure (GIE or association) rather than bilateral I-lend-you-you-lend-me deals, to avoid <em>troc</em> treatment - and <strong>get a fiscaliste's sign-off</strong>.</li>
+<li><strong>Add a GDPR layer</strong> whenever a job may touch personal data: documented-instruction clause + written DPA (art. 28), or restrict shared compute to non-personal-data workloads.</li>
+<li><strong>For anything durable or multi-party</strong>, weigh GIE (transparent, but joint+several liability) vs SCIC (limited liability, locked reserves, heavier governance).</li>
+</ol>
+<p><em>Credits: GPUnion - Li et al., HotNets '25 (2025); MesoNET/GENCI - EquipEx+ PIA3 (2021–). Legal articles cited to Code civil (art. 1875–1886) and RGPD art. 28.</em></p>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 10-mutualizing-compute-commons.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

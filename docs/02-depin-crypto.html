@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>02-depin-crypto</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 id="crypto--depin-incentive-networks">Crypto / DePIN incentive networks</h2>
+<p><strong>Scope.</strong> Token-incentivized networks that coordinate GPU/compute supply off the hyperscaler datacenter - independent datacenters, repurposed crypto-mining rigs, and consumer-GPU hobbyists - and sell that capacity for AI inference, 3D/VFX rendering, and ML training.</p>
+<h3 id="the-defining-2025-2026-tension-market-caps-vs-verifiable-cash">The defining 2025-2026 tension: market caps vs. verifiable cash</h3>
+<p>By 2025-2026 the sector split into a small revenue-generating core and a long tail of token-subsidized "empty capacity." Messari's <em>State of DePIN 2025</em> pegs the whole sector at <strong>~$10B circulating market cap</strong> against only <strong>~$72M of real FY25 on-chain revenue</strong>, with leaders trading at ~10-25x revenue (down from &gt;1,000x in 2021) (<a href="https://messari.io/report/state-of-depin-2025">Messari</a>; <a href="https://decrypt.co/356349/depin-tokens-lag-revenues-rise-fundamentals">Decrypt</a>). An independent reality check counts <strong>650+ projects, a peak ~$19B market cap, ~$110k average annual revenue per project, and fewer than 20 projects with meaningful non-token revenue</strong> (<a href="https://blockeden.xyz/blog/2026/03/21/depin-march-2026-reality-check-650-projects-19b-market-cap-revenue/">BlockEden, Mar 2026</a>).</p>
+<p>The structural critique is consistent: most networks bootstrapped supply by paying hardware providers in inflationary token emissions, producing headline GPU counts that vastly exceed <em>paid</em> utilization. The canonical illustration is io.net's <strong>April 2024 Sybil / GPU-metadata attack</strong>, where ~<strong>1.8M fake GPUs</strong> attempted to connect and active connections collapsed from **~600,000 to ~100,000** after patching (<a href="https://cointelegraph.com/news/io-net-responds-to-gpu-metadata-attack">Cointelegraph</a>; <a href="https://www.theblock.co/post/291315/solana-based-depin-io-net-ceo-claims-network-was-attacked-in-detailed-postmortem">The Block</a>). "GPU count" has been a discredited vanity metric ever since.</p>
+<p>VCs are openly split. Meltem Demirors (Crucible Capital) wrote <em>"DePIN is dying and i don't see it coming back"</em>; Dan Elitzer (Nascent) called many projects <em>"almost entirely thinly veiled shitcoin ICOs"</em> - while operators argue the sector is maturing "from hype to substance" (<a href="https://thedefiant.io/news/infrastructure/crypto-vcs-debate-depin">The Defiant</a>).</p>
+<h3 id="verifiability-is-the-dividing-line">Verifiability is the dividing line</h3>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>Token / status</th>
+<th>Payment model</th>
+<th>Headline traction</th>
+<th>On-chain auditable?</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Akash</strong></td>
+<td>AKT (Cosmos)</td>
+<td>BME-style burn + on-chain settlement</td>
+<td>~60% util, ~367 active GPUs of ~702, daily fees &gt;$13k ATH; spend &gt;2x YoY (<a href="https://messari.io/report/state-of-akash-q3-2025">Messari Q3'25</a>)</td>
+<td><strong>Yes</strong> (Cosmos explorers)</td>
+<td>Most credible real demand; small absolute base</td>
+</tr>
+<tr>
+<td><strong>Render</strong></td>
+<td>RENDER (Solana)</td>
+<td>Burn-Mint Equilibrium (USD-of-RENDER burned per job, ~5% fee)</td>
+<td>&gt;22M frames in 2025; 1M-th lifetime RENDER burned (<a href="https://rendernetwork.medium.com/render-network-foundation-monthly-report-december-2025-43d956808e3f">Render Dec'25</a>)</td>
+<td>Partial (burns yes; <strong>USD job revenue not disclosed</strong>)</td>
+<td>Real VFX/3D demand; revenue opaque</td>
+</tr>
+<tr>
+<td><strong>io.net</strong></td>
+<td>IO (Solana)</td>
+<td>Incentive Dynamic Engine: burns ≥50% of post-payout revenue in IO</td>
+<td>&gt;4B daily AI-inference tokens; ≥12M IO/yr burn target (<a href="https://www.coindesk.com/press-release/2026/06/11/io-net-to-burn-up-to-12m-tokens-as-network-closes-usd8m-deal-and-hits-4-billion-daily-ai-tokens">CoinDesk PR</a>)</td>
+<td>Mechanism corroborated; <strong>~$62M mcap of ~$143M FDV, only 43.7% of supply circulating</strong> (<a href="https://www.coingecko.com/en/coins/io-net">CoinGecko</a>)</td>
+<td>Recovering credibility; future dilution risk</td>
+</tr>
+<tr>
+<td><strong>Bittensor</strong></td>
+<td>TAO</td>
+<td>Inflationary emissions (miners/validators/owners), dTAO subnet markets</td>
+<td>First halving <strong>14 Dec 2025: 7,200→3,600 TAO/day</strong> (<a href="https://crypto.com/us/market-updates/bittensor-halving-all-you-need-to-know">Crypto.com</a>; <a href="https://www.dlnews.com/articles/defi/bittensor-halving-seen-to-boost-tao-price-and-starve-zombie-subnets/">DL News</a>)</td>
+<td>n/a</td>
+<td>Multi-billion mcap, no comparable verifiable compute revenue</td>
+</tr>
+<tr>
+<td><strong>Nosana</strong></td>
+<td>NOS (Solana)</td>
+<td>Pay-per-job, streamed by the second</td>
+<td>50,000+ GPU hosts since Jan 2025 mainnet; from ~$0.048/GPU-hr (<a href="https://nosana.com/hosts/">Nosana</a>)</td>
+<td>Job settlement on Solana</td>
+<td>Cost-savings (~68%/up to 85%) are <strong>vendor claims</strong></td>
+</tr>
+<tr>
+<td><strong>Spheron (Fizz)</strong></td>
+<td>-</td>
+<td>Direct lease; operator keeps <strong>~90% of lease payment</strong></td>
+<td>Consumer hardware; <strong>≥50% uptime per 24h ERA</strong> to earn (<a href="https://docs.spheron.network/fizz/reward-details">Spheron docs</a>)</td>
+<td>-</td>
+<td>90% = revenue share, <strong>not</strong> an uptime rule</td>
+</tr>
+<tr>
+<td><strong>Inference.net (ex-Kuzco)</strong></td>
+<td>KZO points (<strong>pre-token</strong>)</td>
+<td>Incentivized testnet points</td>
+<td>6,000+ GPUs, ~98TB VRAM; &gt;90% per-GPU util <strong>(self-reported)</strong> (<a href="https://solanacompass.com/projects/kuzco">Solana Compass</a>)</td>
+<td>No (no token)</td>
+<td>Valuation event ≠ demand</td>
+</tr>
+<tr>
+<td><strong>Gensyn</strong></td>
+<td>$AI</td>
+<td><strong>No mainnet compute revenue</strong></td>
+<td>RL Swarm testnet <strong>paused</strong>; Dec 2025 sale of 300M $AI (3%), English auction, $1M floor / $1B FDV cap (<a href="https://chainwire.org/2025/12/15/gensyn-launches-ai-token-sale-on-sonar/">Chainwire</a>)</td>
+<td>No</td>
+<td>Pre-revenue token sale</td>
+</tr>
+<tr>
+<td><strong>Aethir</strong> ⚠️</td>
+<td>ATH</td>
+<td>Closed reporting</td>
+<td><strong>Self-reported</strong> $127.8M 2025 rev / $166M ARR / 440k GPU containers (<a href="https://aethir.com/blog-posts/aethirs-2025-wrap-up-decentralized-gpu-cloud-milestones">Aethir blog</a>)</td>
+<td><strong>No</strong> (closed-source, not on DeFiLlama/Token Terminal)</td>
+<td>See anomaly below</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-aethir-anomaly-read-carefully">The Aethir anomaly (read carefully)</h3>
+<p>Aethir publishes the sector's largest revenue figures - $127.8M+ for 2025, $166M ARR by Q3 - but they are <strong>entirely self-reported</strong>, closed-source, and not on-chain auditable (<a href="https://aethir.com/blog-posts/aethirs-2025-wrap-up-decentralized-gpu-cloud-milestones">Aethir</a>). The market appears to discount them heavily: ATH traded near <strong>$83M market cap (~$0.0041)</strong> in June 2026, <em>below its claimed annual revenue</em> and ~96.6% off its $0.12 all-time high (<a href="https://metamask.io/price/aethir">MetaMask price aggregator</a>). Separately, the much-cited <strong>$343.5M (closed; ~$344M announced)</strong> is a <strong>Digital Asset Treasury</strong> ATH-token purchase by Nasdaq-listed Predictive Oncology (POAI), closing <strong>8 Oct 2025</strong> - <em>treasury capital, not compute revenue</em> (<a href="https://www.globenewswire.com/news-release/2025/09/29/3157798/0/en/Predictive-Oncology-Inc-Announces-Private-Placements-of-344-Million-to-Initiate-a-Digital-Asset-Treasury-Strategy-Focused-on-Aethir-ATH-Tokens.html">GlobeNewswire</a>; <a href="https://cointelegraph.com/news/predictive-oncology-depin-treasury-aethir-ath-token">Cointelegraph</a>). The recurring adversarial caveat across the sector: vendor "revenue" and "ARR" frequently conflate signed contracts, treasury/DAT token sales, and grants with actual paid compute usage.</p>
+<h3 id="what-we-deliberately-do-not-claim">What we deliberately do NOT claim</h3>
+<ul>
+<li><strong>io.net's "$8M enterprise contract / ~$650k month on-chain"</strong> (June 2026): every outlet traces to a single io.net GlobeNewswire press release (the CoinDesk URL is a paid <code>/press-release/</code> placement); the customer is unnamed, no on-chain figure is cited, and the $650k/month is a forward projection. <em>Reported, not verified - excluded as a factual demand signal.</em></li>
+<li>Any <strong>precise USD revenue total</strong> for Akash or Render at the dollar level, and any <strong>third-party Render revenue estimate (~$2.7M)</strong>, until reconciled against a primary explorer - Render does not disclose USD job revenue.</li>
+<li>Aethir's <em>"Rev/MC beat Filecoin/Render/Bittensor"</em> comparison - vendor self-promotion built on the same unverified revenue base.</li>
+</ul>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 02-depin-crypto.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Compute Outside the Datacenter: A Verified State of the Art of Decentralized AI Compute"
+message: "If you use this work, please cite it as below."
+type: dataset
+authors:
+  - family-names: "Joffroy Chandoutis"
+    given-names: "Ismaël"
+date-released: 2026-06-16
+version: "0.1.0"
+license: "CC-BY-NC-ND-4.0"
+url: "https://github.com/12georgiadis/decentralized-compute-sota"
+keywords:
+  - "decentralized compute"
+  - "DePIN"
+  - "distributed training"
+  - "GPU rental"
+  - "AI commons"
+  - "technofeudalism"
+abstract: >-
+  A sourced, adversarially verified survey of compute that runs outside the
+  classic hyperscaler datacenters: commercial GPU rental marketplaces,
+  crypto/DePIN incentive networks, the volunteer/open-source lineage
+  (Folding@home and the PlayStation 3 era), decentralized model training,
+  and the open/commons AI debate. Every figure is dated and linked; vendor
+  and self-reported numbers are flagged; refuted claims are listed.

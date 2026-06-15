@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>09-ecology-and-traceability</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 id="ecology-of-compute-energy-mix-source-and-footprint">Ecology of compute: energy mix, source, and footprint</h2>
+<blockquote>
+<p><strong>Bottom line.</strong> In 2025-2026 the carbon footprint of "renting compute to train" is decided by <strong>where the GPUs sit on the grid</strong> and <strong>who is telling the truth about it</strong> - not by the per-query figure in a vendor press release. Two things matter for a solo artist-researcher renting H100s: the <strong>grid carbon intensity</strong> of the host region (the dominant lever, varying 20-300x) and the <strong>honesty of the provider's clean-energy accounting</strong> (most "100% renewable" claims rest on annual unbundled certificates). Everything else - PUE, per-query water, even embodied hardware carbon - is a secondary multiplier on top of <em>where</em> and <em>when</em> you compute.</p>
+</blockquote>
+<h3 id="1-the-geography-of-carbon-one-number-dominates">1. The geography of carbon: one number dominates</h3>
+<p>The carbon of a training run is roughly <code>hardware power × time × grid carbon intensity</code>. The first two are fixed by the model; the third varies by <strong>more than two orders of magnitude</strong> across regions, which is why location is the decisive lever.</p>
+<p>The canonical illustration comes from the <strong>Carbontracker</strong> paper (Anthony, Kanding &amp; Selvan, 2020, <a href="https://arxiv.org/pdf/2007.03051">arXiv 2007.03051</a>): the <em>same</em> U-Net model emits <strong>17.7 gCO2eq trained in Sweden</strong> versus <strong>1,087.9 gCO2eq trained in Estonia - a ~61x difference</strong> (on 2016 grid intensities). The structural picture has not changed.</p>
+<table>
+<thead>
+<tr>
+<th>Grid / region</th>
+<th>Carbon intensity (gCO2/kWh)</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Norway (2024 average, hydro)</td>
+<td><strong>2.2</strong></td>
+<td><a href="https://sustainableatlas.org/post/data-story-data-center-energy-consumption-water-carbon-trends-1624">Sustainability Atlas</a></td>
+</tr>
+<tr>
+<td>France / EDF (2025, 79.6% nuclear, 95% decarbonized)</td>
+<td><strong>26.5</strong></td>
+<td><a href="https://www.globenewswire.com/news-release/2026/02/20/3241693/0/en/EDF-2025-annual-results-Strong-operational-performance-Positive-cash-flow-reducing-net-financial-debt.html">EDF 2025 results</a></td>
+</tr>
+<tr>
+<td>Sweden (training-run figure, 2016)</td>
+<td>~17.7 (per U-Net run)</td>
+<td><a href="https://arxiv.org/pdf/2007.03051">Carbontracker</a></td>
+</tr>
+<tr>
+<td>US national grid average (2024-25)</td>
+<td>~370</td>
+<td><a href="https://www.cell.com/patterns/fulltext/S2666-3899(25)00278-8">Guidi et al.</a></td>
+</tr>
+<tr>
+<td><strong>US data-center fleet</strong> (electricity-weighted)</td>
+<td><strong>~548</strong> (~48% above national)</td>
+<td><a href="https://www.cell.com/patterns/fulltext/S2666-3899(25)00278-8">Guidi et al.</a></td>
+</tr>
+<tr>
+<td>Poland / fossil grids</td>
+<td><strong>&gt;700</strong></td>
+<td><a href="https://sustainableatlas.org/post/data-story-data-center-energy-consumption-water-carbon-trends-1624">Sustainability Atlas</a></td>
+</tr>
+<tr>
+<td>Estonia (training-run figure, 2016, oil shale)</td>
+<td>~1,087.9 (per U-Net run)</td>
+<td><a href="https://arxiv.org/pdf/2007.03051">Carbontracker</a></td>
+</tr>
+</tbody>
+</table>
+<p>A striking, well-corroborated finding: the <strong>US data-center fleet runs dirtier than the grid it sits on</strong> - ~548 gCO2e/kWh, about <strong>48% above</strong> the contemporaneous US national average of ~370, because facilities cluster on fossil-heavy interconnects like PJM (Guidi et al., <em>Patterns</em> / <a href="https://www.cell.com/patterns/fulltext/S2666-3899(25)00278-8">Cell</a>, also <a href="https://www.eesi.org/articles/view/data-center-energy-needs-are-upending-power-grids-and-threatening-the-climate">arXiv 2411.09786</a>). <em>(The study covered ~2,132 facilities; a "1,795" count circulating in secondary write-ups is unsupported - see Killed claims.)</em></p>
+<h3 id="2-pue-a-flat-multiplier-that-hasnt-improved-in-six-years">2. PUE: a flat multiplier that hasn't improved in six years</h3>
+<p>Power Usage Effectiveness (total facility energy ÷ IT energy) is the second multiplier. The headline is <strong>stagnation</strong>: Uptime Institute's 2025 survey reports a global weighted-average <strong>PUE of 1.54</strong>, "virtually unchanged" for the sixth consecutive year (<a href="https://intelligence.uptimeinstitute.com/resource/uptime-institute-global-data-center-survey-2025">Uptime Institute 2025</a>; <a href="https://mgrid.org/2025/10/01/uptime-institute-data-center-pue-stagnation-2025-liquid-cooling/">mgrid summary</a>). Best-in-class Nordic and hyperscale sites hit 1.1-1.2, but the <em>average</em> operator gets no greener over time.</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Avg PUE (2025)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>China</td>
+<td>1.40</td>
+</tr>
+<tr>
+<td>North America</td>
+<td>1.49</td>
+</tr>
+<tr>
+<td>Europe</td>
+<td>1.50</td>
+</tr>
+<tr>
+<td>Latin America</td>
+<td>1.65</td>
+</tr>
+<tr>
+<td><strong>Global weighted avg</strong></td>
+<td><strong>1.54</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Source: <a href="https://intelligence.uptimeinstitute.com/resource/uptime-institute-global-data-center-survey-2025">Uptime Institute Global Data Center Survey 2025</a>.</p>
+<h3 id="3-the-aggregate-keeps-exploding-independent-anchor-iea">3. The aggregate keeps exploding (independent anchor: IEA)</h3>
+<p>Per-unit efficiency improves while totals climb, because volume and idle-capacity provisioning dominate. The cleanest independent anchor is the <strong>IEA <em>Energy and AI</em> report (2025)</strong>:</p>
+<ul>
+<li>Data centres used <strong>~415 TWh in 2024</strong> (~1.5% of global electricity), the US being ~45% of that.</li>
+<li>Demand is set to <strong>more than double to ~945 TWh by 2030</strong> - roughly Japan's total electricity use today.</li>
+<li>Associated electricity <strong>emissions rise from ~180 Mt CO2 today to ~300 Mt (Base Case) and up to ~500 Mt (Lift-Off Case) by 2035</strong>.</li>
+</ul>
+<p>Sources: <a href="https://www.iea.org/reports/energy-and-ai/executive-summary">IEA executive summary</a>, <a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/041025-global-data-center-power-demand-to-double-by-2030-on-ai-surge-iea">S&amp;P Global</a>, <a href="https://www.carbonbrief.org/ai-five-charts-that-put-data-centre-energy-use-and-emissions-into-context/">Carbon Brief</a>.</p>
+<h3 id="4-per-query-both-5-drops-and-150-ml-are-true---flag-the-boundary">4. Per-query: both "5 drops" and "&gt;150 mL" are true - flag the boundary</h3>
+<p>Vendor self-reports now converge <strong>low</strong>, but they are <strong>inference-only</strong> and exclude training and embodied hardware. Independent benchmarking shows the spread across models is enormous; <strong>reasoning models are the outliers</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Model / source</th>
+<th>Energy/query</th>
+<th>Water/query</th>
+<th>CO2/query</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Gemini median text prompt (<a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/">Google Cloud, Aug 2025</a>; <a href="https://arxiv.org/abs/2508.15734">arXiv 2508.15734</a>)</td>
+<td>0.24 Wh</td>
+<td>0.26 mL (~5 drops)</td>
+<td>0.03 gCO2e</td>
+<td>"comprehensive", inference only</td>
+</tr>
+<tr>
+<td>GPT-4.1 nano, long prompt (<a href="https://arxiv.org/html/2505.09598v2">arXiv 2505.09598</a>)</td>
+<td>~0.454 Wh</td>
+<td>-</td>
+<td>-</td>
+<td>independent benchmark</td>
+</tr>
+<tr>
+<td>DeepSeek-R1, long prompt (<a href="https://arxiv.org/html/2505.09598v2">arXiv 2505.09598</a>)</td>
+<td><strong>~33.6 Wh</strong></td>
+<td><strong>&gt;150 mL</strong></td>
+<td><strong>&gt;14 gCO2</strong></td>
+<td>independent benchmark</td>
+</tr>
+<tr>
+<td>Mistral Large 2, per 400-token inference (<a href="https://www.carbone4.com/en/ia-generative-mission-mistral-ai">Carbone 4</a>)</td>
+<td>-</td>
+<td>45 mL</td>
+<td>1.14 gCO2e</td>
+<td>audited LCA, marginal</td>
+</tr>
+</tbody>
+</table>
+<p>A single long DeepSeek-R1 query uses <strong>~70x</strong> the energy of a GPT-4.1-nano query and roughly the electricity of running a 65-inch TV for 20-30 minutes (<a href="https://arxiv.org/html/2505.09598v2">arXiv 2505.09598</a>). Google also claims a <strong>33x energy / 44x carbon</strong> improvement for Gemini in 12 months - real but self-reported (<a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/">Google Cloud</a>). <strong>Rule: always state whose boundary a figure uses</strong> (inference vs training vs embodied; on-site vs off-site water; annual-average vs hourly grid carbon).</p>
+<h3 id="5-embodied-carbon-the-under-counted-axis">5. Embodied carbon: the under-counted axis</h3>
+<p>Operational energy is only part of the story. <strong>NVIDIA's own Product Carbon Footprint</strong> puts an <strong>8-GPU H100 baseboard at ~1,312 kg CO2e (~164 kg/card)</strong>, with <strong>memory/HBM the single largest contributor (~42%)</strong> (<a href="https://interactdc.com/posts/understanding-gpus-energy-and-environmental-impact-part-i/">InteractDC analysis</a>; <a href="https://introl.com/blog/carbon-accounting-ai-workloads-gpu-emissions-tracking-2025">Introl</a>). This is the first vendor GPU LCA disclosure and establishes a baseline: embodied/manufacturing carbon is non-trivial and HBM-driven, and it is growing as memory stacks scale.</p>
+<p>At the <strong>model</strong> level, the first credible audited disclosure is <strong>Mistral Large 2</strong> (Jan 2025, with Carbone 4, ADEME, Resilio, Hubblo): <strong>20,400 t CO2e and 281,000 m3 water</strong> across training + 18 months of use (<a href="https://www.carbone4.com/en/ia-generative-mission-mistral-ai">Carbone 4</a>; <a href="https://simonwillison.net/2025/Jul/22/mistral-environmental-standard/">Simon Willison's summary</a>).</p>
+<h3 id="6-the-clean-neocloud-narrative-collapsed-hype">6. The "clean neocloud" narrative collapsed (HYPE)</h3>
+<p>The headline 2025-2026 story is the <strong>collapse of flared-gas "clean compute"</strong>:</p>
+<ul>
+<li><strong>Crusoe</strong> built its brand on flared-gas-powered "clean compute." In <strong>March 2025</strong> it sold its Bitcoin mining unit (55% of 2024 revenue) to NYDIG to go pure-play AI (<a href="https://www.cnbc.com/2025/03/25/crusoe-energy-sells-bitcoin-mining-unit-to-nydig-to-focus-on-ai.html">CNBC</a>). It then filed a <strong>TCEQ permit (Jan 2026) for a 933 MW simple-cycle GAS plant</strong> at its <strong>Goodnight/Texas</strong> campus (a Google partnership), projected to emit <strong>up to ~4.5 million tons CO2/year</strong> (<a href="https://www.latitudemedia.com/news/how-a-crusoe-google-campus-became-texas-co-location-test-case/">Latitude Media</a>; <a href="https://cleanview.co/reports/google-power-strategy">Cleanview</a>).</li>
+<li><strong>Google</strong> itself confirmed it is sourcing <strong>natural gas without carbon capture</strong> for Texas data centers (<a href="https://e360.yale.edu/digest/google-natural-gas-data-center">Yale E360</a>).</li>
+</ul>
+<p>Meanwhile the <strong>genuinely low-carbon</strong> options remain concentrated in <strong>(a) French nuclear clouds</strong> (Scaleway; Mistral/Eclairion; the EDF-backed gigafactory bid) and <strong>(b) Nordic/Icelandic hydro+geothermal DCs</strong> (atNorth, Verne, PUE ~1.2, clean grids).</p>
+<p><strong>The greenwashing caveat.</strong> Most "100% renewable" claims rest on <strong>annual unbundled RECs</strong>, which critics describe as an accounting gimmick decoupled from real-time grid emissions (<a href="https://www.canarymedia.com/articles/energy-markets/a-deeper-dive-into-24-7-carbon-free-energy">Canary Media</a>). The honest benchmark is <strong>24/7 hourly carbon-free-energy (CFE) matching</strong> - and even Google, the leader, reached only the <strong>mid-60s percent globally</strong>, not 100% (<a href="https://www.hourlymatching.org/blog/google-advances-toward-24-7-carbon-free-energy-globally-at-66-but-japan">Hourly Matching</a>).</p>
+<h3 id="7-water-on-site-vs-off-site-and-closed-loop">7. Water: on-site vs off-site, and closed-loop</h3>
+<p>Water is the live debate. The honest framing distinguishes <strong>on-site cooling water</strong> from <strong>off-site power-generation water</strong>. Microsoft reports an <strong>on-site WUE of 0.30 L/kWh</strong> (39% better than its 2021 figure of 0.49) and is shifting to <strong>closed-loop, zero-water-evaporation</strong> designs (<a href="https://datacenters.microsoft.com/sustainability/efficiency/">Microsoft Datacenters</a>). Industry on-site averages are closer to ~1.9 L/kWh, and <strong>off-site (power generation) water multiplies the total</strong> - so a per-query "water" figure can swing by an order of magnitude depending on whether off-site is counted and whether the site evaporates or recirculates.</p>
+<h3 id="8-grid-strain-the-most-concrete-societal-cost">8. Grid strain: the most concrete societal cost</h3>
+<p>AI demand is reviving fossil generation and driving up retail bills. In the <strong>PJM</strong> interconnection (Virginia/data-center heartland), the latest capacity auction hit the <strong>$329.17/MW-day price cap, +22% YoY</strong>, a <strong>$16.1 billion total</strong> (up from $14.7B), translating to <strong>~1.5-5% retail bill increases</strong>, with most of the ~30 GW summer demand growth by 2030 attributed to data centers (<a href="https://www.utilitydive.com/news/pjm-interconnection-capacity-auction-data-center/808264/">Utility Dive</a>; <a href="https://insideclimatenews.org/news/20072025/pjm-capacity-auction-electricity-price-hike/">Inside Climate News</a>; <a href="https://www.citizensutilityboard.org/blog/2025/07/22/pjm-capacity-auction-leads-to-price-spike-for-second-straight-year-threatens-even-higher-com-ed-bills-in-2026-27/">Citizens Utility Board</a>).</p>
+<h3 id="9-the-actionable-lever-for-a-solo-renter-provider--region">9. The actionable lever for a solo renter: provider + region</h3>
+<p>For a solo artist-researcher, the single biggest lever on your real footprint is <strong>which provider and region you rent in</strong> - picking a French (Scaleway) or Nordic clean-grid neocloud cuts real emissions far more than buying any offset. Use <a href="https://app.electricitymaps.com">Electricity Maps</a> to read real-time grid carbon and choose <strong>when and where</strong> to run. Price-wise, neoclouds are 50-75% cheaper than hyperscalers for the same H100:</p>
+<table>
+<thead>
+<tr>
+<th>Provider (H100, 2026)</th>
+<th>~$/GPU-hr</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vast.ai (marketplace)</td>
+<td>~$1.87</td>
+<td>host/region-dependent, often fossil-gridded, no InfiniBand</td>
+</tr>
+<tr>
+<td>RunPod (community)</td>
+<td>~$1.99</td>
+<td>host/region-dependent</td>
+</tr>
+<tr>
+<td>Lambda (on-demand)</td>
+<td>~$2.49</td>
+<td></td>
+</tr>
+<tr>
+<td>Spot (Vast.ai)</td>
+<td>~$0.34</td>
+<td>interruption risk</td>
+</tr>
+<tr>
+<td><strong>AWS P5</strong></td>
+<td>~$3.90</td>
+<td>hyperscaler</td>
+</tr>
+<tr>
+<td><strong>Azure</strong></td>
+<td>~$12.29</td>
+<td>hyperscaler</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a>, <a href="https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/">Spheron</a>, <a href="https://www.cloudzero.com/blog/h100-gpu-cost/">CloudZero</a>. The cheapest marketplaces are host/region-dependent, frequently fossil-gridded, and typically lack InfiniBand for multi-node training - so "cheapest" and "cleanest" are not the same axis. <strong>The clean-grid choice is yours to make, and it dominates the offset.</strong></p>
+<hr />
+<h4 id="killed--corrected-claims-anti-greenwashing-log">Killed / corrected claims (anti-greenwashing log)</h4>
+<ul>
+<li><strong>KILLED as written:</strong> "A 2025 study of <em>1,795</em> data centers found 548 gCO2e/kWh, <em>~50%</em> higher than 369." The carbon-intensity numbers are real (Guidi et al., <a href="https://www.eesi.org/articles/view/data-center-energy-needs-are-upending-power-grids-and-threatening-the-climate">arXiv 2411.09786</a>), but the study covered <strong>~2,132 facilities</strong> (not 1,795), the gap is <strong>~48%</strong> (not ~50%), and the quote was misattributed to sustainableatlas.org. <strong>Retained in corrected form.</strong></li>
+<li><strong>KILLED:</strong> "Virginia (PJM) data centers draw 61% fossil / 7.7% renewable, rest nuclear." Misattributed and misframed - this is a data-center carbon study's figure repackaged as if it were the PJM/Virginia <em>grid mix</em>; independent EIA data show Virginia renewables exceed 7.7%. <strong>Dropped.</strong></li>
+<li><strong>RECAST:</strong> the "61x Sweden vs Estonia" figure is <strong>correct</strong> but originates in <strong>Carbontracker</strong> (Anthony et al., 2020; 17.7 vs 1,087.9 gCO2eq on 2016 intensities), <strong>not</strong> a Sweden/California/Midcontinent Electricity Maps comparison. The California (~261) / Midcontinent (~501) specifics are unverified and <strong>dropped</strong>.</li>
+<li><strong>DEMOTED to low confidence:</strong> the off-site water multipliers "Azure 3.14 L/kWh" and "DeepSeek 6.0." Microsoft's on-site WUE of <strong>0.30 L/kWh</strong> is confirmed; the off-site multipliers could not be corroborated and are presented only illustratively.</li>
+<li><strong>DEMOTED:</strong> the PJM cost specifics "$9.3B / +$18/household/month / $31B in rate increases / &gt;50% bill rises by 2030." Could not be cleanly corroborated; replaced with verified PJM figures ($329.17/MW-day cap, +22%, $16.1B total, 1.5-5% bill increases).</li>
+</ul>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<hr />
+<h2 id="traceability-carbon-aware-computing-and-the-decentralized-ecology-question">Traceability, carbon-aware computing, and the decentralized ecology question</h2>
+<p><strong>Bottom line for a solo GPU renter.</strong> You <em>can</em> measure your own job and you <em>can</em> pick a physically-clean grid. You <em>cannot</em> independently verify a vendor's "100% renewable" badge when it rests on certificates (RECs) or power-purchase agreements (PPAs). That verification gap is precisely where greenwashing lives. The highest-leverage green move is not building a home rig - it is <strong>carbon-aware scheduling</strong>: rent in a location-clean region and time batch jobs to clean hours.</p>
+<h3 id="1-the-field-split-which-number-do-you-even-trace">1. The field split: which number do you even trace?</h3>
+<p>Two camps emerged over 2024-2026, and they disagree on the fundamental metric.</p>
+<table>
+<thead>
+<tr>
+<th>Camp</th>
+<th>Signal</th>
+<th>Lead actor</th>
+<th>Stance</th>
+<th>Verifiable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Location / average</strong></td>
+<td>Average grid carbon intensity, location-based</td>
+<td>Electricity Maps; Green Software Foundation</td>
+<td>"Marginal emissions are not directly measurable [...] without ground truth" → discontinued marginal data in <strong>2024</strong></td>
+<td>Yes - auditable</td>
+</tr>
+<tr>
+<td><strong>Marginal / causal</strong></td>
+<td>Marginal Operating Emissions Rate (MOER), 5-min</td>
+<td>WattTime</td>
+<td>Kept + expanded marginal; TIME 2025 "Best Invention"; 1B+ devices</td>
+<td>No ground truth exists</td>
+</tr>
+</tbody>
+</table>
+<p>Electricity Maps stopped selling marginal data in <strong>2024</strong> after "almost a decade," citing "the fundamental impossibility of validating the accuracy of our models" (<a href="https://www.electricitymaps.com/content/from-power-markets-to-reality-does-the-marginal-power-plant-really-exist">Electricity Maps</a>). Its strongest evidence: on <strong>Jan 1 2024 in PJM</strong>, the operator's own signal said shifting load 3am→5pm avoids 460 kg CO2/MWh, while Singularity's data implied the <em>opposite</em>, adding 185 kg/MWh; a 1 MW wind farm at 3am "avoided" 860 kg (PJM) vs 430 kg (Singularity) - same hour, contradictory advice (<a href="https://www.electricitymaps.com/content/challenges-of-validating-marginal-signals">Electricity Maps</a>). For real-time decisions it now recommends the average signal "in case long-term impact is prioritized and scrutiny, verification, and user-intuitiveness are valued" (<a href="https://www.electricitymaps.com/content/marginal-vs-average-real-time-decision-making">Electricity Maps</a>).</p>
+<p>WattTime took the opposite bet and won mainstream recognition: MOER at 5-minute granularity covers ~99% of world electricity / 210 territories, and TIME named its Automated Emissions Reduction a Best Invention of 2025, with 1B+ devices using it (<a href="https://time.com/collections/best-inventions-2025/7318530/watttime-automatic-emissions-reduction-aer/">TIME</a>; <a href="https://watttime.org/news-and-insights/more-than-one-billion-smart-devices-now-using-marginal-emissions-data-to-slash-power-grid-pollution-with-watttimes-aer/">WattTime</a>). Both can be true: marginal is the better <em>causal</em> lever for automated load-shifting; average is the only <em>auditable</em> number for reporting.</p>
+<h3 id="2-the-anti-greenwashing-standard-sci--iso-210312024">2. The anti-greenwashing standard: SCI / ISO 21031:2024</h3>
+<p>The Green Software Foundation's Software Carbon Intensity spec - now <strong>ISO/IEC 21031:2024</strong> - hard-codes the location camp:</p>
+<blockquote>
+<p>SCI = (E × I + M) per R</p>
+</blockquote>
+<p>where <strong>I is location-based grid carbon intensity</strong>, and crucially: <em>"Only actions that eliminate emissions reduce an SCI score. As such, an SCI score cannot be reduced through carbon offsets, such as market-based measures"</em> (<a href="https://sci.greensoftware.foundation/">SCI spec</a>). In other words, the standard itself refuses to let a "carbon-neutral" certificate lower your number.</p>
+<h3 id="3-practical-measurement-for-a-solo-renter">3. Practical measurement for a solo renter</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+<th>Caveats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CodeCarbon</strong> (Python)</td>
+<td>Samples GPU via nvidia-smi/NVML + CPU via RAPL, × regional carbon intensity, × PUE; writes CSV</td>
+<td>NVIDIA/Intel-AMD-centric; known accuracy limits; default PUE ~1.58, global fallback ~475 gCO2/kWh (<a href="https://arxiv.org/pdf/2306.08323">guide</a>)</td>
+</tr>
+<tr>
+<td><strong>ML CO2 Impact calculator</strong></td>
+<td>hardware × hours × provider × region</td>
+<td><strong>Ignores PUE</strong> - you must multiply yourself (<a href="https://mlco2.github.io/impact/">ML CO2</a>)</td>
+</tr>
+<tr>
+<td><strong>Cloud dashboards</strong> (AWS CCFT, Azure, GCP)</td>
+<td>Vendor-reported footprint</td>
+<td>Mostly <strong>market-based</strong>, aggregated, lagged - useful for billing, weak for proof</td>
+</tr>
+</tbody>
+</table>
+<p>Note: contrary to a common summary, CodeCarbon <em>does</em> apply PUE; it is the ML calculator that omits it.</p>
+<h3 id="4-macro-stakes-iea">4. Macro stakes (IEA)</h3>
+<ul>
+<li>Datacenter electricity grew ~17% in 2025 to <strong>~485 TWh</strong>, heading to <strong>~950 TWh by 2030</strong> (~3% of global demand); AI-specific datacenter load surged ~50% in 2025 (<a href="https://www.iea.org/news/data-centre-electricity-use-surged-in-2025-even-with-tightening-bottlenecks-driving-a-scramble-for-solutions">IEA</a>).</li>
+<li>CO2 from datacenter electricity peaks <strong>~320 Mt by 2030</strong> (<a href="https://www.iea.org/reports/energy-and-ai/executive-summary">IEA</a>).</li>
+<li>Renewables supply only <strong>~27%</strong> of datacenter electricity today (projected 50% by 2030).</li>
+<li>US datacenters run at <strong>~548 gCO2e/kWh, ~48% above</strong> the US grid average of ~369 g - because they cluster in dirty grid regions (<a href="https://arxiv.org/abs/2411.09786">arXiv 2411.09786</a>).</li>
+</ul>
+<h3 id="5-the-ecology-question-efficiency-vs-electrons">5. The ecology question: efficiency vs electrons</h3>
+<p>The decentralization debate has <strong>no single answer</strong> - it splits by layer.</p>
+<p><strong>Efficiency favors hyperscale:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Hyperscale</th>
+<th>Typical / average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUE</td>
+<td>~1.07-1.09 (Meta Luleå, Google)</td>
+<td>~1.56 (Uptime 2024)</td>
+</tr>
+<tr>
+<td>Overhead wasted</td>
+<td>~7-9%</td>
+<td>~56%</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://datacenters.google/efficiency/">Google</a>, <a href="https://introl.com/blog/pue-109-google-data-center-efficiency-strategies">Introl</a>. And idle silicon is pure waste: <strong>AI servers idle at ~20% of rated power</strong> (validated ~21.4% across studies), so always-on but unused home GPUs burn power for nothing (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf">LBNL 2024</a>). Embodied carbon (~141-150 kg CO2eq per A100) is a use-phase-dominated story for <em>climate</em> (~96%) but a <em>manufacturing</em>-dominated story for human toxicity (~99%) and mineral depletion (~85%) - so scattering short-lived consumer cards to homes can worsen e-waste and embodied burden (<a href="https://www.sciencedirect.com/science/article/pii/S019592552600199X">ScienceDirect / "More than Carbon"</a>).</p>
+<p><strong>Where-the-electrons-come-from favors smart decentralization:</strong></p>
+<ul>
+<li><strong>"Free electricity is never free" on the centralized side.</strong> New AI load drove PJM capacity costs from ~$2.2B to ~$14.7-16.4B (datacenters ~40% of the latest auction), and ~60% of PJM fossil retirements were postponed - <strong>13 of ~23</strong>, including <strong>11 peaker plants</strong> (<a href="https://www.utilitydive.com/news/pjm-interconnection-capacity-auction-data-center/808264/">Utility Dive</a>; <a href="https://www.claimsjournal.com/news/national/2025/12/23/334736.htm">AP via Claims Journal</a>). The pollution lands unevenly: redlined communities are ~53% more likely to live near peakers (UCLA).</li>
+<li><strong>Stranded clean energy is real.</strong> Europe curtailed ~<strong>€7.2B</strong> of renewables across seven countries in 2024; technical curtailment topped 10 TWh and is projected to rise (EC: up to ~10x by <strong>2040</strong>; ~22 TWh in GB/Spain/Italy by 2030) (<a href="https://www.saurenergy.com/solar-energy-news/europe-curtails-over-10-twh-of-power-in-2024-1000-gw-renewables-stuck-in-grid-queues-10984193">Saur</a>). CAISO curtailed ~3.4M MWh in 2024 (+29%, congestion-dominant) (<a href="https://www.eia.gov/todayinenergy/detail.php?id=65364">EIA</a>).</li>
+<li><strong>Curtailment-window training works.</strong> Wiesner et al. (Feb 2026) trained a 561M model across three clusters in curtailment windows, cutting operational emissions to <strong>~5-12% of single-site baseline</strong> with no quality loss (<a href="https://arxiv.org/abs/2602.22760">arXiv 2602.22760</a>).</li>
+</ul>
+<p><strong>The binding constraint on distributed training is bandwidth.</strong> Naive data-parallel frontier training over consumer uplinks is hopeless; Streaming-DiLoCo (Google DeepMind) reaches data-parallel-baseline quality using <strong>&gt;400x less bandwidth</strong>, making multi-region, low-bandwidth training viable at all (<a href="https://arxiv.org/abs/2501.18512">arXiv 2501.18512</a>) - though decentralized throughput still trails the frontier by ~2 orders of magnitude.</p>
+<h3 id="6-the-provable-clean-rent-play">6. The provable clean-rent play</h3>
+<p>Renting wins on <strong>both</strong> ecology and cost for any real training job.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Cost (H100)</th>
+<th>Verifiability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marketplace / specialized cloud</td>
+<td>~$1.49-4/hr (<a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a>)</td>
+<td>High if location-clean region</td>
+</tr>
+<tr>
+<td>Hyperscaler on-demand</td>
+<td>$8+/hr (<a href="https://www.cloudzero.com/blog/h100-gpu-cost/">CloudZero</a>)</td>
+<td>Mostly market-based claims</td>
+</tr>
+<tr>
+<td>Home rig</td>
+<td>High capex + idle waste</td>
+<td>Self-measurable but embodied-heavy</td>
+</tr>
+</tbody>
+</table>
+<p>The move that survives audit is to <strong>rent in a physically-clean grid</strong> so the <em>location-based</em> number is low regardless of any certificate: Norway is ~98% renewable (~6 gCO2/kWh in 2024); LUMI runs on Vattenfall hydro; Stargate Norway (Nscale/Aker/OpenAI, 230 MW, 100k GPUs) and Genesis Cloud's Norway site are hydro-powered (<a href="https://lowcarbonpower.org/region/Norway">lowcarbonpower</a>; <a href="https://www.nscale.com/press-releases/stargate-norway-nscale-aker-openai">Nscale</a>; <a href="https://lumi-supercomputer.eu/lumi-data-center-will-be-powered-with-hydroelectricity-supplied-by-vattenfall/">LUMI</a>).</p>
+<blockquote>
+<p><strong>Renter's recipe:</strong> trace your own job (CodeCarbon × Electricity Maps <em>average</em> signal), pick a physically-clean region, schedule batch jobs for clean hours (carbon-aware scheduling cuts ~15% temporal to ~50%+ spatial), and treat any "100% renewable" badge backed by RECs/PPAs as marketing, not proof.</p>
+</blockquote>
+<h3 id="corrections--unverified-claims">Corrections / unverified claims</h3>
+<ul>
+<li><strong>Misattribution:</strong> the "RTX 4090 matches a datacenter node on system-level energy-per-sample" claim was cited as <em>Tomei et al. 2025, arXiv:2511.16182</em> - but that paper is "Green Distributed AI Training: Orchestrating Compute Across Renewable-Powered Micro Datacenters" and contains <strong>no such benchmark</strong>. Claim is unsourced as stated.</li>
+<li><strong>Date:</strong> Electricity Maps discontinued marginal data in <strong>2024</strong>, not 2025 (the 2025 date is the explanatory article).</li>
+<li><strong>Unverified figures:</strong> "California 21,000 MWh/day tripled, &gt;70% congestion"; "Next 10: $700M-1.13B transmission saved / ~40% opex cut"; "Europe curtailment 6x by 2030" (sources say ~10x by 2040 or ~22 TWh by 2030). Treat as unconfirmed.</li>
+<li><strong>Minor:</strong> "global average PUE 1.58" → Uptime 2024 figure is ~1.56 (1.58 is a CodeCarbon default).</li>
+</ul>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 09-ecology-and-traceability.md — 2026-06-16 03:11</div></div>
+</body>
+</html>

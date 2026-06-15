@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>08-renting-compute-to-train</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    font-size:19px;line-height:1.72;}
+  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
+  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
+  h1{font-size:2.1rem;margin:0 0 .25em;}
+  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
+  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
+  p{margin:0 0 1.1em;}
+  a{color:var(--accent);text-underline-offset:2px;}
+  strong{font-weight:680;}
+  em{color:#333;}
+  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
+  blockquote p{margin:.3em 0;}
+  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
+  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
+  pre code{background:none;padding:0;}
+  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
+  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
+  th{background:#f1ede5;font-weight:650;}
+  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 id="renting-compute-to-train-models-bigger-than-your-own-hardware">Renting compute to train models bigger than your own hardware</h2>
+<p><strong>Bottom line for a solo artist-researcher.</strong> If your local ceiling is ~2x RTX 5090 (32GB) + RTX 4090 (24GB), renting in 2026 unlocks full-finetune and large-model work that local hardware cannot reach - and it is cheap enough that the gate is no longer money. The practical envelope is: <strong>rent ONE 8-GPU node, do anything from LoRA to a full finetune of a 7B-70B model, pay tens to low-hundreds of dollars per run.</strong> The variables that actually bite are non-price: the interconnect, who physically owns the box (privacy), spot interruption, and which grid the electrons came from.</p>
+<h3 id="1-what-it-costs-mid-2026-per-gpu-hour">1. What it costs (mid-2026, per GPU-hour)</h3>
+<p>H100 SXM5 on-demand has commoditized to roughly $2-$3 on specialist clouds, with marketplace floors near $1.49-$2.00 and hyperscaler <em>list</em> prices at ~$4-$12. The honest gap, once you account for AWS's ~44% 2025 price cut, is about <strong>2-3x</strong>, not the 6-10x in vendor headlines.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Provider</th>
+<th>H100 SXM5 on-demand</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marketplace / community</td>
+<td>Vast.ai</td>
+<td>~$1.49-$2.00 (<a href="https://getdeploying.com/gpus/nvidia-h100">source</a>, <a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">source</a>)</td>
+<td>host-specific reliability; $1.49 was a July-2025 promo</td>
+</tr>
+<tr>
+<td>Marketplace / community</td>
+<td>RunPod Community</td>
+<td>~$1.99 (PCIe), ~$2.69 (SXM) (<a href="https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026">source</a>)</td>
+<td>spot ~$1.25</td>
+</tr>
+<tr>
+<td>Managed specialist</td>
+<td>Lambda</td>
+<td>~$2.99 (<a href="https://www.buildmvpfast.com/blog/gpu-cloud-cost-comparison-runpod-lambda-labs-coreweave-2026">source</a>)</td>
+<td>~$1.89 reserved</td>
+</tr>
+<tr>
+<td>Managed specialist</td>
+<td>Nebius</td>
+<td>~$2.00-$2.95 (<a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">source</a>)</td>
+<td>InfiniBand available</td>
+</tr>
+<tr>
+<td>Premium / IB node</td>
+<td>CoreWeave</td>
+<td>~$6.16 ($49.24/hr for the 8x HGX node) (<a href="https://www.buildmvpfast.com/blog/gpu-cloud-cost-comparison-runpod-lambda-labs-coreweave-2026">source</a>)</td>
+<td>per-GPU pricing of an InfiniBand node</td>
+</tr>
+<tr>
+<td>Bare-metal node</td>
+<td>Oracle</td>
+<td>~$10 ($80/hr, all-or-nothing 8-GPU SKU) (<a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">source</a>)</td>
+<td>you rent the whole node</td>
+</tr>
+<tr>
+<td>Hyperscaler (list)</td>
+<td>AWS p5 / Azure ND v5</td>
+<td>~$3.90 blended to ~$12.29 list (<a href="https://www.cloudzero.com/blog/h100-gpu-cost/">source</a>)</td>
+<td>AWS p5 fell ~44% in 2025</td>
+</tr>
+</tbody>
+</table>
+<p>The cross-provider consensus is that the on-demand market "settled around $2-4/GPU-hr" by late 2025 (IntuitionLabs, 2026; <a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">source</a>). <strong>Vendor "up to X% cheaper" figures are marketing.</strong> In particular the Spheron H100-spot-$1.03 and Akash-$0.41 lows are self-reported; independent floors sit nearer $1.25/hr.</p>
+<h3 id="2-what-you-can-actually-train-rented-2026">2. What you can actually train (rented, 2026)</h3>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Hardware</th>
+<th>Time</th>
+<th>Cost (approx.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LoRA/QLoRA 7B-34B</td>
+<td>single 4090 / A100 / H100</td>
+<td>a few hours</td>
+<td>~$1-$15</td>
+</tr>
+<tr>
+<td>QLoRA 70B</td>
+<td>single 80GB H100/A100</td>
+<td>8-12 h</td>
+<td>~$10-$16</td>
+</tr>
+<tr>
+<td><strong>FULL finetune 70B</strong></td>
+<td><strong>8x H100 node</strong></td>
+<td><strong>24-48 h</strong></td>
+<td><strong>~$250-$510</strong></td>
+</tr>
+<tr>
+<td>Pretrain mid-size from scratch</td>
+<td>multi-node, InfiniBand</td>
+<td>days-weeks</td>
+<td>not solo-realistic</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="https://www.spheron.network/blog/how-to-fine-tune-llm-2026/">Spheron fine-tuning guide 2026</a>, <a href="https://io.net/blog/llm-fine-tuning-budget-guide-gpu-costs-timelines-and-what-to-spend">io.net fine-tuning budget guide</a>, <a href="https://www.index.dev/blog/top-ai-fine-tuning-tools-lora-vs-qlora-vs-full">Index.dev LoRA vs QLoRA 2026</a>. PEFT cuts memory ~10-20x while retaining ~90-95% of full-finetune quality, which is why a real artist finetune is <strong>tens of dollars, not thousands</strong>. Genuine <strong>pretraining from scratch</strong> is where this breaks: GPT-3-class was ~1,287 MWh / ~552 t CO2 (<a href="https://arxiv.org/abs/2104.10350">Patterson et al., 2021</a>) - multi-million-dollar, multi-node, InfiniBand-mandatory territory out of reach for an individual, and precisely what the collective protocols (below) exist for.</p>
+<h3 id="3-the-most-overlooked-variable-the-interconnect">3. The most overlooked variable: the interconnect</h3>
+<p>Inside one 8x box, GPUs talk over <strong>NVLink 4 (~900 GB/s)</strong>. The moment you cross machines, your effective throughput is set by the fabric between nodes (<a href="https://apxml.com/courses/how-to-build-a-large-language-model/chapter-18-hardware-considerations-llm-training/interconnect-technologies-nvlink-infiniband">APXML, interconnect technologies</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Fabric</th>
+<th>Latency</th>
+<th>Bandwidth efficiency</th>
+<th>Wall-clock penalty (70B / 4 nodes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InfiniBand NDR</td>
+<td>~0.6 us</td>
+<td>~95% of theoretical</td>
+<td>baseline</td>
+</tr>
+<tr>
+<td>RoCEv2 (tuned)</td>
+<td>~1-5 us</td>
+<td>~92%</td>
+<td>small</td>
+</tr>
+<tr>
+<td>Ethernet (congested)</td>
+<td>10-50 us</td>
+<td>degraded</td>
+<td>+10-15% (<a href="https://www.spheron.network/blog/multi-node-gpu-training-without-infiniband/">Spheron</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The actionable rule:</strong> a solo user almost never needs multi-node InfiniBand. Anything that fits on <strong>one</strong> 8x H100/H200 node (640 GB / 1128 GB VRAM) uses NVLink internally and sidesteps the inter-node fabric question entirely (<a href="https://www.runpod.io/articles/guides/infiniband-for-distributed-ai-training">RunPod, do I need InfiniBand?</a>). One node covers an enormous range - everything in the table above.</p>
+<h3 id="4-decentralized-compute-two-different-things-do-not-conflate-them">4. Decentralized compute: two different things, do not conflate them</h3>
+<ul>
+<li><strong>(1) Rent a box from a marketplace</strong> (Akash ~$1.33/H100-hr per <a href="https://coinstancy.com/academy/guides/akash-network/">Coinstancy, 2026</a>; io.net renting clusters "50-70% below AWS" per <a href="https://www.dextools.io/tutorials/what-is-io-net-decentralized-gpu-ai-depin-solana-guide-2026">DEXTools, 2026</a>; plus Vast, RunPod, Prime Intellect's exchange). You get a normal Docker/SSH box and train your <strong>own</strong> model. This is the realistic path for an individual.</li>
+<li><strong>(2) Join a training protocol</strong> (Nous Psyche; Prime Intellect's INTELLECT runs). You contribute your GPU to one big shared model everyone co-trains; you do <strong>not</strong> get a private box, and the result is collectively owned. INTELLECT-2 (May 2025) is the first 32B model trained via globally distributed permissionless RL across 100+ nodes on three continents, using PRIME-RL, the <strong>TOPLOC</strong> verifier and SHARDCAST (<a href="https://www.primeintellect.ai/blog/intellect-2">Prime Intellect</a>; <a href="https://arxiv.org/html/2505.07291v1">arXiv:2505.07291</a>). This is for contributing to communal frontier-scale runs, not for training your own work.</li>
+</ul>
+<h3 id="5-the-real-gotchas-all-non-price">5. The real gotchas (all non-price)</h3>
+<ul>
+<li><strong>Privacy.</strong> On a permissionless/community box the <strong>host physically owns the machine</strong>: with root/hypervisor access they can in principle read your data, training set and weights from RAM/VRAM/disk. Akash "does not inspect tenant data" - but equally does not protect it from the host. The only robust defense is <strong>GPU TEE / confidential computing</strong> (NVIDIA H100/H200 CC-mode), which encrypts weights+inputs+outputs even from a rogue admin, at <strong>under ~5% overhead for typical LLM workloads and near-zero for large models</strong> (<a href="https://arxiv.org/pdf/2409.03992">arXiv:2409.03992</a>; <a href="https://phala.com/posts/confidential-computing-on-nvidia-h100-gpu-a-performance-benchmark-study">Phala benchmark</a>). But pay-as-you-go TEE GPUs on decentralized markets are still mostly <strong>roadmap</strong> in 2026, not a click-to-rent default. <strong>Practical rule: treat any community GPU as untrusted</strong> - no sensitive footage, unreleased weights or personal data unless it is a TEE-attested or vetted "secure cloud" host.</li>
+<li><strong>Verifiability ≠ privacy.</strong> TOPLOC proves a remote node <em>ran the model it claimed</em> (contributor anti-cheat, validated ~100x faster than generation in Prime Intellect's tests). It does <strong>not</strong> make your data private to the host. The two are routinely conflated.</li>
+<li><strong>Spot interruption.</strong> Spot/interruptible cuts price 50-80% but jobs can be preempted with little notice - only worth it for fault-tolerant runs with <strong>frequent checkpointing</strong>.</li>
+<li><strong>Egress.</strong> A genuine marketplace advantage: SF Compute and several decentralized providers advertise <strong>no egress fees</strong> vs hyperscalers' high egress, so moving checkpoints/datasets off is cheap (you still pay storage + upload time).</li>
+</ul>
+<h3 id="6-ecology-where-and-when-not-just-how-much">6. Ecology: where and when, not just how much</h3>
+<p>Data centres used ~415 TWh in 2024 (~1.5% of global electricity) and the IEA Base Case projects ~945 TWh (~3%) by 2030, AI the main driver - accelerated/AI servers growing ~30%/yr (<a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai">IEA, Energy and AI</a>; <a href="https://www.datacenterdynamics.com/en/news/iea-data-center-energy-consumption-set-to-double-by-2030-to-945twh/">DCD</a>). The carbon of a single run is dominated by <strong>where</strong> and <strong>when</strong> it runs: region choice can swing emissions by <strong>&gt;60x</strong> (a model trained in Estonia can emit &gt;61x the CO2eq of the same model in Sweden, 2016 intensities - <a href="https://arxiv.org/pdf/2007.03051">Carbontracker, arXiv:2007.03051</a>), and time-shifting non-urgent training to low-carbon-intensity hours cuts emissions substantially with zero model changes (<a href="https://arxiv.org/pdf/2303.02508">Chasing Low-Carbon Electricity, arXiv:2303.02508</a>). A climate-conscious renter should pick low-carbon regions and schedule via grid-intensity data (<a href="https://www.electricitymaps.com/">Electricity Maps</a>, <a href="https://watttime.org/news-and-insights/solution_matches/automated-emissions-reduction-aer/">WattTime AER</a>). <strong>Caveat against greenwashing:</strong> networks that "soak up idle consumer GPUs" have an ambiguous footprint - reusing idle silicon is efficient, but a consumer GPU on a dirty grid can be worse per FLOP than an optimized datacentre on a clean one.</p>
+<h3 id="killed--demoted-claims">Killed / demoted claims</h3>
+<ul>
+<li>io.net "8xH100 ~$3.35/hr vs AWS $98.32/hr" - <strong>dropped</strong>: $3.35 for eight H100s implies ~$0.42/GPU-hr, below every verified floor; it pits a marketing low against a list-price high.</li>
+<li>Spheron H100 spot $1.03 and "6.7x cheaper than AWS" - <strong>demoted</strong> to vendor/unverified (independent floors ~$1.25).</li>
+<li>Akash $0.41 / "up to 85% cheaper" - <strong>demoted</strong> to marketing (independent check ~$1.33/H100-hr).</li>
+<li>Hyperscaler $12.29/GPU-hr presented as live cost - <strong>qualified</strong> as list price (AWS p5 ~$3.90 blended post-2025-cut).</li>
+<li>GPT-4-class ~50 GWh - <strong>retained at medium confidence</strong> (widely-repeated estimate, not vendor-disclosed).</li>
+</ul>
+<hr />
+<p><em>Sources for this section are linked inline above. The consolidated, verified source list and the verification method are in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
+<div class="meta">Genere depuis 08-renting-compute-to-train.md — 2026-06-16 03:11</div></div>
+</body>
+</html>
