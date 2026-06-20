@@ -1,1 +1,4 @@
 .DS_Store
+
+# Backups JSONL de sessions Claude — PRIVÉ, ne jamais publier
+sessions/

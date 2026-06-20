@@ -1,6 +1,6 @@
 ## Yann LeCun and the Open / Commons AI Debate (2023-2026)
 
-> Scope note. This section covers the "AI-as-commons" debate as it bears on the report's central question - compute *outside* the classic hyperscaler datacenters. We separate (a) LeCun's rhetorical and institutional position, (b) the *data*-commons movement, (c) genuinely *non-datacenter / decentralized* training, and (d) *public / sovereign* compute. Only (c) is literally about non-datacenter hardware; the others are adjacent and frequently conflated in press coverage.
+> Scope note. This section covers the "AI-as-commons" debate as it bears on the report's central question - compute *outside* the classic hyperscaler datacenters. We separate (a) LeCun's rhetorical and institutional position, (b) the *data*-commons movement, (c) genuinely *non-datacenter / decentralized* training, and (d) *public / state-owned* compute. Only (c) is literally about non-datacenter hardware; the others are adjacent and frequently conflated in press coverage.
 
 ### 1. LeCun's position: AI as common infrastructure
 
@@ -21,7 +21,7 @@ Two 2026 moves turned this rhetoric into institutions:
 |---|---|---|---|---|
 | **(1) Data / legal commons** (datacenter-bound) | EleutherAI (Stella Biderman et al.) + U Toronto/Vector, HF, AI2, MIT, CMU, LLNL | The *dataset* and *weights* are open; the argument is about licensing, not hardware | Trained on conventional clusters | **Real, shipped** - Common Pile v0.1 (8TB, 30 sources, June 2025) + Comma v0.1-1T/2T (7B) matching Llama 1/2 ([blog.eleuther.ai](https://blog.eleuther.ai/common-pile/); [arXiv 2506.05209](https://arxiv.org/abs/2506.05209)) |
 | **(2) Decentralized / non-datacenter training** (the real story) | Prime Intellect (SF); Nous Research (Psyche on Solana) | Training spread across geographically dispersed, often *permissionless* heterogeneous GPUs | Genuinely distributed at small/RL scale; **flagships retreat to centralized NVIDIA clusters** | Real but **caveated** (see §3) |
-| **(3) Public / sovereign compute** (state-funded, non-hyperscaler-owned datacenters) | EU AI Gigafactories; US NAIRR; NY Empire AI; Public AI Network | Owner is public/consortium, not Google/AWS/Azure - but still a datacenter on Nvidia/CUDA | Conventional hardware; large public money, slow delivery | Real demand, **partly aspirational** |
+| **(3) Public / state-owned compute** (state-funded, non-hyperscaler-owned datacenters) | EU AI Gigafactories; US NAIRR; NY Empire AI; Public AI Network | Owner is public/consortium, not Google/AWS/Azure - but still a datacenter on Nvidia/CUDA | Conventional hardware; large public money, slow delivery | Real demand, **partly aspirational** |
 | **(4) The LeCun inflection** | LeCun + AI Alliance + AMI | Rhetoric → Project Tapestry (federated) + AMI (commercial, partially open) | Tapestry = distributed-by-design (not yet built); AMI = conventional venture | Institutional, early |
 
 ### 3. Decentralized non-datacenter training - what's real vs. marketing
@@ -33,7 +33,7 @@ Two 2026 moves turned this rhetoric into institutions:
 
 **Nous Research** raised a **\$50M Series A led by Paradigm (April 2025) at a ~\$1B token valuation**, and runs **Psyche on the Solana blockchain** to pool "idle compute from consumer- and industrial-grade GPUs" (its DisTrO optimizer reduces inter-node bandwidth); it ran a 15B test run in Dec 2024 ([SiliconANGLE](https://siliconangle.com/2025/04/25/nous-research-raises-50m-decentralized-ai-training-led-paradigm/); [The Block](https://www.theblock.co/post/352000/paradigm-leads-50-million-usd-round-decentralized-ai-project-nous-research)). The incentive model is explicitly crypto: idle-compute contribution is framed "less as a donation but more as a transaction," and the valuation is **token-denominated, not revenue** - treat with caution.
 
-### 4. Public / sovereign compute
+### 4. Public / state-owned compute
 
 - **EU AI Gigafactories.** Council Regulation (EU) 2026/150 (InvestAI ~20B EUR; 3-5 sites of ~100,000 chips each; EU covers up to 17% of capex). The informal call (closed 20 June 2025) drew **76 expressions of interest, 60 sites, 16 member states, >230B EUR proposed, >=3M GPUs foreseen** ([European Commission](https://digital-strategy.ec.europa.eu/en/news/overwhelming-response-76-respondents-express-interest-european-ai-gigafactories-initiative)) - but the **formal call was deferred into early/Q2 2026** ([Light Reading](https://www.lightreading.com/ai-machine-learning/eu-defers-formal-call-for-ai-gigafactories-to-early-2026)). Caveat: the planned facilities run on Nvidia/CUDA, so "sovereignty" is partial.
 - **US NAIRR Pilot.** NSF + 14 federal agencies + 28 private/nonprofit partners (Microsoft \$20M Azure credits; NVIDIA \$30M incl. \$24M DGX access), **400+ researchers** connected, transitioning to a permanent NAIRR Operations Center under NSF 25-546 (Sept 2025) ([NSF](https://www.nsf.gov/focus-areas/ai/nairr); [Fierce](https://www.fiercesensors.com/electronics/nairr-pilot-gets-30m-nvidia-20m-azure)).
@@ -42,7 +42,7 @@ Two 2026 moves turned this rhetoric into institutions:
 
 ### 5. Bottom line
 
-The *appetite* for AI compute outside the hyperscalers is real and increasingly well-funded - LeCun has given it intellectual legitimacy, Project Tapestry gives it an architecture, EleutherAI proves the data-commons case scientifically, and public programs have committed hundreds of millions to billions. But the *non-datacenter training* claim specifically should be read skeptically: the largest open models from the "decentralized" labs are still trained on centralized NVIDIA clusters (INTELLECT-3 on 512 H200s), the crypto-funded valuations are token-denominated, "open source" usually means open-weight-with-restrictions, and the public/sovereign datacenters still run on Nvidia/CUDA. Distributed training is a demonstrated capability at the 10B-32B / RL scale; it is not yet how anyone trains a frontier model.
+The *appetite* for AI compute outside the hyperscalers is real and increasingly well-funded - LeCun has given it intellectual legitimacy, Project Tapestry gives it an architecture, EleutherAI proves the data-commons case scientifically, and public programs have committed hundreds of millions to billions. But the *non-datacenter training* claim specifically should be read skeptically: the largest open models from the "decentralized" labs are still trained on centralized NVIDIA clusters (INTELLECT-3 on 512 H200s), the crypto-funded valuations are token-denominated, "open source" usually means open-weight-with-restrictions, and the public/state-owned datacenters still run on Nvidia/CUDA. Distributed training is a demonstrated capability at the 10B-32B / RL scale; it is not yet how anyone trains a frontier model.
 
 ---
 
