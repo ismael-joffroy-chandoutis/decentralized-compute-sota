@@ -48,7 +48,7 @@ Each section is fully sourced. Vendor and self-reported figures are flagged; dol
 9. [Ecology of compute: energy, footprint, and traceability](docs/09-ecology-and-traceability.md)
 10. [Mutualizing compute: the commons, and how a collective organizes](docs/10-mutualizing-compute-commons.md)
 
-**Sources and method:** the consolidated, verified source list (vendor figures flagged, refuted claims kept) is in [SOURCES.md](SOURCES.md).
+**Sources:** the consolidated source list is in [SOURCES.md](SOURCES.md).
 
 ---
 
