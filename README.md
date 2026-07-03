@@ -76,3 +76,5 @@ Dollar figures are dated snapshots from mid-2026 and drift over time; vendor-rep
 Dual-licensed: text under **CC BY-NC-ND 4.0**, code under **PolyForm Noncommercial 1.0.0**. See [LICENSE.md](LICENSE.md). Please cite with [CITATION.cff](CITATION.cff).
 
 Author: **Ismaël Joffroy Chandoutis**, 2026.
+
+By [Ismaël Joffroy Chandoutis](https://ismaeljoffroychandoutis.com).
