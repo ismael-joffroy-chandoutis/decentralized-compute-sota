@@ -1,10 +1,12 @@
+[English](README.md) · **Français**
+
 # Le compute hors des data centers
 
 ### Un état de l'art vérifié de l'informatique IA décentralisée (mi-2026)
 
 > Louer sa machine pour l'IA, les réseaux GPU crypto, la lignée Folding@home / PlayStation 3, l'entraînement décentralisé de modèles, les communs ouverts. Ce qui est réel, ce qui est du vent, et si quelque chose peut vraiment émerger en dehors de Google, Amazon et Microsoft.
 
-*English: see [README.md](README.md). Le survey technique détaillé est en anglais dans [docs/](docs/). La lecture critique signée est en français : [essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md).*
+*Le survey technique détaillé est en anglais, dans [docs/](docs/). La lecture critique signée est en français : [essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md).*
 
 ---
 

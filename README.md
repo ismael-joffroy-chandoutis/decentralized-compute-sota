@@ -1,10 +1,12 @@
+**English** · [Français](README.fr.md)
+
 # Compute Outside the Datacenter
 
 ### A verified state of the art of decentralized AI compute (mid 2026)
 
 > Renting your machine for AI, crypto GPU networks, the Folding@home / PlayStation 3 lineage, decentralized model training, the open commons. What is real, what is hype, and whether anything can actually emerge outside Google, Amazon and Microsoft.
 
-*Français : voir [README.fr.md](README.fr.md) et l'essai signé [essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md).*
+*The signed critical essay is in French: [essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md).*
 
 ---
 
