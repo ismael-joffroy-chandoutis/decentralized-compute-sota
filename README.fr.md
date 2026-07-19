@@ -48,3 +48,5 @@ La lecture critique, en français et signée, est ici : **[essai/decentralisatio
 Double licence : texte sous **CC BY-NC-ND 4.0**, code sous **PolyForm Noncommercial 1.0.0**. Voir [LICENSE.md](LICENSE.md). Citer avec [CITATION.cff](CITATION.cff).
 
 Auteur : **Ismaël Joffroy Chandoutis**, 2026.
+
+Par [Ismaël Joffroy Chandoutis](https://ismaeljoffroychandoutis.com).
