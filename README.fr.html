@@ -170,58 +170,63 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--fg);
-    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
-    font-size:19px;line-height:1.72;}
-  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
-  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
-  h1{font-size:2.1rem;margin:0 0 .25em;}
-  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
-  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
-  p{margin:0 0 1.1em;}
-  a{color:var(--accent);text-underline-offset:2px;}
-  strong{font-weight:680;}
-  em{color:#333;}
-  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
-  blockquote p{margin:.3em 0;}
-  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
-  li{margin:.3em 0;}
-  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
-  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
-  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
-  pre code{background:none;padding:0;}
-  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
-  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
-  th{background:#f1ede5;font-weight:650;}
-  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
-  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
-  @media print{body{background:#fff}.wrap{max-width:none}}
-  </style>
 </head>
 <body>
-<div class="wrap">
-<h1 id="le-compute-hors-des-data-centers">Le compute hors des data centers</h1>
-<h3 id="un-état-de-lart-vérifié-de-linformatique-ia-décentralisée-mi-2026">Un état de l'art vérifié de l'informatique IA décentralisée (mi-2026)</h3>
+<header id="title-block-header">
+<h1 class="title">README.fr</h1>
+</header>
+<p><a href="README.md">English</a> · <strong>Français</strong></p>
+<h1 id="le-compute-hors-des-data-centers">Le compute hors des data
+centers</h1>
+<h3
+id="un-état-de-lart-vérifié-de-linformatique-ia-décentralisée-mi-2026">Un
+état de l’art vérifié de l’informatique IA décentralisée (mi-2026)</h3>
 <blockquote>
-<p>Louer sa machine pour l'IA, les réseaux GPU crypto, la lignée Folding@home / PlayStation 3, l'entraînement décentralisé de modèles, les communs ouverts. Ce qui est réel, ce qui est du vent, et si quelque chose peut vraiment émerger en dehors de Google, Amazon et Microsoft.</p>
+<p>Louer sa machine pour l’IA, les réseaux GPU crypto, la lignée
+Folding@home / PlayStation 3, l’entraînement décentralisé de modèles,
+les communs ouverts. Ce qui est réel, ce qui est du vent, et si quelque
+chose peut vraiment émerger en dehors de Google, Amazon et
+Microsoft.</p>
 </blockquote>
-<p><em>English: see <a href="README.md">README.md</a>. Le survey technique détaillé est en anglais dans <a href="docs/">docs/</a>. La lecture critique signée est en français : <a href="essai/decentralisation-du-compute.fr.md">essai/decentralisation-du-compute.fr.md</a>.</em></p>
+<p><img src="monde.jpg" alt="decentralized-compute-sota" width="100%"></p>
+<p><em>Le survey technique détaillé est en anglais, dans <a
+href="docs/">docs/</a>. La lecture critique signée est en français : <a
+href="essai/decentralisation-du-compute.fr.md">essai/decentralisation-du-compute.fr.md</a>.</em></p>
 <hr />
 <h2 id="en-une-phrase">En une phrase</h2>
-<p>La décentralisation du compute n'est <strong>ni une voie morte, ni une révolution</strong>. C'est un <strong>deuxième tier</strong> durable qui coexiste avec les data centers sans les remplacer au frontier. Il comprime la rente (une force anti-rente : H100 à 2 à 4 USD/heure contre les prix de liste des hyperscalers), contourne la pénurie de GPU, et maintient ouverte une porte de sortie sur l'entraînement libre qui compte politiquement plus qu'elle ne pèse en FLOP.</p>
+<p>La décentralisation du compute n’est <strong>ni une voie morte, ni
+une révolution</strong>. C’est un <strong>deuxième tier</strong> durable
+qui coexiste avec les data centers sans les remplacer au frontier. Il
+comprime la rente (une force anti-rente : H100 à 2 à 4 USD/heure contre
+les prix de liste des hyperscalers), contourne la pénurie de GPU, et
+maintient ouverte une porte de sortie sur l’entraînement libre qui
+compte politiquement plus qu’elle ne pèse en FLOP.</p>
 <ul>
-<li><strong>Croire</strong> les revenus d'inférence et les résultats d'entraînement à faible communication.</li>
-<li><strong>Diviser par dix</strong> les capitalisations de token et les nombres de GPU annoncés.</li>
+<li><strong>Croire</strong> les revenus d’inférence et les résultats
+d’entraînement à faible communication.</li>
+<li><strong>Diviser par dix</strong> les capitalisations de token et les
+nombres de GPU annoncés.</li>
 </ul>
-<p>Le motif maître : partout, la <strong>capacité annoncée dépasse de très loin la capacité réellement active</strong>. io.net affiche 327 000 GPU « enregistrés » mais comptait environ 6 720 GPU actifs vérifiés par jour au Q1 2025 (environ 2 pour cent), après une attaque Sybil en 2024 portant sur près de 1,8 million de faux GPU. Le secteur DePIN entier pèse environ 10 milliards USD de capitalisation pour environ 72 millions USD de revenu réel on-chain en 2025 (Messari, <em>State of DePIN 2025</em>). L'auditabilité est la ligne de partage entre le signal et le bruit.</p>
+<p>Le motif maître : partout, la <strong>capacité annoncée dépasse de
+très loin la capacité réellement active</strong>. io.net affiche 327 000
+GPU « enregistrés » mais comptait environ 6 720 GPU actifs vérifiés par
+jour au Q1 2025 (environ 2 pour cent), après une attaque Sybil en 2024
+portant sur près de 1,8 million de faux GPU. Le secteur DePIN entier
+pèse environ 10 milliards USD de capitalisation pour environ 72 millions
+USD de revenu réel on-chain en 2025 (Messari, <em>State of DePIN
+2025</em>). L’auditabilité est la ligne de partage entre le signal et le
+bruit.</p>
 <hr />
 <h2 id="les-cinq-familles">Les cinq familles</h2>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
 <thead>
 <tr>
 <th>#</th>
@@ -235,7 +240,8 @@
 <tbody>
 <tr>
 <td>1</td>
-<td><strong>Marketplaces commerciales</strong> (Vast.ai, RunPod, TensorDock, Salad)</td>
+<td><strong>Marketplaces commerciales</strong> (Vast.ai, RunPod,
+TensorDock, Salad)</td>
 <td>Pros et prosumers, agrégés</td>
 <td>Fiat, prix de marché</td>
 <td>Inférence, fine-tuning, training sur GPU loués</td>
@@ -243,7 +249,8 @@
 </tr>
 <tr>
 <td>2</td>
-<td><strong>Crypto / DePIN</strong> (io.net, Render, Akash, Bittensor, Aethir, Nosana)</td>
+<td><strong>Crypto / DePIN</strong> (io.net, Render, Akash, Bittensor,
+Aethir, Nosana)</td>
 <td>Hôtes incités par token</td>
 <td>Token, parfois fiat</td>
 <td>Inférence payée croissante, rendering, RL</td>
@@ -251,15 +258,18 @@
 </tr>
 <tr>
 <td>3</td>
-<td><strong>Bénévole / open-source</strong> (Folding@home, BOINC, l'ère PS3, AI Horde)</td>
+<td><strong>Bénévole / open-source</strong> (Folding@home, BOINC, l’ère
+PS3, AI Horde)</td>
 <td>Cycles donnés, non payés</td>
 <td>Aucun (altruisme, kudos)</td>
-<td>Calcul scientifique massivement parallèle, <strong>pas</strong> le training LLM</td>
+<td>Calcul scientifique massivement parallèle, <strong>pas</strong> le
+training LLM</td>
 <td><strong>Prouvé mais limité par la charge</strong></td>
 </tr>
 <tr>
 <td>4</td>
-<td><strong>Entraînement décentralisé</strong> (Prime Intellect, Nous, DiLoCo)</td>
+<td><strong>Entraînement décentralisé</strong> (Prime Intellect, Nous,
+DiLoCo)</td>
 <td>GPU dispersés, algos low-comm</td>
 <td>Variable</td>
 <td>Pré-entraînement low-comm et RL inter-continents</td>
@@ -267,7 +277,8 @@
 </tr>
 <tr>
 <td>5</td>
-<td><strong>Communs ouverts</strong> (LeCun, open-weights, Project Tapestry)</td>
+<td><strong>Communs ouverts</strong> (LeCun, open-weights, Project
+Tapestry)</td>
 <td>Couche gouvernance / propriété</td>
 <td>n/a</td>
 <td>Précondition politique, pas une source de FLOP</td>
@@ -277,12 +288,17 @@
 </table>
 <hr />
 <h2 id="lire">Lire</h2>
-<p>Le survey technique complet et sourcé est en anglais dans <a href="docs/">docs/</a> (sections 1 à 10). L'annexe des sources, des constats vérifiés et des affirmations réfutées : <a href="SOURCES.md">SOURCES.md</a>.</p>
-<p>La lecture critique, en français et signée, est ici : <strong><a href="essai/decentralisation-du-compute.fr.md">essai/decentralisation-du-compute.fr.md</a></strong>.</p>
+<p>Le survey technique complet et sourcé est en anglais dans <a
+href="docs/">docs/</a> (sections 1 à 10). L’annexe des sources : <a
+href="SOURCES.md">SOURCES.md</a>.</p>
+<p>La lecture critique, en français et signée, est ici : <strong><a
+href="essai/decentralisation-du-compute.fr.md">essai/decentralisation-du-compute.fr.md</a></strong>.</p>
 <hr />
 <h2 id="licence-et-citation">Licence et citation</h2>
-<p>Double licence : texte sous <strong>CC BY-NC-ND 4.0</strong>, code sous <strong>PolyForm Noncommercial 1.0.0</strong>. Voir <a href="LICENSE.md">LICENSE.md</a>. Citer avec <a href="CITATION.cff">CITATION.cff</a>.</p>
+<p>Double licence : texte sous <strong>CC BY-NC-ND 4.0</strong>, code
+sous <strong>PolyForm Noncommercial 1.0.0</strong>. Voir <a
+href="LICENSE.md">LICENSE.md</a>. Citer avec <a
+href="CITATION.cff">CITATION.cff</a>.</p>
 <p>Auteur : <strong>Ismaël Joffroy Chandoutis</strong>, 2026.</p>
-<div class="meta">Genere depuis README.fr.md — 2026-06-16 03:44</div></div>
 </body>
 </html>

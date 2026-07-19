@@ -7,7 +7,7 @@ This repository is a sourced survey. This file is its consolidated **bibliograph
 - **In the text.** Every non-trivial claim links inline to its primary source (organization, document, date).
 - **Vendor figures are flagged.** Any number that could only be traced to a company's own page is labeled self-reported.
 - **Dated snapshots.** All dollar figures are snapshots from mid-June 2026 and drift over time.
-- **Claims that did not hold up are kept, not hidden** — listed under "Refuted / do-not-repeat" rather than silently dropped.
+- **Claims that did not hold up are kept, not hidden.** They are listed under "Refuted / do-not-repeat" rather than silently dropped.
 - **The signed essay** ([essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md)) carries its own formal bibliography.
 
 A confidence level (high / medium / low) is marked on each finding below.

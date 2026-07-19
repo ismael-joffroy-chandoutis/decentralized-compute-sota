@@ -170,53 +170,64 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--fg);
-    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
-    font-size:19px;line-height:1.72;}
-  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
-  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
-  h1{font-size:2.1rem;margin:0 0 .25em;}
-  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
-  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
-  p{margin:0 0 1.1em;}
-  a{color:var(--accent);text-underline-offset:2px;}
-  strong{font-weight:680;}
-  em{color:#333;}
-  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
-  blockquote p{margin:.3em 0;}
-  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
-  li{margin:.3em 0;}
-  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
-  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
-  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
-  pre code{background:none;padding:0;}
-  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
-  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
-  th{background:#f1ede5;font-weight:650;}
-  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
-  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
-  @media print{body{background:#fff}.wrap{max-width:none}}
-  </style>
 </head>
 <body>
-<div class="wrap">
-<h2 id="decentralized--distributed-training-of-frontier-models">Decentralized / Distributed Training of Frontier Models</h2>
-<p><strong>Bottom line (Nov 2024 - Mar 2026):</strong> Low-communication algorithms have made decentralized training of <em>mid-sized</em> models (10B-72B) genuinely real and reproducible. Training <em>frontier-scale</em> models over the internet is demonstrated nowhere, and is judged unlikely to catch up this decade. The most telling datapoint of the period is that the leading project's own best model retreated to a centralized datacenter.</p>
-<h3 id="the-algorithmic-breakthrough-diloco-and-its-descendants">The algorithmic breakthrough: DiLoCo and its descendants</h3>
-<p>The enabling idea is <strong>DiLoCo</strong> (Douillard et al., Google DeepMind, Nov 2023, <a href="https://arxiv.org/abs/2311.08105">arXiv:2311.08105</a>): instead of synchronizing gradients every step over a high-bandwidth fabric, each replica runs hundreds of local "inner" steps (typically H=500) and synchronizes only "outer" pseudo-gradients, cutting inter-node communication by ~500x. The constraint that this relaxes is <strong>bandwidth, not latency</strong> - infrequent syncing tolerates the high latency of home internet. Consumer upload (~60 Mbps) sits five-to-six orders of magnitude below InfiniBand (200-400 GB/s), and DiLoCo's whole point is to live within that gap.</p>
-<p>Two follow-ups matter:</p>
-<ul>
-<li><strong>OpenDiLoCo</strong> (Prime Intellect, Jul 2024, <a href="https://www.primeintellect.ai/blog/opendiloco">blog</a> / <a href="https://arxiv.org/html/2407.07852v1">arXiv:2407.07852</a>) reproduced DiLoCo across 2 continents / 3 countries at billion-parameter scale with <strong>90-95% compute utilization</strong>.</li>
-<li><strong>"Scaling Laws for DiLoCo"</strong> (DeepMind, Mar 2025, <a href="https://arxiv.org/abs/2503.09799">arXiv:2503.09799</a>) found the striking result that, well-tuned, <strong>DiLoCo scales <em>better</em> than data-parallel</strong> as models grow: M=2 replicas beat data-parallel above several billion parameters, validated on 4B and 10B runs.</li>
-</ul>
-<p>A second wave of compression methods pushes the same idea further: Nous's <strong>DisTrO/DeMo</strong>, Templar's <strong>SparseLoCo</strong> (sparsification + 2-bit quant + error feedback), Pluralis's <strong>Protocol Models</strong> (subspace-constrained activations, <a href="https://arxiv.org/abs/2506.01260">arXiv:2506.01260</a>), and Macrocosmos's <strong>IOTA</strong> pipeline-parallel SWARM.</p>
+<header id="title-block-header">
+<h1 class="title">04-decentralized-training</h1>
+</header>
+<h2
+id="decentralized-distributed-training-of-frontier-models">Decentralized
+/ Distributed Training of Frontier Models</h2>
+<p><strong>Bottom line (Nov 2024 - Mar 2026):</strong> Low-communication
+algorithms have made decentralized training of <em>mid-sized</em> models
+(10B-72B) genuinely real and reproducible. Training
+<em>frontier-scale</em> models over the internet is demonstrated
+nowhere, and is judged unlikely to catch up this decade. The most
+telling datapoint of the period is that the leading project’s own best
+model retreated to a centralized datacenter.</p>
+<h3 id="the-algorithmic-breakthrough-diloco-and-its-descendants">The
+algorithmic breakthrough: DiLoCo and its descendants</h3>
+<p>The enabling idea is <strong>DiLoCo</strong> (Douillard et al.,
+Google DeepMind, Nov 2023, <a
+href="https://arxiv.org/abs/2311.08105">arXiv:2311.08105</a>): instead
+of synchronizing gradients every step over a high-bandwidth fabric, each
+replica runs hundreds of local “inner” steps (typically H=500) and
+synchronizes only “outer” pseudo-gradients, cutting inter-node
+communication by ~500x. The constraint that this relaxes is
+<strong>bandwidth, not latency</strong> - infrequent syncing tolerates
+the high latency of home internet. Consumer upload (~60 Mbps) sits
+five-to-six orders of magnitude below InfiniBand (200-400 GB/s), and
+DiLoCo’s whole point is to live within that gap.</p>
+<p>Two follow-ups matter: - <strong>OpenDiLoCo</strong> (Prime
+Intellect, Jul 2024, <a
+href="https://www.primeintellect.ai/blog/opendiloco">blog</a> / <a
+href="https://arxiv.org/html/2407.07852v1">arXiv:2407.07852</a>)
+reproduced DiLoCo across 2 continents / 3 countries at billion-parameter
+scale with <strong>90-95% compute utilization</strong>. -
+<strong>“Scaling Laws for DiLoCo”</strong> (DeepMind, Mar 2025, <a
+href="https://arxiv.org/abs/2503.09799">arXiv:2503.09799</a>) found the
+striking result that, well-tuned, <strong>DiLoCo scales <em>better</em>
+than data-parallel</strong> as models grow: M=2 replicas beat
+data-parallel above several billion parameters, validated on 4B and 10B
+runs.</p>
+<p>A second wave of compression methods pushes the same idea further:
+Nous’s <strong>DisTrO/DeMo</strong>, Templar’s
+<strong>SparseLoCo</strong> (sparsification + 2-bit quant + error
+feedback), Pluralis’s <strong>Protocol Models</strong>
+(subspace-constrained activations, <a
+href="https://arxiv.org/abs/2506.01260">arXiv:2506.01260</a>), and
+Macrocosmos’s <strong>IOTA</strong> pipeline-parallel SWARM.</p>
 <h3 id="what-was-actually-deployed">What was actually deployed</h3>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
 <thead>
 <tr>
 <th>Model / Run</th>
@@ -235,8 +246,10 @@
 <td>10B</td>
 <td>1T</td>
 <td>up to 112 H100 / 14 nodes, 5 countries, home internet</td>
-<td>Decentralized, real (<a href="https://arxiv.org/abs/2412.01152">report</a>)</td>
-<td>30 providers, 42 days, 83% util cross-continent / 96% US-only (<a href="https://www.primeintellect.ai/blog/intellect-1">blog</a>)</td>
+<td>Decentralized, real (<a
+href="https://arxiv.org/abs/2412.01152">report</a>)</td>
+<td>30 providers, 42 days, 83% util cross-continent / 96% US-only (<a
+href="https://www.primeintellect.ai/blog/intellect-1">blog</a>)</td>
 </tr>
 <tr>
 <td><strong>INTELLECT-2</strong></td>
@@ -244,8 +257,10 @@
 <td>32B (RL)</td>
 <td>-</td>
 <td>permissionless consumer GPUs</td>
-<td>Decentralized, marginal gains (<a href="https://arxiv.org/html/2505.07291v1">paper</a>)</td>
-<td>+2.2 AIME24, +0.1 AIME25, IFEval <em>dropped</em>; team admits limited generalized gain</td>
+<td>Decentralized, marginal gains (<a
+href="https://arxiv.org/html/2505.07291v1">paper</a>)</td>
+<td>+2.2 AIME24, +0.1 AIME25, IFEval <em>dropped</em>; team admits
+limited generalized gain</td>
 </tr>
 <tr>
 <td><strong>Consilience-40B</strong></td>
@@ -253,7 +268,8 @@
 <td>40B</td>
 <td>~20T</td>
 <td>DeMo optimizer, Solana-coordinated</td>
-<td>Largest internet pretrain by tokens (<a href="https://huggingface.co/PsycheFoundation/consilience-40b-CqX3FUm4">HF</a>)</td>
+<td>Largest internet pretrain by tokens (<a
+href="https://huggingface.co/PsycheFoundation/consilience-40b-CqX3FUm4">HF</a>)</td>
 <td>Sized to train on 1 DGX, infer on 1×3090</td>
 </tr>
 <tr>
@@ -262,7 +278,8 @@
 <td>8B</td>
 <td>-</td>
 <td>80 Mbps consumer links</td>
-<td>Decentralized, real (<a href="https://arxiv.org/abs/2506.01260">arXiv</a>)</td>
+<td>Decentralized, real (<a
+href="https://arxiv.org/abs/2506.01260">arXiv</a>)</td>
 <td>up to 100x / 99% compression, matches 100Gbps baseline</td>
 </tr>
 <tr>
@@ -271,7 +288,8 @@
 <td>72B</td>
 <td>~1.1T</td>
 <td>70+ commodity GPUs, home internet</td>
-<td>"Largest decentralized run" (10 Mar 2026, <a href="https://arxiv.org/pdf/2603.08163">arXiv:2603.08163</a>)</td>
+<td>“Largest decentralized run” (10 Mar 2026, <a
+href="https://arxiv.org/pdf/2603.08163">arXiv:2603.08163</a>)</td>
 <td>SparseLoCo 146x; only matches Llama-2-70B (2023)</td>
 </tr>
 <tr>
@@ -280,22 +298,63 @@
 <td>106B MoE (12B active)</td>
 <td>-</td>
 <td><strong>512× H200, 400Gbps InfiniBand, ~2 months</strong></td>
-<td><strong>CENTRALIZED</strong> (<a href="https://www.primeintellect.ai/blog/intellect-3">blog</a>)</td>
+<td><strong>CENTRALIZED</strong> (<a
+href="https://www.primeintellect.ai/blog/intellect-3">blog</a>)</td>
 <td>Flagship; <em>not</em> decentralized</td>
 </tr>
 </tbody>
 </table>
-<h3 id="the-three-adversarial-caveats">The three adversarial caveats</h3>
+<h3 id="the-three-adversarial-caveats">The three adversarial
+caveats</h3>
 <ol type="1">
-<li><p><strong>The scale gap is ~1000x.</strong> Epoch AI (Jaime Sevilla, <a href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">"How far can decentralized training over the internet scale?"</a>, Dec 2025) independently places the largest decentralized runs (INTELLECT-1, Pluralis 8B, Consilience 40B) at <strong>6e22-6e23 FLOP</strong> - about 1000x below frontier models such as Grok 4. Decentralized compute is growing ~20x/year (600,000x since 2020), but Epoch's conclusion is blunt: <em>"we won't see decentralized training runs catch up to the frontier of training in scale this decade."</em> The penalty is structural - going from 1→8 nodes already costs ~1.5x compute, and naive scaling to 10,000 nodes would cost ~6x the FLOP of a centralized run. This is an economic/aggregation limit, not a physics wall.</p></li>
-<li><p><strong>RL post-training gains are marginal.</strong> INTELLECT-2 (32B) improved on its QwQ-32B base by only +2.2 (AIME24) and +0.1 (AIME25), and regressed on IFEval; the authors concede <em>"it was difficult to obtain huge amounts of generalized improvement on benchmarks"</em> (<a href="https://arxiv.org/html/2505.07291v1">arXiv:2505.07291</a>).</p></li>
-<li><p><strong>The flagship retreat.</strong> Prime Intellect's best model, INTELLECT-3 (106B MoE), was trained on a <strong>centralized 512× H200 InfiniBand cluster</strong>, not decentralized (<a href="https://x.com/PrimeIntellect/status/1993895069951422817">Prime Intellect</a>). The reason is technical: async RL discards rollouts that drift more than 8 steps behind the current policy, which - per <a href="https://www.implicator.ai/prime-intellects-intellect-3-open-source-ambition-meets-centralized-reality/">implicator.ai</a> - <em>"demands InfiniBand, not commodity broadband from someone's garage."</em></p></li>
+<li><p><strong>The scale gap is ~1000x.</strong> Epoch AI (Jaime
+Sevilla, <a
+href="https://epoch.ai/gradient-updates/how-far-can-decentralized-training-over-the-internet-scale">“How
+far can decentralized training over the internet scale?”</a>, Dec 2025)
+independently places the largest decentralized runs (INTELLECT-1,
+Pluralis 8B, Consilience 40B) at <strong>6e22-6e23 FLOP</strong> - about
+1000x below frontier models such as Grok 4. Decentralized compute is
+growing ~20x/year (600,000x since 2020), but Epoch’s conclusion is
+blunt: <em>“we won’t see decentralized training runs catch up to the
+frontier of training in scale this decade.”</em> The penalty is
+structural - going from 1→8 nodes already costs ~1.5x compute, and naive
+scaling to 10,000 nodes would cost ~6x the FLOP of a centralized run.
+This is an economic/aggregation limit, not a physics wall.</p></li>
+<li><p><strong>RL post-training gains are marginal.</strong> INTELLECT-2
+(32B) improved on its QwQ-32B base by only +2.2 (AIME24) and +0.1
+(AIME25), and regressed on IFEval; the authors concede <em>“it was
+difficult to obtain huge amounts of generalized improvement on
+benchmarks”</em> (<a
+href="https://arxiv.org/html/2505.07291v1">arXiv:2505.07291</a>).</p></li>
+<li><p><strong>The flagship retreat.</strong> Prime Intellect’s best
+model, INTELLECT-3 (106B MoE), was trained on a <strong>centralized 512×
+H200 InfiniBand cluster</strong>, not decentralized (<a
+href="https://x.com/PrimeIntellect/status/1993895069951422817">Prime
+Intellect</a>). The reason is technical: async RL discards rollouts that
+drift more than 8 steps behind the current policy, which - per <a
+href="https://www.implicator.ai/prime-intellects-intellect-3-open-source-ambition-meets-centralized-reality/">implicator.ai</a>
+- <em>“demands InfiniBand, not commodity broadband from someone’s
+garage.”</em></p></li>
 </ol>
 <h3 id="reading-the-hype-filter">Reading the hype filter</h3>
-<p>Most of these projects are entangled with <strong>crypto-token economics</strong> - Templar on Bittensor (TAO/alpha), Nous Psyche on Solana, Gensyn's a16z-backed <a href="https://docs.gensyn.ai/testnet/rl-swarm">RL Swarm testnet</a> and $AI token. Headline compression multipliers and "largest ever" claims frequently surface through token-correlated marketing channels rather than peer review, so they should be treated as vendor-stated until independently reproduced.</p>
-<p><strong>Verdict:</strong> Decentralized training is <em>technically viable and demonstrated</em> for sub-frontier (≤~72B, ~1T-token) models, and the algorithms are sound and peer-reviewed. It remains <em>fundamentally constrained</em> - by compute aggregation and economics, not pure physics - at true frontier scale through at least ~2030. The honest one-liner: the math works, the mid-scale models are real, and the frontier is still in the datacenter.</p>
+<p>Most of these projects are entangled with <strong>crypto-token
+economics</strong> - Templar on Bittensor (TAO/alpha), Nous Psyche on
+Solana, Gensyn’s a16z-backed <a
+href="https://docs.gensyn.ai/testnet/rl-swarm">RL Swarm testnet</a> and
+$AI token. Headline compression multipliers and “largest ever” claims
+frequently surface through token-correlated marketing channels rather
+than peer review, so they should be treated as vendor-stated until
+independently reproduced.</p>
+<p><strong>Verdict:</strong> Decentralized training is <em>technically
+viable and demonstrated</em> for sub-frontier (≤~72B, ~1T-token) models,
+and the algorithms are sound and peer-reviewed. It remains
+<em>fundamentally constrained</em> - by compute aggregation and
+economics, not pure physics - at true frontier scale through at least
+~2030. The honest one-liner: the math works, the mid-scale models are
+real, and the frontier is still in the datacenter.</p>
 <hr />
-<p><em>Sources for this section are linked inline above. The consolidated source list is in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
-<div class="meta">Genere depuis 04-decentralized-training.md — 2026-06-16 03:44</div></div>
+<p><em>Sources for this section are linked inline above. The
+consolidated source list is in <a
+href="../SOURCES.md">SOURCES.md</a>.</em></p>
 </body>
 </html>

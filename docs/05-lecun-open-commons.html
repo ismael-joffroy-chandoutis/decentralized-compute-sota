@@ -170,64 +170,107 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--fg);
-    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
-    font-size:19px;line-height:1.72;}
-  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
-  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
-  h1{font-size:2.1rem;margin:0 0 .25em;}
-  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
-  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
-  p{margin:0 0 1.1em;}
-  a{color:var(--accent);text-underline-offset:2px;}
-  strong{font-weight:680;}
-  em{color:#333;}
-  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
-  blockquote p{margin:.3em 0;}
-  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
-  li{margin:.3em 0;}
-  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
-  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
-  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
-  pre code{background:none;padding:0;}
-  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
-  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
-  th{background:#f1ede5;font-weight:650;}
-  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
-  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
-  @media print{body{background:#fff}.wrap{max-width:none}}
-  </style>
 </head>
 <body>
-<div class="wrap">
-<h2 id="yann-lecun-and-the-open--commons-ai-debate-2023-2026">Yann LeCun and the Open / Commons AI Debate (2023-2026)</h2>
+<header id="title-block-header">
+<h1 class="title">05-lecun-open-commons</h1>
+</header>
+<h2 id="yann-lecun-and-the-open-commons-ai-debate-2023-2026">Yann LeCun
+and the Open / Commons AI Debate (2023-2026)</h2>
 <blockquote>
-<p>Scope note. This section covers the "AI-as-commons" debate as it bears on the report's central question - compute <em>outside</em> the classic hyperscaler datacenters. We separate (a) LeCun's rhetorical and institutional position, (b) the <em>data</em>-commons movement, (c) genuinely <em>non-datacenter / decentralized</em> training, and (d) <em>public / sovereign</em> compute. Only (c) is literally about non-datacenter hardware; the others are adjacent and frequently conflated in press coverage.</p>
+<p>Scope note. This section covers the “AI-as-commons” debate as it
+bears on the report’s central question - compute <em>outside</em> the
+classic hyperscaler datacenters. We separate (a) LeCun’s rhetorical and
+institutional position, (b) the <em>data</em>-commons movement, (c)
+genuinely <em>non-datacenter / decentralized</em> training, and (d)
+<em>public / state-owned</em> compute. Only (c) is literally about
+non-datacenter hardware; the others are adjacent and frequently
+conflated in press coverage.</p>
 </blockquote>
-<h3 id="1-lecuns-position-ai-as-common-infrastructure">1. LeCun's position: AI as common infrastructure</h3>
-<p>Yann LeCun (A.M. Turing Award 2018; NYU professor; Meta Chief AI Scientist and head of FAIR until his departure reported in November 2025 and effective around January 2026) is the most prominent <em>industry</em> voice arguing that frontier foundation models should be open and treated as shared public infrastructure rather than proprietary products held by a few hyperscalers. His position is consistent and documentable:</p>
+<h3 id="lecuns-position-ai-as-common-infrastructure">1. LeCun’s
+position: AI as common infrastructure</h3>
+<p>Yann LeCun (A.M. Turing Award 2018; NYU professor; Meta Chief AI
+Scientist and head of FAIR until his departure reported in November 2025
+and effective around January 2026) is the most prominent
+<em>industry</em> voice arguing that frontier foundation models should
+be open and treated as shared public infrastructure rather than
+proprietary products held by a few hyperscalers. His position is
+consistent and documentable:</p>
 <ul>
-<li><strong>The Wikipedia analogy (X / LinkedIn, Dec 2023).</strong> "Open source AI foundation models will wipe out closed and proprietary AI models for the same reason Wikipedia wiped out generalist commercial encyclopedia: crowd-sourced human contributions to open platforms can cater to a high diversity of interests, cultures, and languages." (Yann LeCun, post id 1738641767405138223, <a href="https://x.com/ylecun/status/1738641767405138223">x.com</a>). This is explicitly a <em>cultural-diversity / commons</em> argument, not a performance argument.</li>
-<li><strong>Concentration of power (Lex Fridman Podcast #416, 7 Mar 2024).</strong> "I see the danger of this concentration of power through proprietary AI systems as a much bigger danger than everything else… a very bad future in which all of our information diet is controlled by a small number of companies." (<a href="https://lexfridman.com/yann-lecun-3-transcript/">lexfridman.com transcript</a>).</li>
-<li><strong>The 2025 read of the field (AI Pulse, 4 Dec 2025).</strong> "OpenAI, of course, stopped being open quite a long time ago. Anthropic never was"; Meta "is kind of rethinking its strategy about open source… maybe not as systematic as it used to be"; and "the best open source models at the moment in the LLM world are all Chinese." (<a href="https://officechai.com/ai/meta-is-rethinking-its-strategy-on-open-source-former-chief-scientist-yann-lecun/">officechai.com</a>). LeCun's own diagnosis, then, is that the <em>Western</em> open-weight movement is partly migrating to Chinese labs and to crypto-funded decentralized collectives.</li>
+<li><strong>The Wikipedia analogy (X / LinkedIn, Dec 2023).</strong>
+“Open source AI foundation models will wipe out closed and proprietary
+AI models for the same reason Wikipedia wiped out generalist commercial
+encyclopedia: crowd-sourced human contributions to open platforms can
+cater to a high diversity of interests, cultures, and languages.” (Yann
+LeCun, post id 1738641767405138223, <a
+href="https://x.com/ylecun/status/1738641767405138223">x.com</a>). This
+is explicitly a <em>cultural-diversity / commons</em> argument, not a
+performance argument.</li>
+<li><strong>Concentration of power (Lex Fridman Podcast #416, 7 Mar
+2024).</strong> “I see the danger of this concentration of power through
+proprietary AI systems as a much bigger danger than everything else… a
+very bad future in which all of our information diet is controlled by a
+small number of companies.” (<a
+href="https://lexfridman.com/yann-lecun-3-transcript/">lexfridman.com
+transcript</a>).</li>
+<li><strong>The 2025 read of the field (AI Pulse, 4 Dec 2025).</strong>
+“OpenAI, of course, stopped being open quite a long time ago. Anthropic
+never was”; Meta “is kind of rethinking its strategy about open source…
+maybe not as systematic as it used to be”; and “the best open source
+models at the moment in the LLM world are all Chinese.” (<a
+href="https://officechai.com/ai/meta-is-rethinking-its-strategy-on-open-source-former-chief-scientist-yann-lecun/">officechai.com</a>).
+LeCun’s own diagnosis, then, is that the <em>Western</em> open-weight
+movement is partly migrating to Chinese labs and to crypto-funded
+decentralized collectives.</li>
 </ul>
 <p>Two 2026 moves turned this rhetoric into institutions:</p>
 <ul>
-<li><strong>AMI Labs (announced ~9 Mar 2026).</strong> After leaving Meta, LeCun co-founded <em>Advanced Machine Intelligence Labs</em> ("ami" = French for "friend"), HQ Paris with hubs in New York, Montreal, and Singapore, focused on <strong>world models / JEPA</strong>, not LLMs. It raised a <strong>$1.03B (890M EUR) seed at a $3.5B pre-money valuation - reported as Europe's largest-ever seed round</strong>, co-led by Cathay Innovation, Greycroft, Hiro Capital, HV Capital, and Bezos Expeditions, with strategic backers reported to include Nvidia, Samsung, Temasek, Toyota Ventures, and Bpifrance. <strong>Meta did not invest.</strong> (<a href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/">TechCrunch</a>; <a href="https://news.crunchbase.com/venture/world-model-ai-lab-ami-raises-europes-largest-seed-round/">Crunchbase News</a>; <a href="https://x.com/ylecun/status/2031268686984527936">LeCun on X</a>).</li>
-<li><strong>AI Alliance - Project Tapestry (7 Apr 2026).</strong> LeCun was named <strong>Chief Science Advisor</strong> to the AI Alliance (200+ member organizations), which launched <strong>Project Tapestry</strong>, an open-source platform for <em>distributed, globally federated training of frontier open models</em> in which institutions and nations contribute while "retaining control of their data and the ability to build… sovereign derivative models." (<a href="https://www.prnewswire.com/news-releases/ai-alliance-launches-project-tapestry-to-build-a-collaborative-foundation-for-open-and-sovereign-ai-302735918.html">PR Newswire</a>; <a href="https://thealliance.ai/projects/tapestry">thealliance.ai/projects/tapestry</a>). This is the cleanest bridge from LeCun's commons rhetoric to <em>non-hyperscaler, sovereignty-preserving distributed compute</em> - though as of mid-2026 it is a platform-building effort, not yet a trained model.</li>
+<li><strong>AMI Labs (announced ~9 Mar 2026).</strong> After leaving
+Meta, LeCun co-founded <em>Advanced Machine Intelligence Labs</em>
+(“ami” = French for “friend”), HQ Paris with hubs in New York, Montreal,
+and Singapore, focused on <strong>world models / JEPA</strong>, not
+LLMs. It raised a <strong>$1.03B (890M EUR) seed at a $3.5B pre-money
+valuation - reported as Europe’s largest-ever seed round</strong>,
+co-led by Cathay Innovation, Greycroft, Hiro Capital, HV Capital, and
+Bezos Expeditions, with strategic backers reported to include Nvidia,
+Samsung, Temasek, Toyota Ventures, and Bpifrance. <strong>Meta did not
+invest.</strong> (<a
+href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/">TechCrunch</a>;
+<a
+href="https://news.crunchbase.com/venture/world-model-ai-lab-ami-raises-europes-largest-seed-round/">Crunchbase
+News</a>; <a
+href="https://x.com/ylecun/status/2031268686984527936">LeCun on
+X</a>).</li>
+<li><strong>AI Alliance - Project Tapestry (7 Apr 2026).</strong> LeCun
+was named <strong>Chief Science Advisor</strong> to the AI Alliance
+(200+ member organizations), which launched <strong>Project
+Tapestry</strong>, an open-source platform for <em>distributed, globally
+federated training of frontier open models</em> in which institutions
+and nations contribute while “retaining control of their data and the
+ability to build… sovereign derivative models.” (<a
+href="https://www.prnewswire.com/news-releases/ai-alliance-launches-project-tapestry-to-build-a-collaborative-foundation-for-open-and-sovereign-ai-302735918.html">PR
+Newswire</a>; <a
+href="https://thealliance.ai/projects/tapestry">thealliance.ai/projects/tapestry</a>).
+This is the cleanest bridge from LeCun’s commons rhetoric to
+<em>non-hyperscaler, sovereignty-preserving distributed compute</em> -
+though as of mid-2026 it is a platform-building effort, not yet a
+trained model.</li>
 </ul>
-<h3 id="2-the-four-camps-of-the-open--commons-debate">2. The four camps of the "open / commons" debate</h3>
+<h3 id="the-four-camps-of-the-open-commons-debate">2. The four camps of
+the “open / commons” debate</h3>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr>
 <th>Camp</th>
 <th>Anchor actors</th>
-<th>What is actually "open" / "out of the datacenter"</th>
+<th>What is actually “open” / “out of the datacenter”</th>
 <th>Compute reality</th>
 <th>Status</th>
 </tr>
@@ -235,53 +278,137 @@
 <tbody>
 <tr>
 <td><strong>(1) Data / legal commons</strong> (datacenter-bound)</td>
-<td>EleutherAI (Stella Biderman et al.) + U Toronto/Vector, HF, AI2, MIT, CMU, LLNL</td>
-<td>The <em>dataset</em> and <em>weights</em> are open; the argument is about licensing, not hardware</td>
+<td>EleutherAI (Stella Biderman et al.) + U Toronto/Vector, HF, AI2,
+MIT, CMU, LLNL</td>
+<td>The <em>dataset</em> and <em>weights</em> are open; the argument is
+about licensing, not hardware</td>
 <td>Trained on conventional clusters</td>
-<td><strong>Real, shipped</strong> - Common Pile v0.1 (8TB, 30 sources, June 2025) + Comma v0.1-1T/2T (7B) matching Llama 1/2 (<a href="https://blog.eleuther.ai/common-pile/">blog.eleuther.ai</a>; <a href="https://arxiv.org/abs/2506.05209">arXiv 2506.05209</a>)</td>
+<td><strong>Real, shipped</strong> - Common Pile v0.1 (8TB, 30 sources,
+June 2025) + Comma v0.1-1T/2T (7B) matching Llama 1/2 (<a
+href="https://blog.eleuther.ai/common-pile/">blog.eleuther.ai</a>; <a
+href="https://arxiv.org/abs/2506.05209">arXiv 2506.05209</a>)</td>
 </tr>
 <tr>
-<td><strong>(2) Decentralized / non-datacenter training</strong> (the real story)</td>
+<td><strong>(2) Decentralized / non-datacenter training</strong> (the
+real story)</td>
 <td>Prime Intellect (SF); Nous Research (Psyche on Solana)</td>
-<td>Training spread across geographically dispersed, often <em>permissionless</em> heterogeneous GPUs</td>
-<td>Genuinely distributed at small/RL scale; <strong>flagships retreat to centralized NVIDIA clusters</strong></td>
+<td>Training spread across geographically dispersed, often
+<em>permissionless</em> heterogeneous GPUs</td>
+<td>Genuinely distributed at small/RL scale; <strong>flagships retreat
+to centralized NVIDIA clusters</strong></td>
 <td>Real but <strong>caveated</strong> (see §3)</td>
 </tr>
 <tr>
-<td><strong>(3) Public / sovereign compute</strong> (state-funded, non-hyperscaler-owned datacenters)</td>
+<td><strong>(3) Public / state-owned compute</strong> (state-funded,
+non-hyperscaler-owned datacenters)</td>
 <td>EU AI Gigafactories; US NAIRR; NY Empire AI; Public AI Network</td>
-<td>Owner is public/consortium, not Google/AWS/Azure - but still a datacenter on Nvidia/CUDA</td>
+<td>Owner is public/consortium, not Google/AWS/Azure - but still a
+datacenter on Nvidia/CUDA</td>
 <td>Conventional hardware; large public money, slow delivery</td>
 <td>Real demand, <strong>partly aspirational</strong></td>
 </tr>
 <tr>
 <td><strong>(4) The LeCun inflection</strong></td>
 <td>LeCun + AI Alliance + AMI</td>
-<td>Rhetoric → Project Tapestry (federated) + AMI (commercial, partially open)</td>
-<td>Tapestry = distributed-by-design (not yet built); AMI = conventional venture</td>
+<td>Rhetoric → Project Tapestry (federated) + AMI (commercial, partially
+open)</td>
+<td>Tapestry = distributed-by-design (not yet built); AMI = conventional
+venture</td>
 <td>Institutional, early</td>
 </tr>
 </tbody>
 </table>
-<h3 id="3-decentralized-non-datacenter-training---whats-real-vs-marketing">3. Decentralized non-datacenter training - what's real vs. marketing</h3>
-<p><strong>Prime Intellect</strong> (founded 2023; ~$20M raised incl. a $15M seed extension led by Founders Fund, Feb 2025; backers reported to include Andrej Karpathy and Clément Delangue) produced the genuine milestones:</p>
+<h3
+id="decentralized-non-datacenter-training---whats-real-vs.-marketing">3.
+Decentralized non-datacenter training - what’s real vs. marketing</h3>
+<p><strong>Prime Intellect</strong> (founded 2023; ~$20M raised incl. a
+$15M seed extension led by Founders Fund, Feb 2025; backers reported to
+include Andrej Karpathy and Clément Delangue) produced the genuine
+milestones: - <strong>INTELLECT-1</strong> (10B) - trained across 14
+nodes on 3 continents. - <strong>INTELLECT-2</strong> (32B, May 2025,
+Apache 2.0) - <strong>the first 32B model trained via globally
+distributed reinforcement learning</strong>, where “anyone can
+permissionlessly contribute their heterogeneous compute,” with an open
+stack (PRIME-RL, TOPLOC, SHARDCAST) (<a
+href="https://www.primeintellect.ai/blog/intellect-2-release">primeintellect.ai</a>;
+<a href="https://arxiv.org/abs/2505.07291">arXiv 2505.07291</a>). -
+<strong>INTELLECT-3</strong> (106B MoE, 12B active, on GLM-4.5-Air; late
+Nov 2025) - <strong>notably trained on a <em>centralized</em> cluster of
+512 NVIDIA H200s across 64 nodes over ~2 months.</strong> The flagship
+retreated to conventional hardware (<a
+href="https://www.primeintellect.ai/blog/intellect-3">primeintellect.ai
+blog</a>; <a
+href="https://www.implicator.ai/prime-intellects-intellect-3-open-source-ambition-meets-centralized-reality/">implicator.ai</a>).
+<strong>This is the single most important adversarial flag in the
+cluster: “decentralized” is doing marketing work for the brand while the
+best model runs on a normal GPU cluster.</strong></p>
+<p><strong>Nous Research</strong> raised a <strong>$50M Series A led by
+Paradigm (April 2025) at a ~$1B token valuation</strong>, and runs
+<strong>Psyche on the Solana blockchain</strong> to pool “idle compute
+from consumer- and industrial-grade GPUs” (its DisTrO optimizer reduces
+inter-node bandwidth); it ran a 15B test run in Dec 2024 (<a
+href="https://siliconangle.com/2025/04/25/nous-research-raises-50m-decentralized-ai-training-led-paradigm/">SiliconANGLE</a>;
+<a
+href="https://www.theblock.co/post/352000/paradigm-leads-50-million-usd-round-decentralized-ai-project-nous-research">The
+Block</a>). The incentive model is explicitly crypto: idle-compute
+contribution is framed “less as a donation but more as a transaction,”
+and the valuation is <strong>token-denominated, not revenue</strong> -
+treat with caution.</p>
+<h3 id="public-state-owned-compute">4. Public / state-owned compute</h3>
 <ul>
-<li><strong>INTELLECT-1</strong> (10B) - trained across 14 nodes on 3 continents.</li>
-<li><strong>INTELLECT-2</strong> (32B, May 2025, Apache 2.0) - <strong>the first 32B model trained via globally distributed reinforcement learning</strong>, where "anyone can permissionlessly contribute their heterogeneous compute," with an open stack (PRIME-RL, TOPLOC, SHARDCAST) (<a href="https://www.primeintellect.ai/blog/intellect-2-release">primeintellect.ai</a>; <a href="https://arxiv.org/abs/2505.07291">arXiv 2505.07291</a>).</li>
-<li><strong>INTELLECT-3</strong> (106B MoE, 12B active, on GLM-4.5-Air; late Nov 2025) - <strong>notably trained on a <em>centralized</em> cluster of 512 NVIDIA H200s across 64 nodes over ~2 months.</strong> The flagship retreated to conventional hardware (<a href="https://www.primeintellect.ai/blog/intellect-3">primeintellect.ai blog</a>; <a href="https://www.implicator.ai/prime-intellects-intellect-3-open-source-ambition-meets-centralized-reality/">implicator.ai</a>). <strong>This is the single most important adversarial flag in the cluster: "decentralized" is doing marketing work for the brand while the best model runs on a normal GPU cluster.</strong></li>
+<li><strong>EU AI Gigafactories.</strong> Council Regulation (EU)
+2026/150 (InvestAI ~20B EUR; 3-5 sites of ~100,000 chips each; EU covers
+up to 17% of capex). The informal call (closed 20 June 2025) drew
+<strong>76 expressions of interest, 60 sites, 16 member states, &gt;230B
+EUR proposed, &gt;=3M GPUs foreseen</strong> (<a
+href="https://digital-strategy.ec.europa.eu/en/news/overwhelming-response-76-respondents-express-interest-european-ai-gigafactories-initiative">European
+Commission</a>) - but the <strong>formal call was deferred into early/Q2
+2026</strong> (<a
+href="https://www.lightreading.com/ai-machine-learning/eu-defers-formal-call-for-ai-gigafactories-to-early-2026">Light
+Reading</a>). Caveat: the planned facilities run on Nvidia/CUDA, so
+“sovereignty” is partial.</li>
+<li><strong>US NAIRR Pilot.</strong> NSF + 14 federal agencies + 28
+private/nonprofit partners (Microsoft $20M Azure credits; NVIDIA $30M
+incl. $24M DGX access), <strong>400+ researchers</strong> connected,
+transitioning to a permanent NAIRR Operations Center under NSF 25-546
+(Sept 2025) (<a href="https://www.nsf.gov/focus-areas/ai/nairr">NSF</a>;
+<a
+href="https://www.fiercesensors.com/electronics/nairr-pilot-gets-30m-nvidia-20m-azure">Fierce</a>).</li>
+<li><strong>NY Empire AI.</strong> $500M+ public+private (up to $340M
+state); 10 member institutions; Beta supercomputer at the University at
+Buffalo on NVIDIA Blackwell, ~11x prior capacity (<a
+href="https://www.governor.ny.gov/news/governor-hochul-announces-90-million-plan-expand-historic-empire-ai-consortium-and-enhance">Gov. Hochul</a>;
+<a
+href="https://www.hpcwire.com/off-the-wire/state-of-new-york-invests-40m-to-launch-empire-ai-beta-with-nvidia-blackwell-supercomputing/">HPCwire</a>).</li>
+<li><strong>Public AI Network.</strong> Launched a <strong>Public AI
+Inference Utility</strong> in Q4 2025 - a free/low-cost “public option”
+serving open models (Switzerland’s Apertus, Singapore’s SEA-LION v4)
+with national system prompts (<a
+href="https://publicai.substack.com/p/we-launched-the-inference-utility">publicai.substack.com</a>;
+<a href="https://huggingface.co/blog/inference-providers-publicai">HF
+blog</a>). This is <em>inference</em>, not training compute.
+<strong>Naming caution:</strong> do not confuse the public-interest
+<code>publicai.co</code> / <code>publicai.network</code> with the
+unrelated <code>$PUBLIC</code> web3 token at
+<code>publicai.io</code>.</li>
 </ul>
-<p><strong>Nous Research</strong> raised a <strong>$50M Series A led by Paradigm (April 2025) at a ~$1B token valuation</strong>, and runs <strong>Psyche on the Solana blockchain</strong> to pool "idle compute from consumer- and industrial-grade GPUs" (its DisTrO optimizer reduces inter-node bandwidth); it ran a 15B test run in Dec 2024 (<a href="https://siliconangle.com/2025/04/25/nous-research-raises-50m-decentralized-ai-training-led-paradigm/">SiliconANGLE</a>; <a href="https://www.theblock.co/post/352000/paradigm-leads-50-million-usd-round-decentralized-ai-project-nous-research">The Block</a>). The incentive model is explicitly crypto: idle-compute contribution is framed "less as a donation but more as a transaction," and the valuation is <strong>token-denominated, not revenue</strong> - treat with caution.</p>
-<h3 id="4-public--sovereign-compute">4. Public / sovereign compute</h3>
-<ul>
-<li><strong>EU AI Gigafactories.</strong> Council Regulation (EU) 2026/150 (InvestAI ~20B EUR; 3-5 sites of ~100,000 chips each; EU covers up to 17% of capex). The informal call (closed 20 June 2025) drew <strong>76 expressions of interest, 60 sites, 16 member states, &gt;230B EUR proposed, &gt;=3M GPUs foreseen</strong> (<a href="https://digital-strategy.ec.europa.eu/en/news/overwhelming-response-76-respondents-express-interest-european-ai-gigafactories-initiative">European Commission</a>) - but the <strong>formal call was deferred into early/Q2 2026</strong> (<a href="https://www.lightreading.com/ai-machine-learning/eu-defers-formal-call-for-ai-gigafactories-to-early-2026">Light Reading</a>). Caveat: the planned facilities run on Nvidia/CUDA, so "sovereignty" is partial.</li>
-<li><strong>US NAIRR Pilot.</strong> NSF + 14 federal agencies + 28 private/nonprofit partners (Microsoft $20M Azure credits; NVIDIA $30M incl. $24M DGX access), <strong>400+ researchers</strong> connected, transitioning to a permanent NAIRR Operations Center under NSF 25-546 (Sept 2025) (<a href="https://www.nsf.gov/focus-areas/ai/nairr">NSF</a>; <a href="https://www.fiercesensors.com/electronics/nairr-pilot-gets-30m-nvidia-20m-azure">Fierce</a>).</li>
-<li><strong>NY Empire AI.</strong> $500M+ public+private (up to $340M state); 10 member institutions; Beta supercomputer at the University at Buffalo on NVIDIA Blackwell, ~11x prior capacity (<a href="https://www.governor.ny.gov/news/governor-hochul-announces-90-million-plan-expand-historic-empire-ai-consortium-and-enhance">Gov. Hochul</a>; <a href="https://www.hpcwire.com/off-the-wire/state-of-new-york-invests-40m-to-launch-empire-ai-beta-with-nvidia-blackwell-supercomputing/">HPCwire</a>).</li>
-<li><strong>Public AI Network.</strong> Launched a <strong>Public AI Inference Utility</strong> in Q4 2025 - a free/low-cost "public option" serving open models (Switzerland's Apertus, Singapore's SEA-LION v4) with national system prompts (<a href="https://publicai.substack.com/p/we-launched-the-inference-utility">publicai.substack.com</a>; <a href="https://huggingface.co/blog/inference-providers-publicai">HF blog</a>). This is <em>inference</em>, not training compute. <strong>Naming caution:</strong> do not confuse the public-interest <code>publicai.co</code> / <code>publicai.network</code> with the unrelated <code>$PUBLIC</code> web3 token at <code>publicai.io</code>.</li>
-</ul>
-<h3 id="5-bottom-line">5. Bottom line</h3>
-<p>The <em>appetite</em> for AI compute outside the hyperscalers is real and increasingly well-funded - LeCun has given it intellectual legitimacy, Project Tapestry gives it an architecture, EleutherAI proves the data-commons case scientifically, and public programs have committed hundreds of millions to billions. But the <em>non-datacenter training</em> claim specifically should be read skeptically: the largest open models from the "decentralized" labs are still trained on centralized NVIDIA clusters (INTELLECT-3 on 512 H200s), the crypto-funded valuations are token-denominated, "open source" usually means open-weight-with-restrictions, and the public/sovereign datacenters still run on Nvidia/CUDA. Distributed training is a demonstrated capability at the 10B-32B / RL scale; it is not yet how anyone trains a frontier model.</p>
+<h3 id="bottom-line">5. Bottom line</h3>
+<p>The <em>appetite</em> for AI compute outside the hyperscalers is real
+and increasingly well-funded - LeCun has given it intellectual
+legitimacy, Project Tapestry gives it an architecture, EleutherAI proves
+the data-commons case scientifically, and public programs have committed
+hundreds of millions to billions. But the <em>non-datacenter
+training</em> claim specifically should be read skeptically: the largest
+open models from the “decentralized” labs are still trained on
+centralized NVIDIA clusters (INTELLECT-3 on 512 H200s), the
+crypto-funded valuations are token-denominated, “open source” usually
+means open-weight-with-restrictions, and the public/state-owned
+datacenters still run on Nvidia/CUDA. Distributed training is a
+demonstrated capability at the 10B-32B / RL scale; it is not yet how
+anyone trains a frontier model.</p>
 <hr />
-<p><em>Sources for this section are linked inline above. The consolidated source list is in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
-<div class="meta">Genere depuis 05-lecun-open-commons.md — 2026-06-16 03:44</div></div>
+<p><em>Sources for this section are linked inline above. The
+consolidated source list is in <a
+href="../SOURCES.md">SOURCES.md</a>.</em></p>
 </body>
 </html>

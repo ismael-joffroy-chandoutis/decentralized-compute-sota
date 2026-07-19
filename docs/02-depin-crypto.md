@@ -22,7 +22,7 @@ VCs are openly split. Meltem Demirors (Crucible Capital) wrote *"DePIN is dying 
 | **Spheron (Fizz)** | - | Direct lease; operator keeps **~90% of lease payment** | Consumer hardware; **≥50% uptime per 24h ERA** to earn ([Spheron docs](https://docs.spheron.network/fizz/reward-details)) | - | 90% = revenue share, **not** an uptime rule |
 | **Inference.net (ex-Kuzco)** | KZO points (**pre-token**) | Incentivized testnet points | 6,000+ GPUs, ~98TB VRAM; >90% per-GPU util **(self-reported)** ([Solana Compass](https://solanacompass.com/projects/kuzco)) | No (no token) | Valuation event ≠ demand |
 | **Gensyn** | \$AI | **No mainnet compute revenue** | RL Swarm testnet **paused**; Dec 2025 sale of 300M \$AI (3%), English auction, \$1M floor / \$1B FDV cap ([Chainwire](https://chainwire.org/2025/12/15/gensyn-launches-ai-token-sale-on-sonar/)) | No | Pre-revenue token sale |
-| **Aethir** ⚠️ | ATH | Closed reporting | **Self-reported** \$127.8M 2025 rev / \$166M ARR / 440k GPU containers ([Aethir blog](https://aethir.com/blog-posts/aethirs-2025-wrap-up-decentralized-gpu-cloud-milestones)) | **No** (closed-source, not on DeFiLlama/Token Terminal) | See anomaly below |
+| **Aethir** | ATH | Closed reporting | **Self-reported** \$127.8M 2025 rev / \$166M ARR / 440k GPU containers ([Aethir blog](https://aethir.com/blog-posts/aethirs-2025-wrap-up-decentralized-gpu-cloud-milestones)) | **No** (closed-source, not on DeFiLlama/Token Terminal) | See anomaly below |
 
 ### The Aethir anomaly (read carefully)
 

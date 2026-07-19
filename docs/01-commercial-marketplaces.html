@@ -170,52 +170,50 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  :root{--fg:#1b1b1b;--muted:#6a6a6a;--bg:#fbfaf7;--accent:#7a1f1f;--rule:#e6e2da;--code:#f2efe9;}
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--fg);
-    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
-    font-size:19px;line-height:1.72;}
-  .wrap{max-width:740px;margin:0 auto;padding:64px 28px 120px;}
-  h1,h2,h3,h4{line-height:1.25;font-weight:650;letter-spacing:-0.01em;}
-  h1{font-size:2.1rem;margin:0 0 .25em;}
-  h2{font-size:1.45rem;margin:2.4em 0 .6em;padding-top:.5em;border-top:1px solid var(--rule);}
-  h3{font-size:1.15rem;margin:1.8em 0 .4em;}
-  p{margin:0 0 1.1em;}
-  a{color:var(--accent);text-underline-offset:2px;}
-  strong{font-weight:680;}
-  em{color:#333;}
-  blockquote{margin:1.4em 0;padding:.4em 0 .4em 1.2em;border-left:3px solid var(--accent);color:#2a2a2a;}
-  blockquote p{margin:.3em 0;}
-  ul,ol{margin:0 0 1.1em;padding-left:1.4em;}
-  li{margin:.3em 0;}
-  hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0;}
-  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86em;background:var(--code);padding:.12em .4em;border-radius:4px;}
-  pre{background:var(--code);padding:16px 18px;border-radius:8px;overflow:auto;}
-  pre code{background:none;padding:0;}
-  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.92em;}
-  th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top;}
-  th{background:#f1ede5;font-weight:650;}
-  .meta{color:var(--muted);font-size:.8rem;margin-top:54px;padding-top:16px;border-top:1px solid var(--rule);}
-  @media (max-width:600px){body{font-size:17px}.wrap{padding:40px 18px 80px}}
-  @media print{body{background:#fff}.wrap{max-width:none}}
-  </style>
 </head>
 <body>
-<div class="wrap">
-<h2 id="commercial-gpu-rental-marketplaces-and-who-the-hosts-are">Commercial GPU Rental Marketplaces and Who the Hosts Are</h2>
-<p>Outside the hyperscalers, a layer of GPU rental marketplaces has matured into a real, demand-bearing market in 2025-2026. The space divides cleanly into two business models, and a third (crypto-DePIN) that markets itself as a marketplace but functions mostly as a token-subsidized supply experiment.</p>
+<header id="title-block-header">
+<h1 class="title">01-commercial-marketplaces</h1>
+</header>
+<h2
+id="commercial-gpu-rental-marketplaces-and-who-the-hosts-are">Commercial
+GPU Rental Marketplaces and Who the Hosts Are</h2>
+<p>Outside the hyperscalers, a layer of GPU rental marketplaces has
+matured into a real, demand-bearing market in 2025-2026. The space
+divides cleanly into two business models, and a third (crypto-DePIN)
+that markets itself as a marketplace but functions mostly as a
+token-subsidized supply experiment.</p>
 <h3 id="two-business-models">Two business models</h3>
 <ul>
-<li><strong>Peer-to-peer marketplaces</strong> aggregate third-party hardware and take a cut: <strong>Vast.ai</strong>, <strong>RunPod</strong> (Community Cloud), <strong>TensorDock</strong>, <strong>Salad</strong>.</li>
-<li><strong>Vertically integrated / cluster providers</strong> mostly own or lease their fleet and price centrally: <strong>Together AI</strong>, <strong>Hyperbolic</strong> (which calls itself a "marketplace" but sets prices itself).</li>
+<li><strong>Peer-to-peer marketplaces</strong> aggregate third-party
+hardware and take a cut: <strong>Vast.ai</strong>,
+<strong>RunPod</strong> (Community Cloud), <strong>TensorDock</strong>,
+<strong>Salad</strong>.</li>
+<li><strong>Vertically integrated / cluster providers</strong> mostly
+own or lease their fleet and price centrally: <strong>Together
+AI</strong>, <strong>Hyperbolic</strong> (which calls itself a
+“marketplace” but sets prices itself).</li>
 </ul>
-<p>The division of labor on a marketplace is consistent: the platform handles customers, billing, and scheduling; the host owns hardware uptime, network connectivity, physical infrastructure, and setup.</p>
+<p>The division of labor on a marketplace is consistent: the platform
+handles customers, billing, and scheduling; the host owns hardware
+uptime, network connectivity, physical infrastructure, and setup.</p>
 <h3 id="the-price-arbitrage-is-real">The price arbitrage is real</h3>
-<p>On-demand H100 rental spans roughly <strong>$1.49–$6.98/hr</strong> across 15+ specialized providers in 2026, clustering at <strong>$2–$4/hr</strong> (<a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a>), which is <strong>50–75% cheaper than hyperscaler list prices</strong> for the same hardware (<a href="https://getdeploying.com/gpus/nvidia-h100">getdeploying</a>). Consumer-GPU floors are genuine and low.</p>
+<p>On-demand H100 rental spans roughly <strong>$1.49–$6.98/hr</strong>
+across 15+ specialized providers in 2026, clustering at
+<strong>$2–$4/hr</strong> (<a
+href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a>),
+which is <strong>50–75% cheaper than hyperscaler list prices</strong>
+for the same hardware (<a
+href="https://getdeploying.com/gpus/nvidia-h100">getdeploying</a>).
+Consumer-GPU floors are genuine and low.</p>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
 <tr>
 <th>Provider</th>
@@ -231,43 +229,61 @@
 <td>H100 SXM</td>
 <td>P2P marketplace</td>
 <td>~$1.99/hr on-demand</td>
-<td><a href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
+<td><a
+href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
 </tr>
 <tr>
 <td>TensorDock</td>
 <td>A100 80GB SXM</td>
 <td>P2P marketplace</td>
 <td>~$0.95/hr</td>
-<td><a href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
+<td><a
+href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
 </tr>
 <tr>
 <td>TensorDock</td>
 <td>RTX 4090</td>
 <td>P2P marketplace</td>
 <td>~$0.32/hr</td>
-<td><a href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
+<td><a
+href="https://computeprices.com/providers/tensordock">computeprices.com</a></td>
 </tr>
 <tr>
 <td>Vast.ai</td>
 <td>RTX 5090 (consumer)</td>
 <td>P2P marketplace</td>
 <td>host earns $0.30–$0.60/GPU-hr</td>
-<td><a href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a></td>
+<td><a
+href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a></td>
 </tr>
 <tr>
 <td>Various</td>
 <td>H100 (market-wide)</td>
 <td>mixed</td>
 <td>$1.49–$6.98/hr, mostly $2–$4</td>
-<td><a href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a></td>
+<td><a
+href="https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison">IntuitionLabs</a></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>Caution: vendor and aggregator pricing drifts week to week. An earlier draft of this survey carried TensorDock figures of H100 $2.25 / A100 80GB $1.80 / RTX 4090 $0.35 / H100 spot $1.30; only the H100 on-demand figure survived verification against the live page and <a href="https://computeprices.com/providers/tensordock">computeprices.com</a> (June 2026). Quote $/hr with a date and a source, never as a stable constant.</p>
+<p>Caution: vendor and aggregator pricing drifts week to week. An
+earlier draft of this survey carried TensorDock figures of H100 $2.25 /
+A100 80GB $1.80 / RTX 4090 $0.35 / H100 spot $1.30; only the H100
+on-demand figure survived verification against the live page and <a
+href="https://computeprices.com/providers/tensordock">computeprices.com</a>
+(June 2026). Quote $/hr with a date and a source, never as a stable
+constant.</p>
 </blockquote>
-<h3 id="marketplace-take-rates-and-host-economics">Marketplace take rates and host economics</h3>
+<h3 id="marketplace-take-rates-and-host-economics">Marketplace take
+rates and host economics</h3>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
 <tr>
 <th>Marketplace</th>
@@ -279,42 +295,97 @@
 <tbody>
 <tr>
 <td>TensorDock</td>
-<td><strong>75% to host / 25% platform fee</strong>, paid via Stripe</td>
+<td><strong>75% to host / 25% platform fee</strong>, paid via
+Stripe</td>
 <td>-</td>
-<td>Confirmed by TensorDock's <a href="https://www.tensordock.com/host.html">host page</a> and binding <a href="https://docs.tensordock.com/legal-information/supplier-hosting-agreement">Supplier Hosting Agreement</a>; <strong>no independent third party</strong> verifies it</td>
+<td>Confirmed by TensorDock’s <a
+href="https://www.tensordock.com/host.html">host page</a> and binding <a
+href="https://docs.tensordock.com/legal-information/supplier-hosting-agreement">Supplier
+Hosting Agreement</a>; <strong>no independent third party</strong>
+verifies it</td>
 </tr>
 <tr>
 <td>Vast.ai</td>
-<td>Not officially disclosed; self-reported <strong>~25% spread</strong> between renter price and host earnings</td>
-<td>$0.30–$0.60/GPU-hr (consumer); $2.15–$4.00+/GPU-hr (H100/H200); a 4x RTX 5090 rig at 80% util = $700–$1,400/mo (vendor best-case)</td>
-<td><a href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a></td>
+<td>Not officially disclosed; self-reported <strong>~25% spread</strong>
+between renter price and host earnings</td>
+<td>$0.30–$0.60/GPU-hr (consumer); $2.15–$4.00+/GPU-hr (H100/H200); a 4x
+RTX 5090 rig at 80% util = $700–$1,400/mo (vendor best-case)</td>
+<td><a
+href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a></td>
 </tr>
 <tr>
 <td>RunPod</td>
-<td><strong>1–7% "revenue share" is for Hub template/app deployers</strong>, paid in RunPod credit - <strong>NOT</strong> the host split, which is invite-only and undisclosed</td>
+<td><strong>1–7% “revenue share” is for Hub template/app
+deployers</strong>, paid in RunPod credit - <strong>NOT</strong> the
+host split, which is invite-only and undisclosed</td>
 <td>-</td>
-<td><a href="https://docs.runpod.io/hub/revenue-sharing">RunPod docs</a></td>
+<td><a href="https://docs.runpod.io/hub/revenue-sharing">RunPod
+docs</a></td>
 </tr>
 <tr>
 <td>Salad</td>
-<td>Pays in "Salad Balance" (gift cards, games, crypto, PayPal), no transparent %</td>
-<td>"up to $180/mo" advertised; ~$30–$200/mo real; a user's 4x RTX 5090 made $460 in 30 days</td>
-<td><a href="https://salad.com/download-high-end">Salad</a>, <a href="https://www.youtube.com/watch?v=o9Yw4pfPbLk">user test</a></td>
+<td>Pays in “Salad Balance” (gift cards, games, crypto, PayPal), no
+transparent %</td>
+<td>“up to $180/mo” advertised; ~$30–$200/mo real; a user’s 4x RTX 5090
+made $460 in 30 days</td>
+<td><a href="https://salad.com/download-high-end">Salad</a>, <a
+href="https://www.youtube.com/watch?v=o9Yw4pfPbLk">user test</a></td>
 </tr>
 </tbody>
 </table>
-<p>Independent guides put <strong>net</strong> consumer-host profit after electricity far below marketing: ~$8/mo for an RTX 3080 and ~$52/mo for an RTX 4090 (<a href="https://earnifyhub.com/learning-guides/make-money-renting-out-gpu-2026">EarnifyHub</a>). Vast.ai verification is automated and prioritizes datacenter-grade gear - "mining rigs may never be verified," verified H100s list at ~$1.50–$1.87/hr while unverified ones sit near $0.90/hr and "mostly sit idle" (<a href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a>). The market is two-tier: amateur hosts largely starve unless they reach Verified/Datacenter status.</p>
-<h3 id="the-depin-credibility-gap-hype">The DePIN credibility gap (hype)</h3>
-<p>Crypto-DePIN networks expose the widest gap between marketed and real supply.</p>
+<p>Independent guides put <strong>net</strong> consumer-host profit
+after electricity far below marketing: ~$8/mo for an RTX 3080 and
+~$52/mo for an RTX 4090 (<a
+href="https://earnifyhub.com/learning-guides/make-money-renting-out-gpu-2026">EarnifyHub</a>).
+Vast.ai verification is automated and prioritizes datacenter-grade gear
+- “mining rigs may never be verified,” verified H100s list at
+~$1.50–$1.87/hr while unverified ones sit near $0.90/hr and “mostly sit
+idle” (<a
+href="https://vast.ai/article/how-much-money-can-you-earn-renting-out-your-gpu-on-vast-ai">Vast.ai</a>).
+The market is two-tier: amateur hosts largely starve unless they reach
+Verified/Datacenter status.</p>
+<h3 id="the-depin-credibility-gap-hype">The DePIN credibility gap
+(hype)</h3>
+<p>Crypto-DePIN networks expose the widest gap between marketed and real
+supply.</p>
 <ul>
-<li><strong>io.net</strong> markets <strong>327,000 "registered" GPUs</strong> but averaged only <strong>6,720 verified-active GPUs per day in Q1 2025 (~2%)</strong>, with ~5,350 cluster-ready on a given day (<a href="https://messari.io/report/state-of-io-net-q1-2025">Messari, State of io.net Q1 2025</a>). Its 2024 Sybil attack saw **~1.8M fake GPUs** attempt to connect and <strong>~400,000 spoofed workers</strong> chasing token rewards before Proof-of-Work verification was added (<a href="https://www.theblock.co/post/291315/solana-based-depin-io-net-ceo-claims-network-was-attacked-in-detailed-postmortem">The Block</a>; <a href="https://x.com/ionet/status/1780877493672595941">io.net postmortem on X</a>).</li>
-<li><strong>Akash Network</strong> shrank rather than scaled: Q4 2025 averaged <strong>63 active providers</strong>, GPU usage fell <strong>46% QoQ</strong> (367 → 198) and capacity dropped 16% (702 → 587) as providers exited (<a href="https://messari.io/report/state-of-akash-q4-2025">Messari, State of Akash Q4 2025</a>; <a href="https://akash.network/blog/q4-2025-report/">Akash Q4 report</a>). Foundry (DCG-backed) is the largest single supplier.</li>
+<li><strong>io.net</strong> markets <strong>327,000 “registered”
+GPUs</strong> but averaged only <strong>6,720 verified-active GPUs per
+day in Q1 2025 (~2%)</strong>, with ~5,350 cluster-ready on a given day
+(<a href="https://messari.io/report/state-of-io-net-q1-2025">Messari,
+State of io.net Q1 2025</a>). Its 2024 Sybil attack saw <strong>~1.8M
+fake GPUs</strong> attempt to connect and <strong>~400,000 spoofed
+workers</strong> chasing token rewards before Proof-of-Work verification
+was added (<a
+href="https://www.theblock.co/post/291315/solana-based-depin-io-net-ceo-claims-network-was-attacked-in-detailed-postmortem">The
+Block</a>; <a
+href="https://x.com/ionet/status/1780877493672595941">io.net postmortem
+on X</a>).</li>
+<li><strong>Akash Network</strong> shrank rather than scaled: Q4 2025
+averaged <strong>63 active providers</strong>, GPU usage fell
+<strong>46% QoQ</strong> (367 → 198) and capacity dropped 16% (702 →
+587) as providers exited (<a
+href="https://messari.io/report/state-of-akash-q4-2025">Messari, State
+of Akash Q4 2025</a>; <a
+href="https://akash.network/blog/q4-2025-report/">Akash Q4 report</a>).
+Foundry (DCG-backed) is the largest single supplier.</li>
 </ul>
-<p>DePIN "registered GPU" counts should be treated as marketing, not deployable capacity; the deployable number is routinely an order of magnitude smaller.</p>
+<p>DePIN “registered GPU” counts should be treated as marketing, not
+deployable capacity; the deployable number is routinely an order of
+magnitude smaller.</p>
 <h3 id="who-actually-hosts">Who actually hosts</h3>
-<p>Two profiles, with very different trust models. <strong>(1)</strong> Hobbyists and ex-miners repurposing idle consumer GPUs (Salad's gamer install base; Vast/RunPod community tiers) - low barrier, thin and often token-denominated returns. <strong>(2)</strong> Professional and datacenter operators chasing Verified/Datacenter badges (Vast verification wants CUDA ≥12.0, 90%+ reliability, SOC2/ISO 27001 for the datacenter tier; RunPod Community is invite-only vetted) - these get the enterprise jobs. Renters skew toward AI developers, fine-tuners, inference shops, and budget researchers leaving hyperscaler markups.</p>
+<p>Two profiles, with very different trust models. <strong>(1)</strong>
+Hobbyists and ex-miners repurposing idle consumer GPUs (Salad’s gamer
+install base; Vast/RunPod community tiers) - low barrier, thin and often
+token-denominated returns. <strong>(2)</strong> Professional and
+datacenter operators chasing Verified/Datacenter badges (Vast
+verification wants CUDA ≥12.0, 90%+ reliability, SOC2/ISO 27001 for the
+datacenter tier; RunPod Community is invite-only vetted) - these get the
+enterprise jobs. Renters skew toward AI developers, fine-tuners,
+inference shops, and budget researchers leaving hyperscaler markups.</p>
 <hr />
-<p><em>Sources for this section are linked inline above. The consolidated source list is in <a href="../SOURCES.md">SOURCES.md</a>.</em></p>
-<div class="meta">Genere depuis 01-commercial-marketplaces.md — 2026-06-16 03:44</div></div>
+<p><em>Sources for this section are linked inline above. The
+consolidated source list is in <a
+href="../SOURCES.md">SOURCES.md</a>.</em></p>
 </body>
 </html>
