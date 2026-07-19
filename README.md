@@ -6,6 +6,8 @@
 
 > Renting your machine for AI, crypto GPU networks, the Folding@home / PlayStation 3 lineage, decentralized model training, the open commons. What is real, what is hype, and whether anything can actually emerge outside Google, Amazon and Microsoft.
 
+<img src="monde.jpg" alt="decentralized-compute-sota" width="100%">
+
 *The signed critical essay is in French: [essai/decentralisation-du-compute.fr.md](essai/decentralisation-du-compute.fr.md).*
 
 ---
